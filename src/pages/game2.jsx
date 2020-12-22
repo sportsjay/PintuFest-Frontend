@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-export default function ComingSoon() {
+export default function Game2() {
   return (
-    <div>Coming Soon!</div>
+    <div>game2</div>
   );
 }
