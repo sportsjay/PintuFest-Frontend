@@ -1,24 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Container, makeStyles } from "@material-ui/core";
+
+//import route file
+import { routes } from "./routes";
+
+//import components
+import TopAppBar from "./components/appbar";
+import Footer from "./components/footer";
+
+//import pages
+import Home from "./pages/home";
+import Registration from "./pages/registration";
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: theme.spacing(1),
+
+    //inject theme here
+
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+      height: "100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      alignItems: "center",
+    },
+  },
+}));
 
 function App() {
+  //initialize styles
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <TopAppBar position="relative" routes={routes} />
+      <Container className={classes.content}>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/register">
+            <Registration />
+          </Route>
+        </Switch>
+      </Container>
+      <Footer />
+    </Router>
   );
 }
 
