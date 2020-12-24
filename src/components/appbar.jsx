@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   AppBar,
   Container,
-  Typography,
   Toolbar,
   Button,
   makeStyles,
@@ -27,8 +26,8 @@ export default function TopAppBar(props) {
       <Toolbar className={classes.root}>
         {routes.map((route) => (
           <Link key={route.id} to={route.path}>
-            <Button>
-              <Typography>{route.name}</Typography>
+            <Button variant="contained" color="primary">
+              {route.name}
             </Button>
           </Link>
         ))}
