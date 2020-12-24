@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: theme.spacing(1),
 
     //inject theme here
 
@@ -39,7 +38,7 @@ function App() {
   return (
     <Router>
       <TopAppBar position="relative" routes={routes} />
-      <Container className={classes.content}>
+      <div className={classes.content}>
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -48,7 +47,7 @@ function App() {
             <Registration />
           </Route>
         </Switch>
-      </Container>
+      </div>
       <Footer />
     </Router>
   );
