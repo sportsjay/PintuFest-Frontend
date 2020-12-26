@@ -11,8 +11,8 @@ export default function Home() {
   const roomDescriptions = [
     {
       room: 1,
-      description: "description 1",
-      time: "",
+      description: "Game 1 adalah case file tentang sesuatu",
+      time: "100",
     },
     {
       room: 2,
@@ -42,6 +42,7 @@ export default function Home() {
             <HorizontalLabelPositionBelowStepper
               title={"Room " + room.room}
               description={room.description}
+              timer={room.time}
               isAdmin={false} //use for admins only
             />
           ))}
