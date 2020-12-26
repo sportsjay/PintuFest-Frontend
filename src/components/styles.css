@@ -1,9 +1,11 @@
 #container {
   position: relative;
   text-align: center;
-  margin: 0px;
+  margin-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
+  border-radius: 0px;
+  padding: 0px;
 }
 
 .style {
@@ -12,4 +14,44 @@
   color: white;
   font-size: 90px;
   width: 100%;
+}
+
+.description {
+  position: absolute;
+  color: white;
+  bottom: 13%;
+  font-size: 30px;
+  width: 100%;
+}
+
+#box-color {
+  background-color: black;
+  width: 100%;
+  padding: 0px;
+  margin-top: 0px;
+  margin: 0px;
+}
+
+#grid_color {
+  background-color: black;
+}
+
+.subheading {
+  color: maroon;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0px;
+  padding-top: 20px;
+}
+
+.content {
+  color: white;
+  font-size: 20px;
+  padding-top: 50px;
+}
+
+#no_padding {
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
 }
