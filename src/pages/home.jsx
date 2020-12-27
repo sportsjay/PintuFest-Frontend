@@ -11,7 +11,7 @@ export default function Home() {
   const roomDescriptions = [
     {
       room: 1,
-      description: "Game 1 adalah case file tentang sesuatu",
+      description: "description 1",
       time: "100",
     },
     {

@@ -34,6 +34,11 @@
 
 #grid_color {
   background-color: black;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  padding-bottom: 20px;
+  box-shadow: 0 0 0 0;
 }
 
 .subheading {
@@ -54,4 +59,25 @@
   padding: 0px;
   margin-bottom: 0px;
   border-radius: 0px;
+}
+
+#grid_color1 {
+  background-color: black;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  padding-bottom: 20px;
+  box-shadow: 0 0 0 0;
+  height: 300px;
+}
+
+#grid_color2 {
+  background-color: black;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  box-shadow: 0 0 0 0;
+  height: 300px;
 }
