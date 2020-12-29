@@ -12,13 +12,13 @@ import Footer from "./components/footer";
 //import pages
 import Home from "./pages/home";
 import Registration from "./pages/registration";
+import Game1 from "./pages/game1";
 
 const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: theme.spacing(1),
 
     //inject theme here
 
@@ -39,7 +39,7 @@ function App() {
   return (
     <Router>
       <TopAppBar position="relative" routes={routes} />
-      <Container className={classes.content}>
+      <div className={classes.content}>
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -47,8 +47,11 @@ function App() {
           <Route path="/register">
             <Registration />
           </Route>
+          <Route path="/game1">
+            <Game1 />
+          </Route>
         </Switch>
-      </Container>
+      </div>
       <Footer />
     </Router>
   );
