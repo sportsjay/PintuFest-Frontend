@@ -21,8 +21,8 @@ const images = [
     width: '33.3%',
   },
   {
-    url: '../images/game1_1.jpg',
-    title: 'Escape Room 2',
+    url: '../images/game1_3.jpg',
+    title: 'Escape Room 3',
     width: '33.3%',
   },
 ];
@@ -121,7 +121,7 @@ export default function Game1() {
       <div id="box-color">
         <div className={classes.root}>
           <Grid container spacing={0}>
-            <Grid item xs={12}>
+            <Grid item md={12} xs={12}>
               <Paper className={classes.paper} id="grid_color">
               <div id="container">
                 <img src="./images/image_banner.jpg" width="100%" height="auto"/>
@@ -130,29 +130,29 @@ export default function Game1() {
               </div>
               </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Paper className={classes.paper} id="grid_color1" >
-                <p className="subheading">120 Minutes</p>
+                <p className="subheading">60 Minutes</p>
                 <div className="content">Follow all the clues to find out the mystery behind all of it</div>
               </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Paper className={classes.paper} id="grid_color2">
-                <img src="../images/game1_1.jpg" width="auto" height="260px"/>
+                <img src="../images/game1_1.jpg" width="auto" height="100%" />
               </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Paper className={classes.paper} id="grid_color2">
-                <img src="../images/game1_1.jpg" alt="game1_2" width="auto" height="260px"/>
+                <img src="../images/game1_1.jpg" alt="game1_2" width="auto" height="100%" />
               </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Paper className={classes.paper} id="grid_color1" >
-                <p className="subheading">Work with a team of 5</p>
+                <p className="subheading">Work with a team of 5-8</p>
                 <div className="content">LOCATION: NTU</div>
               </Paper>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item md={12} xs={12}>
               <Paper className={classes.paper} id="grid_color1" >
               <div className={classes.root}>
                 {images.map((image) => (
@@ -163,6 +163,9 @@ export default function Game1() {
                     focusVisibleClassName={classes.focusVisible}
                     style={{
                       width: image.width,
+                      height: "500px",
+                      paddingLeft: "10px",
+                      paddingRight: "10px",
                     }}
                   >
                     <span

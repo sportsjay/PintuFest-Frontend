@@ -81,3 +81,45 @@
   box-shadow: 0 0 0 0;
   height: 300px;
 }
+
+@media (max-width: 768px) {
+  .style {
+    font-size: 55px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 25px;
+  }
+
+  .subheading {
+    padding-top: 20px;
+    font-size: 35px;
+  }
+
+  .content {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  img {
+    height: 80%;
+  }
+  .style {
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 25px;
+  }
+
+  .subheading {
+    font-size: 35px;
+  }
+
+  .content {
+    font-size: 20px;
+  }
+}
