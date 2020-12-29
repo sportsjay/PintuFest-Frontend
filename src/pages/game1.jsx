@@ -194,7 +194,7 @@ export default function Game1() {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper} id="grid_color3" >
-                <Button id="position" variant="contained" color="maroon" href="/game1" >REGISTER NOW</Button>       
+                <Button id="position" variant="contained" color="secondary" href="/game1" >REGISTER NOW</Button>       
               </Paper>
             </Grid>
           </Grid>
