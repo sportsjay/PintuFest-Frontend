@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import Button from '@material-ui/core/Button';
 import "../components/styles.css";
 import { LinearScaleTwoTone } from "@material-ui/icons";
 
@@ -132,7 +133,7 @@ export default function Game1() {
             </Grid>
             <Grid item md={6} xs={12}>
               <Paper className={classes.paper} id="grid_color1" >
-                <p className="subheading">60 Minutes</p>
+                <p className="subheading">90 Minutes</p>
                 <div className="content">Follow all the clues to find out the mystery behind all of it</div>
               </Paper>
             </Grid>
@@ -152,7 +153,7 @@ export default function Game1() {
                 <div className="content">LOCATION: NTU</div>
               </Paper>
             </Grid>
-            <Grid item md={12} xs={12}>
+            <Grid item xs={12} id="grid_size">
               <Paper className={classes.paper} id="grid_color1" >
               <div className={classes.root}>
                 {images.map((image) => (
@@ -189,6 +190,11 @@ export default function Game1() {
                   </ButtonBase>
                 ))}
               </div>
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className={classes.paper} id="grid_color3" >
+                <Button id="position" variant="contained" color="maroon" href="/game1" >REGISTER NOW</Button>       
               </Paper>
             </Grid>
           </Grid>

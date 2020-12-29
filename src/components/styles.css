@@ -82,6 +82,19 @@
   height: 300px;
 }
 
+#grid_color3 {
+  background-color: black;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  box-shadow: 10 10 10 10;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+#grid_size {
+  height: 500px;
+}
 @media (max-width: 768px) {
   .style {
     font-size: 55px;
