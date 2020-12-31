@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Registration() {
   const selectedTimeSlotsRedux = useSelector(
-    (state) => state.registrationReducer.selectedTimeSlot
+    (state) => state.registration.selectedTimeSlot
   );
 
   const [username, setUsername] = useState("");
@@ -88,11 +88,13 @@ export default function Registration() {
       <Container className={classes.form}>
         <FormControl>
           <TextField
+            variant="outlined"
             label="Username"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
           />
           <TextField
+            variant="outlined"
             label="E-mail"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
