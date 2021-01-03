@@ -9,4 +9,9 @@ export const routes = [
     name: "register",
     path: "/register",
   },
+  {
+    id:3,
+    name: "game2",
+    path: "/game2",
+  }
 ];
