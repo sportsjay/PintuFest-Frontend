@@ -12,7 +12,7 @@ import Footer from "./components/footer";
 //import pages
 import Home from "./pages/home";
 import Registration from "./pages/registration";
-import Game1 from "./pages/game1";
+import Game3 from "./pages/game3";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -47,8 +47,8 @@ function App() {
           <Route path="/register">
             <Registration />
           </Route>
-          <Route path="/game1">
-            <Game1 />
+          <Route path="/game3">
+            <Game3 />
           </Route>
         </Switch>
       </div>
