@@ -12,19 +12,22 @@ import { LinearScaleTwoTone } from "@material-ui/icons";
 
 const images = [
   {
-    url: '../images/game1_1.jpg',
+    url: '../images/game1_5.png',
     title: 'Escape Room 1',
-    width: '33.3%',
+    width: '30%',
+    link: '/game1',
   },
   {
-    url: '../images/game1_2.jpg',
+    url: '../images/game1_6.jpg',
     title: 'Escape Room 2',
-    width: '33.3%',
+    width: '30%',
+    link: '/game1',
   },
   {
-    url: '../images/game1_3.jpg',
+    url: '../images/game1_4.jpg',
     title: 'Escape Room 3',
-    width: '33.3%',
+    width: '30%',
+    link: '/game1',
   },
 ];
 
@@ -40,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 300,
     width: '100%',
     flexGrow: 1,
+    justifyContent: 'center',
+
   },
   image: {
     position: 'relative',
@@ -114,11 +119,6 @@ export default function Game1() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* <div id="container">
-        <img src="./images/image_banner.jpg" width="100%" height="auto"/>
-        <div className="style">Escape Room 1</div>
-        <div className="description">Week 3</div>
-      </div> */}
       <div id="box-color">
         <div className={classes.root}>
           <Grid container spacing={0}>
@@ -131,7 +131,8 @@ export default function Game1() {
               </div>
               </Paper>
             </Grid>
-            <Grid item md={6} xs={12}>
+            <div id="column_reverse">
+            <Grid>
               <Paper className={classes.paper} id="grid_color1" >
                 <p className="subheading">90 Minutes</p>
                 <div className="content">Follow all the clues to find out the mystery behind all of it</div>
@@ -142,6 +143,8 @@ export default function Game1() {
                 <img src="../images/game1_1.jpg" width="auto" height="100%" />
               </Paper>
             </Grid>
+            </div>
+            <div id="column">
             <Grid item md={6} xs={12}>
               <Paper className={classes.paper} id="grid_color2">
                 <img src="../images/game1_1.jpg" alt="game1_2" width="auto" height="100%" />
@@ -153,9 +156,10 @@ export default function Game1() {
                 <div className="content">LOCATION: NTU</div>
               </Paper>
             </Grid>
+            </div>
             <Grid item xs={12} id="grid_size">
               <Paper className={classes.paper} id="grid_color1" >
-              <div className={classes.root}>
+              <div id="coloring" className={classes.root}>
                 {images.map((image) => (
                   <ButtonBase
                     focusRipple
@@ -164,10 +168,12 @@ export default function Game1() {
                     focusVisibleClassName={classes.focusVisible}
                     style={{
                       width: image.width,
-                      height: "500px",
-                      paddingLeft: "10px",
-                      paddingRight: "10px",
+                      height: "450px",
+                      marginRight: "1%", 
+                      marginTop: "5px",
+                      marginLeft: "1%"
                     }}
+                    href={image.link}
                   >
                     <span
                       className={classes.imageSrc}
@@ -189,12 +195,12 @@ export default function Game1() {
                     </span>
                   </ButtonBase>
                 ))}
-              </div>
-              </Paper>
-            </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper} id="grid_color3" >
                 <Button id="position" variant="contained" color="secondary" href="/game1" >REGISTER NOW</Button>       
+              </Paper>
+            </Grid>
+              </div>
               </Paper>
             </Grid>
           </Grid>

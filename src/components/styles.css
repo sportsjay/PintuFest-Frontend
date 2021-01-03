@@ -26,10 +26,12 @@
 
 #box-color {
   background-color: black;
-  width: 100%;
+  width: 100vw;
   padding: 0px;
   margin-top: 0px;
   margin: 0px;
+  display: flex;
+  justify-content: center;
 }
 
 #grid_color {
@@ -53,6 +55,8 @@
   color: white;
   font-size: 20px;
   padding-top: 50px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 #no_padding {
@@ -88,21 +92,43 @@
   margin-bottom: 0px;
   border-radius: 0px;
   box-shadow: 10 10 10 10;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#coloring {
+  background-color: black;
 }
 
 #grid_size {
   height: 500px;
 }
+
+#column_reverse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100vw;
+}
+
+#column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100vw;
+  padding-bottom: 100px;
+}
+
 @media (max-width: 768px) {
   .style {
-    font-size: 55px;
+    font-size: 60px;
     margin-bottom: 10px;
   }
 
   .description {
-    font-size: 25px;
+    font-size: 30px;
   }
 
   .subheading {
@@ -112,6 +138,34 @@
 
   .content {
     font-size: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  #column_reverse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    width: 100vw;
+  }
+
+  #column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  #grid_color1 {
+    background-color: black;
+    padding: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 0 0;
+    height: 200px;
   }
 }
 
@@ -120,12 +174,12 @@
     height: 80%;
   }
   .style {
-    font-size: 50px;
+    font-size: 40px;
     margin-bottom: 10px;
   }
 
   .description {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .subheading {
@@ -134,5 +188,15 @@
 
   .content {
     font-size: 20px;
+  }
+
+  #grid_color1 {
+    background-color: black;
+    padding: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 0 0;
+    height: 200px;
   }
 }
