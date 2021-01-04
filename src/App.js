@@ -7,6 +7,7 @@ import { routes } from "./routes";
 
 //import components
 import TopAppBar from "./components/appbar";
+import TopBar from "./components/topbar";
 import Footer from "./components/footer";
 
 //import pages
@@ -19,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-
+    backgroundColor: '#111111',
+    color: 'white',
+    width: '100vw',
+    paddingTop: 100,
     //inject theme here
 
     [theme.breakpoints.up("md")]: {
@@ -38,9 +42,9 @@ function App() {
   const classes = useStyles();
   return (
     <Router>
-      <TopAppBar position="relative" routes={routes} />
+      <TopBar position="relative" routes={routes} />
       <div className={classes.content}>
-        <Switch>
+       {/* <Switch>
           <Route path="/" exact>
             <Home />
           </Route>
@@ -49,6 +53,18 @@ function App() {
           </Route>
           <Route path="/game1">
             <Game1 />
+          </Route>
+        </Switch>
+       */}
+       <Switch>
+          <Route path="/game3" exact>
+            <Game1 />
+          </Route>
+          <Route path="/game2">
+            <Registration />
+          </Route>
+          <Route path="/game1">
+            <Home />
           </Route>
         </Switch>
       </div>

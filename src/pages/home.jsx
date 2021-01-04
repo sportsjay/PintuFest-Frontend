@@ -27,7 +27,7 @@ export default function Home() {
   ]; //test data
 
   return (
-    <div>
+    <div style={styles.root}>
       Home
       {/* Test your development page below */}
       {/* 
@@ -54,4 +54,12 @@ export default function Home() {
       )}
     </div>
   );
+}
+
+const styles = {
+  root: {
+    backgroundColor: '#111111',
+    color: 'white',
+    width: '100vw'
+  }
 }
