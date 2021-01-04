@@ -19,6 +19,12 @@ function reducer(state, action) {
       return {
         ...state,
       };
+    case ActionTypes.RESET:
+      const newArray = new Array();
+      state.selectedTimeSlot = newArray;
+      return {
+        ...state,
+      };
     default:
       return initialState;
   }

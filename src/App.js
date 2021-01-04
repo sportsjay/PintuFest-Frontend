@@ -14,6 +14,7 @@ import Home from "./pages/home";
 import Registration from "./pages/registration";
 import AdminLogin from "./pages/adminlogin";
 import Game1 from "./pages/game1";
+import ComingSoon from "./pages/comingsoon";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -53,6 +54,9 @@ function App() {
           </Route>
           <Route path="/admin-kalo-mau-login-disini">
             <AdminLogin />
+          </Route>
+          <Route path="/comingsoon">
+            <ComingSoon />
           </Route>
         </Switch>
       </div>

@@ -121,6 +121,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
                 {activeStep === steps.length ? (
                   <div>
                     <Button
+                      key={activeStep}
                       variant="contained"
                       color="primary"
                       onClick={handleReset}
