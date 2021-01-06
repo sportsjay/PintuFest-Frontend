@@ -59,16 +59,16 @@ function App() {
         </Switch>
        */}
        <Switch>
-          <Route path="/faq" exact>
+          <Route path="/" exact>
             <FAQ />
           </Route>
-          <Route path="/game3">
+          <Route path="/game1">
             <Game1 />
           </Route>
           <Route path="/game2">
             <ComingSoon />
           </Route>
-          <Route path="/game1">
+          <Route path="/game3">
             <Home />
           </Route>
         </Switch>

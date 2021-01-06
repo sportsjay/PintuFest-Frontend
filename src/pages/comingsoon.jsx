@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import {Animate,AnimateGroup} from 'react-simple-animate';
+import { Transform } from '@material-ui/icons';
 
 const text = ['C','O','M','I','N','G',' ','S','O','O','N','.','.','.']
 const dot = ['.','.','.']
@@ -15,9 +16,9 @@ export default class ComingSoon extends React.Component {
   render(){
     return (
       <div style={styles.root}>
-        <h1 style={{fontSize: '10vw', color: '#941616', margin:0}}>A Death Is Announced </h1>
-        <div   style={{flexDirection: 'row', display:'flex'}}>
-        <h1 style={{fontSize: '15vw', color: 'white', margin: 0,textAlign:'center'}}>Coming Soon</h1>
+        <h1 style={{ color: '#941616', margin:0}}>A Death Is Announced </h1>
+        <div   style={{flexDirection: 'row', display:'flex', justifyContent: "center", alignItems: 'center',}}>
+        <h1 style={{color: 'white', margin: 0,textAlign:'center'}}>Coming Soon</h1>
         <AnimateGroup
           play={this.state.play}
           onComplete={()=>{this.setState({play:false, start: 1},setInterval(this.setState({play:true}, 1000)))}}
@@ -32,7 +33,7 @@ export default class ComingSoon extends React.Component {
                 start={{ opacity: this.state.start, }}
                 end={{ opacity: 1-this.state.start, }}
               >
-                <h3 style={{fontSize: '15vw', margin:0}}>{item}</h3>
+                <h3 style={{margin:0}}>{item}</h3>
               </Animate>
             )
           })}
@@ -53,6 +54,7 @@ const styles = {
     color: 'white',
     width: '100vw',
     height: '80vh',
-    fontFamily: 'EastSea'
+    fontFamily: 'EastSea',
+    fontSize: 'calc(12px + 3vw)'
   }
 }

@@ -22,7 +22,7 @@ export const routes = [
     id: 0,
     name: "?",
     expand: "FAQs",
-    path: "/faq",
+    path: "/",
   },
   {
     id: 1,
