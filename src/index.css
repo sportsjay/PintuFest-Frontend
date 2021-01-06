@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'EastSea';
+  src: local('EastSea'), url(./fonts/EastSeaDokdo-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'XiaoWei';
+  src: local('XiaoWei'), url(./fonts/ZCOOLXiaoWei-Regular.ttf) format('truetype');
+}

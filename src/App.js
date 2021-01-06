@@ -14,6 +14,8 @@ import Footer from "./components/footer";
 import Home from "./pages/home";
 import Registration from "./pages/registration";
 import Game1 from "./pages/game1";
+import ComingSoon from "./pages/comingsoon"
+import FAQ from "./pages/faq"
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -57,11 +59,14 @@ function App() {
         </Switch>
        */}
        <Switch>
-          <Route path="/game3" exact>
+          <Route path="/faq" exact>
+            <FAQ />
+          </Route>
+          <Route path="/game3">
             <Game1 />
           </Route>
           <Route path="/game2">
-            <Registration />
+            <ComingSoon />
           </Route>
           <Route path="/game1">
             <Home />
