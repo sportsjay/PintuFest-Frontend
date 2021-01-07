@@ -60,6 +60,7 @@ export default function TimeSlot(props) {
   const duration = props.duration || "0 hours"; //game duration
   const timeslot = props.timeslot || "00:00 - 00:00"; //game timeslot
   const numSlot = props.numSlot || 1; //game room number of slots left
+  const numParticipants = props.numParticipants || 0; //current game slots participants
 
   return (
     <Card className={classes.card} key={id}>
@@ -109,7 +110,9 @@ export default function TimeSlot(props) {
           flexItem
           className={classes.dividerVertical}
         />
-        <Typography variant="inherit">Available slot: {numSlot}</Typography>
+        <Typography variant="inherit">
+          Available slot: {numSlot - numParticipants}
+        </Typography>
       </Container>
     </Card>
   );

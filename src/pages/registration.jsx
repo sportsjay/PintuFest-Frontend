@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Container,
   makeStyles,
@@ -8,7 +9,6 @@ import {
   FormControlLabel,
   TextField,
   RadioGroup,
-  Radio,
 } from "@material-ui/core";
 
 //import components
@@ -22,6 +22,9 @@ import {
   setResetTimeSlotAction,
   setSelectTimeSlotAction,
 } from "../actions/registration-action";
+
+//import api for registration
+import { GAMES_API } from "../api-routes/games.api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,49 +76,17 @@ export default function Registration() {
   const [selectTimeSlot3, setSelectTimeSlot3] = useState(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  //test only
-  const timeSlots = [
-    {
-      id: 1,
-      name: "game 1",
-      room: 1,
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-    {
-      id: 2,
-      name: "game 1",
-      room: 2,
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-    {
-      id: 3,
-      name: "game 3",
-      room: 1,
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-    {
-      id: 4,
-      name: "game 2",
-      room: 1,
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-    {
-      id: 5,
-      name: "game 3",
-      room: 1,
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-  ];
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  useEffect(() => {
+    // get data from DB
+    axios
+      .get(GAMES_API.GET_ALL_GAMES)
+      .then((res) => {
+        setTimeSlots(res.data);
+      })
+      .catch((error) => console.error("Error! " + error));
+  }, []);
 
   const classes = useStyles();
   // submit form function
@@ -128,6 +99,15 @@ export default function Registration() {
       alert("Please select at least 1 timeslot! Thank you!");
     } else {
       // call submit function
+      // sends username and array of gameId upon slot booking
+      axios
+        .post(GAMES_API.BOOK_GAME_SLOT, {
+          username: username,
+          email: email,
+          gameId: selectedTimeSlotsRedux,
+        })
+        .then((res) => alert(res.data.msg))
+        .catch((error) => alert(error.response.data));
     }
     // reset after submit
     setUsername("");
@@ -145,9 +125,6 @@ export default function Registration() {
     dispatch(setSelectTimeSlotAction(selectTimeSlot1));
     dispatch(setSelectTimeSlotAction(selectTimeSlot2));
     dispatch(setSelectTimeSlotAction(selectTimeSlot3));
-    console.log(
-      selectTimeSlot1 + " " + selectTimeSlot2 + " " + selectTimeSlot3
-    );
   };
 
   // close modal function
@@ -158,11 +135,10 @@ export default function Registration() {
 
   return (
     <div className={classes.root}>
-      {console.log(selectedTimeSlotsRedux)}
       <Container className={classes.information}>
-        <CardLink></CardLink>
-        <CardLink></CardLink>
-        <CardLink></CardLink>
+        <CardLink title=""></CardLink>
+        <CardLink title=""></CardLink>
+        <CardLink title=""></CardLink>
       </Container>
       <Container className={classes.form}>
         <FormControl component="fieldset">
@@ -190,7 +166,7 @@ export default function Registration() {
           >
             {timeSlots.length > 0 ? (
               timeSlots.map((timeslot) => {
-                if (timeslot.name === "game 1") {
+                if (timeslot.name === "game1") {
                   return (
                     <React.Fragment key={timeslot.id}>
                       <FormControlLabel
@@ -198,12 +174,13 @@ export default function Registration() {
                         value={timeslot.id.toString()}
                         control={
                           <TimeSlot
-                            id={timeslot.id}
+                            id={timeslot.id.toString()}
                             name={timeslot.name}
                             room={timeslot.room}
                             duration={timeslot.duration}
                             timeslot={timeslot.timeslot}
-                            numSlot={timeslot.numSlot}
+                            numSlot={timeslot.maxNumberOfParticipants}
+                            numParticipants={timeslot.participants.length}
                           />
                         }
                       />
@@ -227,7 +204,7 @@ export default function Registration() {
           >
             {timeSlots.length > 0 ? (
               timeSlots.map((timeslot) => {
-                if (timeslot.name === "game 2") {
+                if (timeslot.name === "game2") {
                   return (
                     <React.Fragment>
                       <FormControlLabel
@@ -235,12 +212,12 @@ export default function Registration() {
                         value={timeslot.id.toString()}
                         control={
                           <TimeSlot
-                            id={timeslot.id}
+                            id={timeslot.id.toString()}
                             name={timeslot.name}
                             room={timeslot.room}
                             duration={timeslot.duration}
                             timeslot={timeslot.timeslot}
-                            numSlot={timeslot.numSlot}
+                            numSlot={timeslot.maxNumberOfParticipants}
                           />
                         }
                       />
@@ -264,7 +241,7 @@ export default function Registration() {
             {/* Mapping Escape Room 3 timeslots */}
             {timeSlots.length > 0 ? (
               timeSlots.map((timeslot) => {
-                if (timeslot.name === "game 3") {
+                if (timeslot.name === "game3") {
                   return (
                     <React.Fragment key={timeslot.id}>
                       <FormControlLabel
@@ -272,12 +249,12 @@ export default function Registration() {
                         value={timeslot.id.toString()}
                         control={
                           <TimeSlot
-                            id={timeslot.id}
+                            id={timeslot.id.toString()}
                             name={timeslot.name}
                             room={timeslot.room}
                             duration={timeslot.duration}
                             timeslot={timeslot.timeslot}
-                            numSlot={timeslot.numSlot}
+                            numSlot={timeslot.maxNumberOfParticipants}
                           />
                         }
                       />
