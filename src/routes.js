@@ -1,12 +1,20 @@
 /*export const routes = [
   {
     id: 1,
+<<<<<<< HEAD
     name: "home",
+=======
+    name: "Home",
+>>>>>>> b7e4f909b7d08df639e648d7d710085a7264260b
     path: "/",
   },
   {
     id: 2,
+<<<<<<< HEAD
     name: "register",
+=======
+    name: "Register",
+>>>>>>> b7e4f909b7d08df639e648d7d710085a7264260b
     path: "/register",
   },
   {

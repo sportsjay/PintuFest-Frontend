@@ -13,6 +13,7 @@ import Footer from "./components/footer";
 //import pages
 import Home from "./pages/home";
 import Registration from "./pages/registration";
+import AdminLogin from "./pages/adminlogin";
 import Game1 from "./pages/game1";
 import ComingSoon from "./pages/comingsoon"
 import FAQ from "./pages/faq"
@@ -55,6 +56,12 @@ function App() {
           </Route>
           <Route path="/game1">
             <Game1 />
+          </Route>
+          <Route path="/admin-kalo-mau-login-disini">
+            <AdminLogin />
+          </Route>
+          <Route path="/comingsoon">
+            <ComingSoon />
           </Route>
         </Switch>
        */}
