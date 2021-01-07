@@ -63,7 +63,7 @@ function App() {
             <FAQ />
           </Route>
           <Route path="/game1">
-            <Game1 />
+            <Registration />
           </Route>
           <Route path="/game2">
             <ComingSoon />

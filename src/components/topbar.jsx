@@ -51,7 +51,7 @@ export default class TopAppBar extends React.Component {
             <AppBar position="fixed" style={{marginTop: 20}} >
             <Toolbar style={styles.root} >
                 <div style={{height: 50, display:'flex', alignItems:'center'}}>
-                    <h1 style={{margin:0, color: '#941616', fontFamily: 'EastSea', fontSize: 50}}>GTD UNSOLVED</h1>
+                    <h1 style={{margin:0, color: '#941616', fontFamily: 'EastSea', fontSize: 50}}>GTD UNSOLVED </h1>
                 </div>
                 <div style={{display: 'flex',flexDirection: 'row'}}>
                 {this.routes.map((route) => (

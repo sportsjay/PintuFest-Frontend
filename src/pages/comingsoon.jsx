@@ -19,6 +19,7 @@ export default class ComingSoon extends React.Component {
         <h1 style={{ color: '#941616', margin:0}}>A Death Is Announced </h1>
         <div   style={{flexDirection: 'row', display:'flex', justifyContent: "center", alignItems: 'center',}}>
         <h1 style={{color: 'white', margin: 0,textAlign:'center'}}>Coming Soon</h1>
+
         <AnimateGroup
           play={this.state.play}
           onComplete={()=>{this.setState({play:false, start: 1},setInterval(this.setState({play:true}, 1000)))}}
@@ -29,7 +30,7 @@ export default class ComingSoon extends React.Component {
               <Animate
                 key={item}
                 sequenceIndex={index}
-                duration={1} 
+                duration={0.5} 
                 start={{ opacity: this.state.start, }}
                 end={{ opacity: 1-this.state.start, }}
               >
