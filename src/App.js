@@ -68,7 +68,7 @@ function App() {
        */}
        <Switch>
           <Route path="/" exact>
-            <FAQ />
+            <Registration />
           </Route>
           <Route path="/game1">
             <Registration />

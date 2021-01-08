@@ -187,7 +187,7 @@ const styles = {
     objectFit: 'cover',
   },
   title: {
-    fontSize: 70,
+    fontSize: 'calc(50px + 3vw)',
     fontFamily: 'EastSea',
     color: 'white',
   },

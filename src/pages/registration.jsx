@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 
 //import components
-import TimeSlot from "../components/registration/timeslot";
+import TimeSlot from "../components/registration/slotComponent";
 import ConfirmationModal from "../components/registration/confirmationmodal";
 
 //import redux cache
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
+    paddingTop: 40,
   },
   information: {
     display: "flex",
@@ -36,20 +37,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     borderRadius: 5,
     width: "80vw",
+    
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
   },
   form: {
-    backgroundColor: "#8aa3cf",
+    backgroundColor: "#111111",
     marginTop: 10,
     marginBottom: 10,
     borderRadius: 5,
-    padding: 20,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "80vw",
+    width: "100vw",
   },
   selectPageButtonGroup: {
     marginTop: theme.spacing(1),
@@ -160,16 +161,43 @@ export default function Registration() {
 
   return (
     <div className={classes.root}>
+      <div>
+      <Typography variant="h4" style={{ textAlign: "center" }}>
+            Buy Tickets
+          </Typography>
+          <Typography variant="h5" style={{ textAlign: "center" }}>
+            GTD Unsolved:
+          </Typography>
+          <Typography variant="h4" style={{ textAlign: "center" }}>
+           The Invitation
+          </Typography>
+          <div style={{  display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection:'column'}}>
+          <Typography>Date: 16 January 2021</Typography>
+          <Typography>Duration: 2 hours</Typography>
+          {/* Mapping Escape Room 1 timeslots */}
+          <p>Choose a timeslot</p>
+
+          </div>
+      </div>
       <Container className={classes.form}>
         <FormControl component="fieldset">
           {/* make 1 component for each escape room */}
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            The Invitation
-          </Typography>
-          {/* Mapping Escape Room 1 timeslots */}
+         
+
+        
           <RadioGroup
             value={selectTimeSlot1}
             onChange={(e) => setSelectTimeSlot1(e.target.value)}
+            style={{
+              display:'flex',
+              justifyContent:'center',
+              alignItems: 'center',
+              flexDirection:'row',
+              flexWrap: 'wrap'
+            }}
           >
             {timeSlots1.length > 0 ? (
               timeSlots1.map((timeslot) => {
@@ -196,84 +224,17 @@ export default function Registration() {
               <Typography>No slots are available</Typography>
             )}
           </RadioGroup>
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            A Death is Announced
-          </Typography>
-          {/* Mapping Escape Room 2 timeslots */}
-          <RadioGroup
-            value={selectTimeSlot2}
-            onChange={(e) => setSelectTimeSlot2(e.target.value)}
-          >
-            {timeSlots2.length > 0 ? (
-              timeSlots2.map((timeslot) => {
-                return (
-                  <React.Fragment>
-                    <FormControlLabel
-                      className={classes.formcontrollabel}
-                      value={timeslot.id.toString()}
-                      control={
-                        <TimeSlot
-                          id={timeslot.id.toString()}
-                          name={timeslot.name}
-                          room={timeslot.roomNumber}
-                          duration={timeslot.duration}
-                          timeslot={timeslot.timeSlot}
-                          numSlot={timeslot.maxNumberOfParticipants}
-                          numParticipants={timeslot.participants.length}
-                        />
-                      }
-                    />
-                  </React.Fragment>
-                );
-              })
-            ) : (
-              <Typography>No slots are available</Typography>
-            )}
-          </RadioGroup>
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            Second Chance
-          </Typography>
-          {/* Mapping Escape Room 3 timeslots */}
-          <RadioGroup
-            value={selectTimeSlot3}
-            onChange={(e) => setSelectTimeSlot3(e.target.value)}
-          >
-            {timeSlots3.length > 0 ? (
-              timeSlots3.map((timeslot) => {
-                return (
-                  <React.Fragment key={timeslot.id}>
-                    <FormControlLabel
-                      className={classes.formcontrollabel}
-                      value={timeslot.id.toString()}
-                      control={
-                        <TimeSlot
-                          id={timeslot.id.toString()}
-                          name={timeslot.name}
-                          room={timeslot.roomNumber}
-                          duration={timeslot.duration}
-                          timeslot={timeslot.timeSlot}
-                          numSlot={timeslot.maxNumberOfParticipants}
-                          numParticipants={timeslot.participants.length}
-                        />
-                      }
-                    />
-                  </React.Fragment>
-                );
-              })
-            ) : (
-              <Typography>No slots are available</Typography>
-            )}
-          </RadioGroup>
+          
           <TextField
             variant="filled"
             label="Name"
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 10 , backgroundColor:'#941616'}}
             onChange={(e) => setUsername(e.target.value)}
             value={username}
           />
           <TextField
             variant="filled"
-            style={{ marginTop: 10, marginBottom: 10 }}
+            style={{ marginTop: 10, marginBottom: 10, backgroundColor:'#941616' }}
             label="E-mail"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
@@ -288,7 +249,7 @@ export default function Registration() {
           <Button
             type="submit"
             variant="contained"
-            style={{ textTransform: "none", marginTop: 10 }}
+            style={{ textTransform: "none", marginTop: 10, }}
             onClick={openModal}
           >
             Submit
