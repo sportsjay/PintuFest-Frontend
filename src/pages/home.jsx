@@ -12,7 +12,7 @@ export default function Home() {
     {
       room: 1,
       description: "description 1",
-      time: "",
+      time: "100",
     },
     {
       room: 2,
@@ -27,7 +27,7 @@ export default function Home() {
   ]; //test data
 
   return (
-    <div>
+    <div style={styles.root}>
       Home
       {/* Test your development page below */}
       {/* 
@@ -42,6 +42,7 @@ export default function Home() {
             <HorizontalLabelPositionBelowStepper
               title={"Room " + room.room}
               description={room.description}
+              timer={room.time}
               isAdmin={false} //use for admins only
             />
           ))}
@@ -53,4 +54,12 @@ export default function Home() {
       )}
     </div>
   );
+}
+
+const styles = {
+  root: {
+    backgroundColor: '#111111',
+    color: 'white',
+    width: '100vw'
+  }
 }
