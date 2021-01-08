@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function ConfirmationModal(props) {
+  // props
+  const price = props.price;
+  const numSlots = props.numSlots;
+  // functions
   const submitform = props.submitform;
 
   // init styling
@@ -33,7 +37,13 @@ export default function ConfirmationModal(props) {
   return (
     <Modal {...props} className={classes.modal}>
       <Paper className={classes.paper}>
-        <Typography>Confirm you timeslots?</Typography>
+        <Typography variant="h4">Summary: </Typography>
+        {/* summary of payment and slots */}
+        <Typography>Number of slots booked: {numSlots}</Typography>
+        <Typography>Total price: ${price}</Typography>
+        <Typography>
+          Please provide a screenshot of your receipt in the Google Form!
+        </Typography>
         <Button onClick={submitform}>Confirm</Button>
       </Paper>
     </Modal>

@@ -13,7 +13,6 @@ import {
 
 //import components
 import TimeSlot from "../components/registration/timeslot";
-import CardLink from "../components/registration/cardlink";
 import ConfirmationModal from "../components/registration/confirmationmodal";
 
 //import redux cache
@@ -74,16 +73,32 @@ export default function Registration() {
   const [selectTimeSlot1, setSelectTimeSlot1] = useState(null);
   const [selectTimeSlot2, setSelectTimeSlot2] = useState(null);
   const [selectTimeSlot3, setSelectTimeSlot3] = useState(null);
+  const [price, setPrice] = useState(0);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [timeSlots, setTimeSlots] = useState([]);
+  // const [refCode, setRefCode] = useState("");
+  const [timeSlots1, setTimeSlots1] = useState([]);
+  const [timeSlots2, setTimeSlots2] = useState([]);
+  const [timeSlots3, setTimeSlots3] = useState([]);
 
   useEffect(() => {
     // get data from DB
     axios
-      .get(GAMES_API.GET_ALL_GAMES)
+      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation"))
       .then((res) => {
-        setTimeSlots(res.data);
+        setTimeSlots1(res.data);
+      })
+      .catch((error) => console.error("Error! " + error));
+    axios
+      .get(GAMES_API.GET_GAME_BY_NAME("A Death is Announced"))
+      .then((res) => {
+        setTimeSlots2(res.data);
+      })
+      .catch((error) => console.error("Error! " + error));
+    axios
+      .get(GAMES_API.GET_GAME_BY_NAME("Second Chance"))
+      .then((res) => {
+        setTimeSlots3(res.data);
       })
       .catch((error) => console.error("Error! " + error));
   }, []);
@@ -104,6 +119,7 @@ export default function Registration() {
         .post(GAMES_API.BOOK_GAME_SLOT, {
           username: username,
           email: email,
+          // refcode: refCode,
           gameId: selectedTimeSlotsRedux,
         })
         .then((res) => alert(res.data.msg))
@@ -112,6 +128,7 @@ export default function Registration() {
     // reset after submit
     setUsername("");
     setEmail("");
+    // setRefCode("");
     dispatch(setResetTimeSlotAction());
     setSelectTimeSlot1(null);
     setSelectTimeSlot2(null);
@@ -125,6 +142,14 @@ export default function Registration() {
     dispatch(setSelectTimeSlotAction(selectTimeSlot1));
     dispatch(setSelectTimeSlotAction(selectTimeSlot2));
     dispatch(setSelectTimeSlotAction(selectTimeSlot3));
+    let countBook = 0;
+    // count price
+    selectedTimeSlotsRedux.map((item) =>
+      item === null ? countBook : (countBook = countBook + 1)
+    );
+    setPrice(
+      countBook === 1 ? 6 : countBook === 2 ? 12 : countBook === 3 ? 18 : 0
+    );
   };
 
   // close modal function
@@ -135,16 +160,114 @@ export default function Registration() {
 
   return (
     <div className={classes.root}>
-      <Container className={classes.information}>
-        <CardLink title=""></CardLink>
-        <CardLink title=""></CardLink>
-        <CardLink title=""></CardLink>
-      </Container>
       <Container className={classes.form}>
         <FormControl component="fieldset">
+          {/* make 1 component for each escape room */}
+          <Typography variant="h4" style={{ textAlign: "center" }}>
+            The Invitation
+          </Typography>
+          {/* Mapping Escape Room 1 timeslots */}
+          <RadioGroup
+            value={selectTimeSlot1}
+            onChange={(e) => setSelectTimeSlot1(e.target.value)}
+          >
+            {timeSlots1.length > 0 ? (
+              timeSlots1.map((timeslot) => {
+                return (
+                  <React.Fragment key={timeslot.id}>
+                    <FormControlLabel
+                      className={classes.formcontrollabel}
+                      value={timeslot.id.toString()}
+                      control={
+                        <TimeSlot
+                          id={timeslot.id.toString()}
+                          name={timeslot.name}
+                          room={timeslot.roomNumber}
+                          timeslot={timeslot.timeSlot}
+                          numSlot={timeslot.maxNumberOfParticipants}
+                          numParticipants={timeslot.participants.length}
+                        />
+                      }
+                    />
+                  </React.Fragment>
+                );
+              })
+            ) : (
+              <Typography>No slots are available</Typography>
+            )}
+          </RadioGroup>
+          <Typography variant="h4" style={{ textAlign: "center" }}>
+            A Death is Announced
+          </Typography>
+          {/* Mapping Escape Room 2 timeslots */}
+          <RadioGroup
+            value={selectTimeSlot2}
+            onChange={(e) => setSelectTimeSlot2(e.target.value)}
+          >
+            {timeSlots2.length > 0 ? (
+              timeSlots2.map((timeslot) => {
+                return (
+                  <React.Fragment>
+                    <FormControlLabel
+                      className={classes.formcontrollabel}
+                      value={timeslot.id.toString()}
+                      control={
+                        <TimeSlot
+                          id={timeslot.id.toString()}
+                          name={timeslot.name}
+                          room={timeslot.roomNumber}
+                          duration={timeslot.duration}
+                          timeslot={timeslot.timeSlot}
+                          numSlot={timeslot.maxNumberOfParticipants}
+                          numParticipants={timeslot.participants.length}
+                        />
+                      }
+                    />
+                  </React.Fragment>
+                );
+              })
+            ) : (
+              <Typography>No slots are available</Typography>
+            )}
+          </RadioGroup>
+          <Typography variant="h4" style={{ textAlign: "center" }}>
+            Second Chance
+          </Typography>
+          {/* Mapping Escape Room 3 timeslots */}
+          <RadioGroup
+            value={selectTimeSlot3}
+            onChange={(e) => setSelectTimeSlot3(e.target.value)}
+          >
+            {timeSlots3.length > 0 ? (
+              timeSlots3.map((timeslot) => {
+                return (
+                  <React.Fragment key={timeslot.id}>
+                    <FormControlLabel
+                      className={classes.formcontrollabel}
+                      value={timeslot.id.toString()}
+                      control={
+                        <TimeSlot
+                          id={timeslot.id.toString()}
+                          name={timeslot.name}
+                          room={timeslot.roomNumber}
+                          duration={timeslot.duration}
+                          timeslot={timeslot.timeSlot}
+                          numSlot={timeslot.maxNumberOfParticipants}
+                          numParticipants={timeslot.participants.length}
+                        />
+                      }
+                    />
+                  </React.Fragment>
+                );
+              })
+            ) : (
+              <Typography>No slots are available</Typography>
+            )}
+          </RadioGroup>
           <TextField
             variant="filled"
             label="Name"
+            style={{ marginTop: 10 }}
             onChange={(e) => setUsername(e.target.value)}
             value={username}
           />
@@ -155,120 +278,15 @@ export default function Registration() {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
-          {/* make 1 component for each escape room */}
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            Escape Room 1
-          </Typography>
-          {/* Mapping Escape Room 1 timeslots */}
-          <RadioGroup
-            value={selectTimeSlot1}
-            onChange={(e) => setSelectTimeSlot1(e.target.value)}
-          >
-            {timeSlots.length > 0 ? (
-              timeSlots.map((timeslot) => {
-                if (timeslot.name === "game1") {
-                  return (
-                    <React.Fragment key={timeslot.id}>
-                      <FormControlLabel
-                        className={classes.formcontrollabel}
-                        value={timeslot.id.toString()}
-                        control={
-                          <TimeSlot
-                            id={timeslot.id.toString()}
-                            name={timeslot.name}
-                            room={timeslot.room}
-                            duration={timeslot.duration}
-                            timeslot={timeslot.timeslot}
-                            numSlot={timeslot.maxNumberOfParticipants}
-                            numParticipants={timeslot.participants.length}
-                          />
-                        }
-                      />
-                    </React.Fragment>
-                  );
-                } else {
-                  return <React.Fragment></React.Fragment>;
-                }
-              })
-            ) : (
-              <Typography>No slots are available</Typography>
-            )}
-          </RadioGroup>
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            Escape Room 2
-          </Typography>
-          {/* Mapping Escape Room 2 timeslots */}
-          <RadioGroup
-            value={selectTimeSlot2}
-            onChange={(e) => setSelectTimeSlot2(e.target.value)}
-          >
-            {timeSlots.length > 0 ? (
-              timeSlots.map((timeslot) => {
-                if (timeslot.name === "game2") {
-                  return (
-                    <React.Fragment>
-                      <FormControlLabel
-                        className={classes.formcontrollabel}
-                        value={timeslot.id.toString()}
-                        control={
-                          <TimeSlot
-                            id={timeslot.id.toString()}
-                            name={timeslot.name}
-                            room={timeslot.room}
-                            duration={timeslot.duration}
-                            timeslot={timeslot.timeslot}
-                            numSlot={timeslot.maxNumberOfParticipants}
-                          />
-                        }
-                      />
-                    </React.Fragment>
-                  );
-                } else {
-                  return <div></div>;
-                }
-              })
-            ) : (
-              <Typography>No slots are available</Typography>
-            )}
-          </RadioGroup>
-          <RadioGroup
-            value={selectTimeSlot3}
-            onChange={(e) => setSelectTimeSlot3(e.target.value)}
-          >
-            <Typography variant="h4" style={{ textAlign: "center" }}>
-              Escape Room 3
-            </Typography>
-            {/* Mapping Escape Room 3 timeslots */}
-            {timeSlots.length > 0 ? (
-              timeSlots.map((timeslot) => {
-                if (timeslot.name === "game3") {
-                  return (
-                    <React.Fragment key={timeslot.id}>
-                      <FormControlLabel
-                        className={classes.formcontrollabel}
-                        value={timeslot.id.toString()}
-                        control={
-                          <TimeSlot
-                            id={timeslot.id.toString()}
-                            name={timeslot.name}
-                            room={timeslot.room}
-                            duration={timeslot.duration}
-                            timeslot={timeslot.timeslot}
-                            numSlot={timeslot.maxNumberOfParticipants}
-                          />
-                        }
-                      />
-                    </React.Fragment>
-                  );
-                } else {
-                  return <div></div>;
-                }
-              })
-            ) : (
-              <Typography>No slots are available</Typography>
-            )}
-          </RadioGroup>
+          {/* <TextField
+            variant="filled"
+            style={{ marginBottom: 10 }}
+            label="Referral Code"
+            onChange={(e) => setRefCode(e.target.value)}
+            value={refCode}
+          /> */}
           <Button
+            type="submit"
             variant="contained"
             style={{ textTransform: "none", marginTop: 10 }}
             onClick={openModal}
@@ -277,6 +295,7 @@ export default function Registration() {
           </Button>
           <ConfirmationModal
             open={openConfirmationModal}
+            price={price}
             onClose={closeModal}
             submitform={submitform}
           />
