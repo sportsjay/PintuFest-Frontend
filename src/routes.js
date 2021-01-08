@@ -20,20 +20,26 @@
 export const routes = [
   {
     id: 0,
-    name: "⚡",
-    expand: "Home",
+    name: "Welcome",
+    expand: "Welcome Home",
     path: "/",
   },
   {
     id: 1,
-    name: "X",
+    name: "NOW PLAYING",
     expand: "The Invitation",
-    path: "/game2",
+    path: "/game1",
   },
   {
     id: 2,
-    name: "?",
-    expand: "FAQ",
-    path: "/game3",
+    name: "BUY NOW",
+    expand: "play NOW",
+    path: "/register",
+  },
+  {
+    id: 3,
+    name: "Promos",
+    expand: "Promotion",
+    path: "/promotion",
   },
 ];

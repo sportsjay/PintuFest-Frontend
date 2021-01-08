@@ -12,12 +12,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: 'column',
+    alignItems:'center',
     justifyContent: "space-around",
     backgroundColor: '#111111',
     color: 'white',
     width: '100vw',
-    padding: 0,
-    height: 150
+    padding: 20,
+    minHeight: 120,
+    
 
   },
 }));
@@ -55,14 +57,15 @@ export default class TopAppBar extends React.Component {
                 </div>
                 <div style={{display: 'flex',flexDirection: 'row'}}>
                 {this.routes.map((route) => (
-                <Link key={route.id} to={route.path}>
+                <Link key={route.id} to={route.path} style={{textDecoration: 'none',}}>
                     <Button variant="dark" color="white" 
-                        style={{backgroundColor: 'none', color: 'white', textDecoration: 'none', fontFamily: 'XiaoWei'}}
+                        style={{backgroundColor: 'none', color: this.state.open[route.id] ? 'grey' : 'white', height: 50,
+                         fontFamily: 'XiaoWei'}}
                         onMouseEnter={()=>{ this.onHover(route.id)}}
                         onMouseLeave={()=>{ this.onHover(route.id)}}
                         onClick={()=>{this.onPage(route.id)}}
                     >
-                        { this.state.hover[route.id] || this.state.open[route.id] ? (route.name+": " + route.expand) : route.name }
+                        { this.state.hover[route.id] || this.state.open[route.id] ? route.expand : route.name }
                     </Button>
                 </Link>
                 ))}

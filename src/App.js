@@ -18,13 +18,14 @@ import Game1 from "./pages/game1";
 import Details from "./pages/gamedesc";
 import ComingSoon from "./pages/comingsoon"
 import FAQ from "./pages/faq"
+import Promotion from "./pages/promotion"
 
 const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: '#111111',
+    backgroundColor: '#000',
     color: 'white',
     width: '100vw',
     paddingTop: 100,
@@ -68,16 +69,16 @@ function App() {
        */}
        <Switch>
           <Route path="/" exact>
+            <ComingSoon />
+          </Route>
+          <Route path="/register">
             <Registration />
           </Route>
           <Route path="/game1">
-            <Registration />
-          </Route>
-          <Route path="/game2">
             <Details />
           </Route>
-          <Route path="/game3">
-            <ComingSoon />
+          <Route path="/promotion">
+            <Promotion />
           </Route>
         </Switch>
       </div>

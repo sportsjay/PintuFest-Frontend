@@ -69,7 +69,7 @@ export default function TimeSlot(props) {
         alignItems: 'center',  color:"#941616"/*borderRightWidth: 2,borderRightStyle:'solid', borderRightColor: 'black'*/}}>
             <Radio {...props} color="default" style={{padding:0}}  size="small"/>
             <Typography variant="h6" style={{ textAlign: "center",fontSize: 16, marginRight:5, marginLeft:5 }}>
-            {timeslot.substring(0, 5)}
+           {timeslot.substring(0, 5)}
             </Typography>
         </div>
         <div style={{width:50,  display:'flex',

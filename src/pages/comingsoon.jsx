@@ -5,6 +5,7 @@ import { Transform } from '@material-ui/icons';
 
 const text = ['C','O','M','I','N','G',' ','S','O','O','N','.','.','.']
 const dot = ['.','.','.']
+const title = ['A','-','D','E','A','T','H','-','I','S','-','A','N','N','O','U','N','C','E','D']
 export default class ComingSoon extends React.Component {
   state={
     play: false,
@@ -16,15 +17,14 @@ export default class ComingSoon extends React.Component {
   render(){
     return (
       <div style={styles.root}>
-        <h1 style={{ color: '#941616', margin:0}}>A Death Is Announced </h1>
-        <div   style={{flexDirection: 'row', display:'flex', justifyContent: "center", alignItems: 'center',}}>
+       <div   style={{flexDirection: 'row', display:'flex', justifyContent: "center", alignItems: 'center',}}>
         <h1 style={{color: 'white', margin: 0,textAlign:'center'}}>Coming Soon</h1>
-
         <AnimateGroup
           play={this.state.play}
           onComplete={()=>{this.setState({play:false, start: 1},setInterval(this.setState({play:true}, 1000)))}}
           complete={{ opacity: 0,}}
         >
+            
           {dot.map((item, index) => {
             return (
               <Animate
@@ -39,7 +39,32 @@ export default class ComingSoon extends React.Component {
             )
           })}
         </AnimateGroup>
-        </div>
+          </div>
+        <AnimateGroup
+          play={this.state.play}
+          onComplete={()=>{this.setState({play:false, start: 1},setInterval(this.setState({play:true}, 1000)))}}
+          complete={{ opacity: 0,}}
+        
+        >
+          <div   style={{display:'flex',flexDirection:'row', }}>
+          {title.map((item, index) => {
+            return (
+              <Animate
+                key={item}
+                sequenceIndex={index}
+                duration={0.5} 
+                start={{ opacity: this.state.start,transform: 'translate(0px, -10px)' }}
+                end={{ opacity: 1-this.state.start, transform: 'translate(0, 0)' }}
+              >
+                <h1 style={{ color: '#941616',fontSize:45, margin:0}}>{item} </h1>
+              </Animate>
+            )
+          })}
+          </div>
+        </AnimateGroup>
+        
+        
+      
       </div>
     );
   }
@@ -51,7 +76,7 @@ const styles = {
     justifyContent: "center",
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#111111',
+    backgroundColor: '#000',
     color: 'white',
     width: '100vw',
     height: '80vh',

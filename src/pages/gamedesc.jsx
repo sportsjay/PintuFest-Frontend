@@ -1,15 +1,11 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
+import { Link } from "react-router-dom";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import "../components/styles.css";
 import { LinearScaleTwoTone } from "@material-ui/icons";
-
+import { green, purple } from '@material-ui/core/colors';
 const images = [
   {
     url: '../images/game1_5.png',
@@ -30,7 +26,23 @@ const images = [
     link: '/game1',
   },
 ];
-
+const ColorButton = withStyles((theme) => ({
+    root: {
+      backgroundColor: '#941616',
+      color: '#000',
+      borderStyle: 'solid',
+      borderColor: '#941616',
+      borderWidth: 2,
+      borderRadius: 0,
+      fontFamily: 'XiaoWei',
+      fontWeight: 'bold',
+      
+      '&:hover': {
+        color: '#941616',
+        backgroundColor: '#000',
+      },
+    },
+  }))(Button);
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
@@ -44,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     flexGrow: 1,
     justifyContent: 'center',
+    //flexDirection:'column',
     fontFamily: 'XiaoWei'
   },
   image: {
@@ -113,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function GameDesc() {
+export default function GameDesc(props) {
   const classes = useStyles();
 
   return (
@@ -131,10 +144,31 @@ export default function GameDesc() {
                 <p style={{margin:0, fontSize: 20}}>Duration: 120 minutes</p>
                 <p style={{margin:0, fontSize: 20}}>Difficulty: X X X X -</p>
                 <p style={{margin:0, fontSize: 20}}>Capacity: 5-7 person(s)</p>
+
+               
+                </div>
+                <div style={styles.center}>
+                <Link key={3} to={'/register'}  style={{textDecoration: 'none',padding: 0,margin:0, marginBottom: 50,}}>
+                    <ColorButton 
+                    
+                        //onClick={()=>{props.history.push('/register')}}
+                    >
+                        BUY TICKET
+                    </ColorButton>
+                </Link>
                 </div>
             </div>
             <div style={styles.block}>
-
+                <div style={styles.block}>
+                <p style={{margin:0, marginTop: 20, color: '#941616', fontSize: 28, textAlign: 'center'}}>Can you solve the case?</p>
+                <div className="content" style={{ textAlign:'justify'}}>
+                    <p style={{margin:0}}> 
+                        Hi there! You cannot hide from the Invitation.
+                    </p>
+                </div>
+                </div>
+            </div>
+            <div style={styles.block}>
                 <div style={styles.block}>
                 <p style={{margin:0}}className="subheading">Trailer</p>
                 <div className="content" style={{ textAlign:'justify'}}>
@@ -161,19 +195,29 @@ export default function GameDesc() {
             </div>
             <div style={styles.block}>
 
-            <div style={styles.block}>
-                <p style={{margin:0, marginTop: 20}}className="subheading">What to prepare?</p>
-                <div className="content" style={{ textAlign:'justify'}}>
-                    <p style={{margin:0}}> 
-                       A piece of courage
-                    </p>
-                    <p > 
-                      A healthy mind
-                    </p>
-                </div>
+                <div style={styles.block}>
+                    <p style={{margin:0, marginTop: 20}}className="subheading">To be the member of Student Detective Club,</p>
+                    <p style={{margin:0, marginTop: 20}}className="subheading">You have to:</p>
+                    <div className="content" style={{ textAlign:'justify'}}>
+                        <p style={{margin:0}}> 
+                        be courageous
+                        </p>
+                        <p > 
+                        have an eye like sherlock
+                        </p>
+                    </div>
+                    <Link key={3} to={'/register'}  style={{textDecoration: 'none',padding: 0,margin:0, marginBottom: 50}}>
+                    <ColorButton 
+                    
+                        //onClick={()=>{props.history.push('/register')}}
+                    >
+                        REGISTER
+                    </ColorButton>
+                </Link>
                 </div>
             </div>
         </div>
+        
       </div>
       
     </React.Fragment>
@@ -198,6 +242,12 @@ const styles = {
     flexDirection: 'column',
     width: '90%',
     paddingBottom: "50px"
+  },
+  center: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
   details: {
     margin: 50, 
