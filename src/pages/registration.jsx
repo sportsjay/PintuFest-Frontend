@@ -16,11 +16,6 @@ import TimeSlot from "../components/registration/timeslot";
 import ConfirmationModal from "../components/registration/confirmationmodal";
 
 //import redux cache
-import { useSelector, useDispatch } from "react-redux";
-import {
-  setResetTimeSlotAction,
-  setSelectTimeSlotAction,
-} from "../actions/registration-action";
 
 //import api for registration
 import { GAMES_API } from "../api-routes/games.api";
@@ -63,42 +58,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Registration() {
-  const selectedTimeSlotsRedux = useSelector(
-    (state) => state.registration.selectedTimeSlot
-  );
-  //redux actions
-  const dispatch = useDispatch();
   //states
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
-  const [selectTimeSlot1, setSelectTimeSlot1] = useState(null);
-  const [selectTimeSlot2, setSelectTimeSlot2] = useState(null);
-  const [selectTimeSlot3, setSelectTimeSlot3] = useState(null);
+  const [selectTimeSlot, setSelectTimeSlot] = useState(null);
   const [price, setPrice] = useState(0);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   // const [refCode, setRefCode] = useState("");
-  const [timeSlots1, setTimeSlots1] = useState([]);
-  const [timeSlots2, setTimeSlots2] = useState([]);
-  const [timeSlots3, setTimeSlots3] = useState([]);
+  const [timeSlots, setTimeSlots] = useState([]);
 
   useEffect(() => {
     // get data from DB
     axios
       .get(GAMES_API.GET_GAME_BY_NAME("The Invitation"))
       .then((res) => {
-        setTimeSlots1(res.data);
-      })
-      .catch((error) => console.error("Error! " + error));
-    axios
-      .get(GAMES_API.GET_GAME_BY_NAME("A Death is Announced"))
-      .then((res) => {
-        setTimeSlots2(res.data);
-      })
-      .catch((error) => console.error("Error! " + error));
-    axios
-      .get(GAMES_API.GET_GAME_BY_NAME("Second Chance"))
-      .then((res) => {
-        setTimeSlots3(res.data);
+        setTimeSlots(res.data);
       })
       .catch((error) => console.error("Error! " + error));
   }, []);
@@ -106,12 +80,8 @@ export default function Registration() {
   const classes = useStyles();
   // submit form function
   const submitform = () => {
-    if (
-      selectedTimeSlotsRedux[0] === null &&
-      selectedTimeSlotsRedux[1] === null &&
-      selectedTimeSlotsRedux[2] === null
-    ) {
-      alert("Please select at least 1 timeslot! Thank you!");
+    if (selectTimeSlot === null) {
+      alert("Please select a timeslot! Thank you!");
     } else {
       // call submit function
       // sends username and array of gameId upon slot booking
@@ -120,7 +90,7 @@ export default function Registration() {
           username: username,
           email: email,
           // refcode: refCode,
-          gameId: selectedTimeSlotsRedux,
+          gameId: selectTimeSlot,
         })
         .then((res) => alert(res.data.msg))
         .catch((error) => alert(error.response.data));
@@ -128,34 +98,21 @@ export default function Registration() {
     // reset after submit
     setUsername("");
     setEmail("");
-    // setRefCode("");
-    dispatch(setResetTimeSlotAction());
-    setSelectTimeSlot1(null);
-    setSelectTimeSlot2(null);
-    setSelectTimeSlot3(null);
+    setSelectTimeSlot(null);
     closeModal();
   };
 
   // open modal function
   const openModal = () => {
     setOpenConfirmationModal(true);
-    dispatch(setSelectTimeSlotAction(selectTimeSlot1));
-    dispatch(setSelectTimeSlotAction(selectTimeSlot2));
-    dispatch(setSelectTimeSlotAction(selectTimeSlot3));
-    let countBook = 0;
     // count price
-    selectedTimeSlotsRedux.map((item) =>
-      item === null ? countBook : (countBook = countBook + 1)
-    );
-    setPrice(
-      countBook === 1 ? 6 : countBook === 2 ? 12 : countBook === 3 ? 18 : 0
-    );
+    setPrice(selectTimeSlot === null ? 0 : 6);
   };
 
   // close modal function
   const closeModal = () => {
     setOpenConfirmationModal(false);
-    dispatch(setResetTimeSlotAction());
+    setSelectTimeSlot(null);
   };
 
   return (
@@ -168,11 +125,11 @@ export default function Registration() {
           </Typography>
           {/* Mapping Escape Room 1 timeslots */}
           <RadioGroup
-            value={selectTimeSlot1}
-            onChange={(e) => setSelectTimeSlot1(e.target.value)}
+            value={selectTimeSlot}
+            onChange={(e) => setSelectTimeSlot(e.target.value)}
           >
-            {timeSlots1.length > 0 ? (
-              timeSlots1.map((timeslot) => {
+            {timeSlots.length > 0 ? (
+              timeSlots.map((timeslot) => {
                 return (
                   <React.Fragment key={timeslot.id}>
                     <FormControlLabel
@@ -183,74 +140,6 @@ export default function Registration() {
                           id={timeslot.id.toString()}
                           name={timeslot.name}
                           room={timeslot.roomNumber}
-                          timeslot={timeslot.timeSlot}
-                          numSlot={timeslot.maxNumberOfParticipants}
-                          numParticipants={timeslot.participants.length}
-                        />
-                      }
-                    />
-                  </React.Fragment>
-                );
-              })
-            ) : (
-              <Typography>No slots are available</Typography>
-            )}
-          </RadioGroup>
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            A Death is Announced
-          </Typography>
-          {/* Mapping Escape Room 2 timeslots */}
-          <RadioGroup
-            value={selectTimeSlot2}
-            onChange={(e) => setSelectTimeSlot2(e.target.value)}
-          >
-            {timeSlots2.length > 0 ? (
-              timeSlots2.map((timeslot) => {
-                return (
-                  <React.Fragment>
-                    <FormControlLabel
-                      className={classes.formcontrollabel}
-                      value={timeslot.id.toString()}
-                      control={
-                        <TimeSlot
-                          id={timeslot.id.toString()}
-                          name={timeslot.name}
-                          room={timeslot.roomNumber}
-                          duration={timeslot.duration}
-                          timeslot={timeslot.timeSlot}
-                          numSlot={timeslot.maxNumberOfParticipants}
-                          numParticipants={timeslot.participants.length}
-                        />
-                      }
-                    />
-                  </React.Fragment>
-                );
-              })
-            ) : (
-              <Typography>No slots are available</Typography>
-            )}
-          </RadioGroup>
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            Second Chance
-          </Typography>
-          {/* Mapping Escape Room 3 timeslots */}
-          <RadioGroup
-            value={selectTimeSlot3}
-            onChange={(e) => setSelectTimeSlot3(e.target.value)}
-          >
-            {timeSlots3.length > 0 ? (
-              timeSlots3.map((timeslot) => {
-                return (
-                  <React.Fragment key={timeslot.id}>
-                    <FormControlLabel
-                      className={classes.formcontrollabel}
-                      value={timeslot.id.toString()}
-                      control={
-                        <TimeSlot
-                          id={timeslot.id.toString()}
-                          name={timeslot.name}
-                          room={timeslot.roomNumber}
-                          duration={timeslot.duration}
                           timeslot={timeslot.timeSlot}
                           numSlot={timeslot.maxNumberOfParticipants}
                           numParticipants={timeslot.participants.length}
