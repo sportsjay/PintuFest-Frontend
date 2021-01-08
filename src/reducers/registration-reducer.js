@@ -20,7 +20,7 @@ function reducer(state, action) {
         ...state,
       };
     case ActionTypes.RESET:
-      const newArray = new Array();
+      const newArray = [];
       state.selectedTimeSlot = newArray;
       return {
         ...state,
