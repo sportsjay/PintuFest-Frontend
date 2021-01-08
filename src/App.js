@@ -15,6 +15,7 @@ import Home from "./pages/home";
 import Registration from "./pages/registration";
 import AdminLogin from "./pages/adminlogin";
 import Game1 from "./pages/game1";
+import Details from "./pages/gamedesc";
 import ComingSoon from "./pages/comingsoon"
 import FAQ from "./pages/faq"
 
@@ -73,10 +74,10 @@ function App() {
             <Registration />
           </Route>
           <Route path="/game2">
-            <ComingSoon />
+            <Details />
           </Route>
           <Route path="/game3">
-            <Home />
+            <ComingSoon />
           </Route>
         </Switch>
       </div>

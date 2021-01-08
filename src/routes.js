@@ -28,26 +28,20 @@
 export const routes = [
   {
     id: 0,
-    name: "?",
-    expand: "FAQs",
+    name: "⚡",
+    expand: "Home",
     path: "/",
   },
   {
     id: 1,
-    name: "1",
+    name: "X",
     expand: "The Invitation",
-    path: "/game1",
-  },
-  {
-    id: 2,
-    name: "2",
-    expand: "A Death Is Announced",
     path: "/game2",
   },
   {
-    id: 3,
-    name: "3",
-    expand: "The Second Chance",
+    id: 2,
+    name: "?",
+    expand: "FAQ",
     path: "/game3",
   },
 ];
