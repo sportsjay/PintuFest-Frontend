@@ -1,13 +1,19 @@
 import React from "react";
-import { Container } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
+
+//import redux
+import { useSelector } from "react-redux";
 
 //import components
 import HorizontalLabelPositionBelowStepper from "../components/home/progress";
+import Banner from "../components/home/banner";
 
 //import game pages here based on days
 
 export default function Home() {
   const day = 1;
+
+  const authToken = useSelector((state) => state.admin.authToken);
   const roomDescriptions = [
     {
       room: 1,
@@ -27,15 +33,10 @@ export default function Home() {
   ]; //test data
 
   return (
-    <div style={styles.root}>
-      Home
-      {/* Test your development page below */}
-      {/* 
-      """"""""""
-      Code Test
-      """"""""""
-      */}
-      {/* get a progress slider */}
+    <Container style={styles.root}>
+      <Banner gameNumber="1" />
+      <Banner gameNumber="2" />
+      <Banner gameNumber="3" />
       {day === 1 ? (
         <React.Fragment>
           {roomDescriptions.map((room) => (
@@ -43,23 +44,26 @@ export default function Home() {
               title={"Room " + room.room}
               description={room.description}
               timer={room.time}
-              isAdmin={false} //use for admins only
+              isAdmin={authToken !== "none" ? true : false} //use for admins only
             />
           ))}
         </React.Fragment>
       ) : (
         <HorizontalLabelPositionBelowStepper
-          isAdmin={false} //use for admins only
+          isAdmin={authToken !== "none" ? true : false} //use for admins only
         />
       )}
-    </div>
+    </Container>
   );
 }
 
 const styles = {
   root: {
-    backgroundColor: '#111111',
-    color: 'white',
-    width: '100vw'
-  }
-}
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    backgroundColor: "#111111",
+    color: "white",
+  },
+};

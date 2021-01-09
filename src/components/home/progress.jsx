@@ -49,7 +49,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   //init props
   const title = props.title || "Room 1";
   const description = props.description || "Room 1 Descriptions";
-  const isAdmin = props.admin || true;
+  const isAdmin = props.admin;
 
   //get api for game room details
 
