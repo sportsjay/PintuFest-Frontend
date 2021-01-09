@@ -12,11 +12,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "#111111",
     color: "white",
-    padding: 0,
-    height: 150,
+    width: "100vw",
+    padding: 20,
+    minHeight: 120,
   },
 }));
 
@@ -48,8 +50,7 @@ export default class TopAppBar extends React.Component {
       <AppBar position="fixed" style={{ marginTop: 20 }}>
         <Toolbar style={styles.root}>
           <div style={{ height: 50, display: "flex", alignItems: "center" }}>
-            <Typography
-              variant="h1"
+            <h1
               style={{
                 margin: 0,
                 color: "#941616",
@@ -58,18 +59,22 @@ export default class TopAppBar extends React.Component {
               }}
             >
               GTD UNSOLVED{" "}
-            </Typography>
+            </h1>
           </div>
           <div style={{ display: "flex", flexDirection: "row" }}>
             {this.routes.map((route) => (
-              <Link key={route.id} to={route.path}>
+              <Link
+                key={route.id}
+                to={route.path}
+                style={{ textDecoration: "none" }}
+              >
                 <Button
                   variant="dark"
                   color="white"
                   style={{
                     backgroundColor: "none",
-                    color: "white",
-                    textDecoration: "none",
+                    color: this.state.open[route.id] ? "grey" : "white",
+                    height: 50,
                     fontFamily: "XiaoWei",
                   }}
                   onMouseEnter={() => {
@@ -83,7 +88,7 @@ export default class TopAppBar extends React.Component {
                   }}
                 >
                   {this.state.hover[route.id] || this.state.open[route.id]
-                    ? route.name + ": " + route.expand
+                    ? route.expand
                     : route.name}
                 </Button>
               </Link>

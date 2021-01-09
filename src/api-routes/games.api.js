@@ -1,4 +1,4 @@
-const system_env = "localhost:4000";
+const system_env = "10.27.203.44:4000";
 
 export const GAMES_API = {
   GET_ALL_GAMES: `http://${system_env}/game-api/`,

@@ -1,20 +1,12 @@
 /*export const routes = [
   {
     id: 1,
-<<<<<<< HEAD
     name: "home",
-=======
-    name: "Home",
->>>>>>> b7e4f909b7d08df639e648d7d710085a7264260b
     path: "/",
   },
   {
     id: 2,
-<<<<<<< HEAD
     name: "register",
-=======
-    name: "Register",
->>>>>>> b7e4f909b7d08df639e648d7d710085a7264260b
     path: "/register",
   },
   {
@@ -28,26 +20,26 @@
 export const routes = [
   {
     id: 0,
-    name: "?",
-    expand: "FAQs",
+    name: "Welcome",
+    expand: "Welcome Home",
     path: "/",
   },
   {
     id: 1,
-    name: "1",
+    name: "NOW PLAYING",
     expand: "The Invitation",
     path: "/game1",
   },
   {
     id: 2,
-    name: "2",
-    expand: "A Death Is Announced",
-    path: "/game2",
+    name: "BUY NOW",
+    expand: "play NOW",
+    path: "/register",
   },
   {
     id: 3,
-    name: "3",
-    expand: "The Second Chance",
-    path: "/game3",
+    name: "Promos",
+    expand: "Promotion",
+    path: "/promotion",
   },
 ];

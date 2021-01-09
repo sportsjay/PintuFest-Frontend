@@ -15,18 +15,20 @@ import Home from "./pages/home";
 import Registration from "./pages/registration";
 import AdminLogin from "./pages/adminlogin";
 import Game1 from "./pages/game1";
+import Details from "./pages/gamedesc";
 import ComingSoon from "./pages/comingsoon";
 import FAQ from "./pages/faq";
+import Promotion from "./pages/promotion";
 
 const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "column",
-    backgroundColor: "#111111",
+    backgroundColor: "#000",
     color: "white",
-    paddingTop: 120,
+    width: "100vw",
+    paddingTop: 100,
     //inject theme here
     [theme.breakpoints.up("md")]: {
       height: "100%",
@@ -57,11 +59,17 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/game1">
-            <Game1 />
-          </Route>
           <Route path="/admin-kalo-mau-login-disini">
             <AdminLogin />
+          </Route>
+          <Route path="/register">
+            <Registration />
+          </Route>
+          <Route path="/game1">
+            <Details />
+          </Route>
+          <Route path="/promotion">
+            <Promotion />
           </Route>
         </Switch>
         <Footer />

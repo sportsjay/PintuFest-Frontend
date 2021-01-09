@@ -39,12 +39,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     minWidth: 300,
-    width: "100%",
+
+    width: "100vw",
     flexGrow: 1,
     justifyContent: "center",
+    fontFamily: "XiaoWei",
   },
   image: {
-    position: "relative",
+    //  position: 'relative',
     height: 200,
     [theme.breakpoints.down("xs")]: {
       width: "100% !important", // Overrides inline-style
@@ -65,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   focusVisible: {},
   imageButton: {
-    position: "absolute",
+    // position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -76,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   imageSrc: {
-    position: "absolute",
+    //  position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -85,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center 40%",
   },
   imageBackdrop: {
-    position: "absolute",
+    // position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -95,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("opacity"),
   },
   imageTitle: {
-    position: "relative",
+    //  position: 'relative',
     padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${
       theme.spacing(1) + 6
     }px`,
@@ -122,28 +124,41 @@ export default function Game1() {
           <Grid container spacing={0}>
             <Grid item md={12} xs={12}>
               <Paper className={classes.paper} id="grid_color">
-                <div id="container">
+                <div id="container" style={styles.header}>
                   <img
-                    src="./images/image_banner.jpg"
-                    width="100%"
-                    height="auto"
+                    style={{
+                      objectFit: "cover",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    src="./images/Thun.gif"
+                    height="120%"
+                    width="200%"
                   />
-                  <div className="style">Escape Room 1</div>
-                  <div className="description">Week 3</div>
+                  <div style={styles.title} className="style">
+                    The Invitation
+                  </div>
+                  <div className="description">16 January 2021</div>
                 </div>
               </Paper>
             </Grid>
+
             <div id="column_reverse">
-              <Grid>
+              <Grid item md={7} xs={12}>
                 <Paper className={classes.paper} id="grid_color1">
                   <p className="subheading">90 Minutes</p>
-                  <div className="content">
-                    Follow all the clues to find out the mystery behind all of
-                    it
+                  <div className="content" style={{ padding: 50 }}>
+                    When Gio found out that his friend, Jeni, has been missing
+                    for days, he decided to involve the highly acclaimed Student
+                    Detective Club in the search for his friend. By tracing her
+                    activities, clues and hints begin to come to light... or do
+                    they? Be prepared to unravel a string of hidden truths once
+                    you dive into the intriguing details of Jeni's
+                    disappearance!
                   </div>
                 </Paper>
               </Grid>
-              <Grid item md={6} xs={12}>
+              <Grid item md={5} xs={12}>
                 <Paper className={classes.paper} id="grid_color2">
                   <img src="../images/game1_1.jpg" width="auto" height="100%" />
                 </Paper>
@@ -226,3 +241,16 @@ export default function Game1() {
     </React.Fragment>
   );
 }
+
+const styles = {
+  header: {
+    width: "100vw",
+    height: "40vh",
+    objectFit: "cover",
+  },
+  title: {
+    fontSize: 70,
+    fontFamily: "EastSea",
+    color: "white",
+  },
+};
