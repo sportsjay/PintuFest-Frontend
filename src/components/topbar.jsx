@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import {
   AppBar,
   Container,
@@ -7,6 +7,7 @@ import {
   Button,
   makeStyles,
 } from "@material-ui/core";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +36,7 @@ export default class TopAppBar extends React.Component {
   //extract routes
   routes = this.props.routes;
   position = this.props.position;
+
   //initialize styles
 
   onHover = (id) =>{
@@ -47,7 +49,10 @@ export default class TopAppBar extends React.Component {
     currHover[id] = true
     this.setState({open: currHover})
   }
-
+  
+  componentDidMount(){
+   
+  }
   render(){
     return (
             <AppBar position="fixed" style={{marginTop: 20}} >
@@ -59,7 +64,7 @@ export default class TopAppBar extends React.Component {
                 {this.routes.map((route) => (
                 <Link key={route.id} to={route.path} style={{textDecoration: 'none',}}>
                     <Button variant="dark" color="white" 
-                        style={{backgroundColor: 'none', color: this.state.open[route.id] ? 'grey' : 'white', height: 50,
+                        style={{backgroundColor: 'none', color:  this.state.open[route.id]? 'grey' : 'white', height: 50,
                          fontFamily: 'XiaoWei'}}
                         onMouseEnter={()=>{ this.onHover(route.id)}}
                         onMouseLeave={()=>{ this.onHover(route.id)}}

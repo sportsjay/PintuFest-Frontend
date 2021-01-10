@@ -28,8 +28,10 @@ const qna = [
             'Receive your personalised referral code when you make your first successful transaction. Your referral code can be found on the confirmation email.',
             'Send your referral code to your invitee. They can be from anywhere!',
             'The invitee will then use your referral code to register on the Escape Room website for the first time.',
-            'One registration is valid for one person. so, one is not allowed to register for more than one slot per escape room. There are three escape rooms in total, meaning, you are allowed to book maximum 3 slots (one each).',
-            'One escape room is valid for a cashback of S$0.5, meaning, if your invitee registers for three escape rooms, you and your invitee will get a total cashback of S$1.5'
+            'For the invitees, the discount will be applied directly once you\'ve entered the correct referral code.',
+            'You will claim your referral bonus of $0.5 per ticket after 6th February 2021 from GTD XXIII BFM team',
+            'For more information please contact Timothy at ()))'
+
         ]
     },
 ]
@@ -40,6 +42,7 @@ export default class Promotion extends React.Component {
   }
   componentDidMount(){
     this.setState({play:true})
+    console.log("hello, " ,this)
   }
   render(){
     return (
