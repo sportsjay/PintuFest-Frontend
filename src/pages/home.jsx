@@ -23,7 +23,7 @@ export default function Home() {
               start={{ opacity: 0, filter: 'blur(10px)' }}
             >
               <Typography  style={styles.title} >
-                Are you ready to solved the Unsolved?
+                Are you ready to solve the Unsolved?
               </Typography>
             </Animate>
           </div>
@@ -66,7 +66,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-    backgroundColor: "#111111",
+    backgroundColor: "#000",
     color: "white",
   },
   title: {

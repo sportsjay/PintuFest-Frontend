@@ -9,6 +9,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     margin: theme.spacing(5),
+    borderRadius: "2px",
+    backgroundColor:'#000',
+    flex:1,
+    height: '70vh',
+    margin: 30
   },
   textTop: {
     fontFamily: "EastSea",
@@ -29,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "2rem",
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1.3rem",
+      fontSize: "3rem",
     },
   },
   textBottom: {
@@ -42,13 +47,13 @@ const useStyles = makeStyles((theme) => ({
     borderBottomRightRadius: 3,
    // backgroundColor: "rgba(68, 31, 19, 1)",
     [theme.breakpoints.up("md")]: {
-      fontSize: "3rem",
-    },
-    [theme.breakpoints.down("sm")]: {
       fontSize: "2rem",
     },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.5rem",
+    },
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1.3rem",
+      fontSize: "1rem",
     },
   },
   img: {
@@ -68,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     outlineOffset: "0px",
   },
   imgContainer: {
-    maxWidth: "700px",
+    maxWidth: "400px",
     height: "auto",
   },
 }));
@@ -83,13 +88,15 @@ export default function Banner(props) {
   const image = props.image;
   return (
     <div className={classes.banner}>
-      <Typography variant="h1" className={classes.textTop} style={{fontSize: "calc(30px + 5vw)",  display: "inline-block"}}>{title}</Typography>
+      <div style={{flex:1,margin: 0, padding: 0,display: 'flex',alignItems:'center', }}>
+        <Typography variant="h1" className={classes.textTop} style={{display: "inline-block", }}>{title}</Typography>
+      </div>
       <Link to={`game${gameNumber}`}>
-        <Container className={classes.imgContainer}>
+        <Container className={classes.imgContainer} style={{flex:4}}>
           <img src={image} className={classes.img} alt="Coming Soon!"></img>
         </Container>
       </Link>
-      <Typography className={classes.textBottom}>{status}</Typography>
+      <Typography className={classes.textBottom} style={{ flex:0.5,display: 'flex',alignItems:'center'}}>{status}</Typography>
     </div>
   );
 }

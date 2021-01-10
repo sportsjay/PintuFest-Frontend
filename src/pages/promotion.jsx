@@ -77,7 +77,7 @@ export default class Promotion extends React.Component {
         {qna.map((faq, index) => {
           return (
             <div style={{ marginBottom: 20,}}>
-              <h1 style={{ fontSize: 40, color: "#941616", marginBottom: 20 }}>
+              <h1 style={{ fontSize: 40, color: "#941616", marginBottom: 20, textAlign:'center' }}>
                 {faq.q}
               </h1>
               {faq.a.map((ans, index) => {
@@ -108,7 +108,7 @@ const styles = {
     flexDirection: "column",
     backgroundColor: "#000",
     color: "white",
-    // height: '80vh',
+    maxWidth: '70vw',
     padding: 50,
     fontFamily: "EastSea",
     overflow: 'hidden',
