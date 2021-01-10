@@ -126,6 +126,7 @@ export default function Game1() {
               <Paper className={classes.paper} id="grid_color">
                 <div id="container" style={styles.header}>
                   <img
+                    alt="asset 1"
                     style={{
                       objectFit: "cover",
                       width: "100%",
@@ -160,7 +161,12 @@ export default function Game1() {
               </Grid>
               <Grid item md={5} xs={12}>
                 <Paper className={classes.paper} id="grid_color2">
-                  <img src="../images/game1_1.jpg" width="auto" height="100%" />
+                  <img
+                    alt="asset 2"
+                    src="../images/game1_1.jpg"
+                    width="auto"
+                    height="100%"
+                  />
                 </Paper>
               </Grid>
             </div>

@@ -10,7 +10,8 @@ import {
   FormControlLabel,
   TextField,
   RadioGroup,
-  Radio,
+  Select,
+  MenuItem,
 } from "@material-ui/core";
 
 //import components
@@ -60,27 +61,35 @@ const useStyles = makeStyles((theme) => ({
   formcontrollabel: {
     margin: 0,
   },
+  dropdown: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 export default function Registration() {
   //states
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [selectTimeSlot, setSelectTimeSlot] = useState(null);
+  const [numberOfTickets, setNumberOfTickets] = useState(1);
   const [price, setPrice] = useState(0);
   const [username, setUsername] = useState("");
+  const [usernames, setUsernames] = useState([]);
   const [email, setEmail] = useState("");
-  // const [refCode, setRefCode] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
+  const [refreshOnSubmit, setRefreshOnSubmit] = useState(false);
+  const [clickLink, setClickLink] = useState(false);
 
   useEffect(() => {
     // get data from DB
     axios
-      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation"))
+      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation")) // change by day
       .then((res) => {
         setTimeSlots(res.data);
       })
       .catch((error) => console.error("Error! " + error));
-  }, []);
+  }, [refreshOnSubmit]);
 
   const classes = useStyles();
   // submit form function
@@ -94,11 +103,12 @@ export default function Registration() {
         .post(GAMES_API.BOOK_GAME_SLOT, {
           username: username,
           email: email,
-          // refcode: refCode,
+          usernames: usernames,
           gameId: selectTimeSlot,
         })
-        .then((res) => alert(res.data.msg))
+        .then((res) => alert(res.data))
         .catch((error) => alert(error.response.data));
+      setRefreshOnSubmit(!refreshOnSubmit);
     }
     // reset after submit
     setUsername("");
@@ -117,7 +127,22 @@ export default function Registration() {
   // close modal function
   const closeModal = () => {
     setOpenConfirmationModal(false);
+    setNumberOfTickets(1);
     setSelectTimeSlot(null);
+  };
+
+  // select number of ticket function
+  const setNumberOfTicketsFunc = (event) => {
+    setUsernames([username]);
+    let tempUsernames = [username];
+    setNumberOfTickets(event.target.value);
+    if (event.target.value !== 1) {
+      for (let i = 0; i < event.target.value - 1; i++) {
+        tempUsernames.push(username);
+      }
+    }
+    setUsernames(tempUsernames);
+    console.log(usernames);
   };
 
   return (
@@ -180,6 +205,7 @@ export default function Registration() {
             }}
           >
             <Typography
+              variant="h4"
               style={{
                 fontFamily: "XiaoWei",
                 color: "#941616",
@@ -252,8 +278,15 @@ export default function Registration() {
             <TextField
               variant="filled"
               label="Name"
-              style={{ marginTop: 10, backgroundColor: "#941616" }}
-              onChange={(e) => setUsername(e.target.value)}
+              style={{
+                marginTop: 10,
+                backgroundColor: "#941616",
+                color: "white",
+              }}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                console.log(e.target.value);
+              }}
               value={username}
             />
             <TextField
@@ -262,18 +295,32 @@ export default function Registration() {
                 marginTop: 10,
                 marginBottom: 10,
                 backgroundColor: "#941616",
+                color: "white",
               }}
               label="E-mail"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
-            {/* <TextField
-              variant="filled"
-              style={{ marginBottom: 10 }}
-              label="Referral Code"
-              onChange={(e) => setRefCode(e.target.value)}
-              value={refCode}
-            /> */}
+            {selectTimeSlot === null ? (
+              <React.Fragment></React.Fragment>
+            ) : (
+              <div className={classes.dropdown}>
+                <Typography style={{ margin: 10 }}>
+                  Select Number of Tickets
+                </Typography>
+                <Select
+                  style={{ color: "white", backgroundColor: "#941616" }}
+                  id="select-number-ticket"
+                  value={numberOfTickets}
+                  onChange={setNumberOfTicketsFunc}
+                >
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                </Select>
+              </div>
+            )}
             <Button
               type="submit"
               variant="contained"
@@ -283,8 +330,11 @@ export default function Registration() {
               Submit
             </Button>
             <ConfirmationModal
+              clickLink={clickLink}
+              setClickLink={setClickLink}
               open={openConfirmationModal}
-              price={price}
+              numberOfTickets={numberOfTickets}
+              price={price * numberOfTickets}
               onClose={closeModal}
               submitform={submitform}
             />

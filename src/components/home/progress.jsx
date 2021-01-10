@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Stepper,
@@ -10,6 +11,9 @@ import {
   CardContent,
   CardHeader,
 } from "@material-ui/core";
+
+// import Game API
+import { ROOM_API } from "../../api-routes/room.api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,16 +51,23 @@ function getSteps() {
 
 export default function HorizontalLabelPositionBelowStepper(props) {
   //init props
+  const roomNumber = props.roomNumber;
   const title = props.title || "Room 1";
-  const description = props.description || "Room 1 Descriptions";
-  const isAdmin = props.admin;
-
-  //get api for game room details
+  const isAdmin = props.isAdmin;
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [timeLeft, setTimeLeft] = useState("0 min");
   const steps = getSteps();
+
+  useEffect(() => {
+    axios
+      .get(ROOM_API.GET_ROOM_SLOT_STATUS(roomNumber))
+      .then((res) => {
+        setTimeLeft(res.data);
+      })
+      .catch((error) => alert(error));
+  }, [roomNumber, timeLeft]);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -70,7 +81,14 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setActiveStep(0);
   };
 
-  const timeStamps = ["1 hour", "30 mins", "15 mins", "5 mins", "1 min"];
+  const timeStamps = [
+    "120 mins",
+    "60 mins",
+    "30 mins",
+    "15 mins",
+    "5 mins",
+    "1 min",
+  ];
 
   return (
     <div className={classes.root}>
@@ -79,7 +97,6 @@ export default function HorizontalLabelPositionBelowStepper(props) {
           component={() => (
             <div className={classes.header}>
               <Typography variant="h5">{title}</Typography>
-              <Typography>{description}</Typography>
             </div>
           )}
         />
@@ -107,6 +124,15 @@ export default function HorizontalLabelPositionBelowStepper(props) {
                       color="primary"
                       onClick={() => {
                         //put time api here
+                        axios
+                          .post(ROOM_API.UPDATE_ROOM_SLOT_STATUS(1), {
+                            gameRoom: 1,
+                            gameStatus: activeStep,
+                            duration: activeStep === 1 ? time : "0 mins",
+                          })
+                          .then((res) => {
+                            alert(res.data);
+                          }); // only 1 room
                         setTimeLeft(time);
                       }}
                     >

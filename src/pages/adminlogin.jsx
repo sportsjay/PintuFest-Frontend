@@ -74,7 +74,9 @@ export default function AdminLogin() {
             className={classes.textInput}
             variant="outlined"
             label="Admin Username"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
             value={username}
           />
           <TextField

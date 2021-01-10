@@ -1,26 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import {
-  AppBar,
-  Typography,
-  Toolbar,
-  Button,
-  makeStyles,
-} from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-around",
-    backgroundColor: "#111111",
-    color: "white",
-    width: "100vw",
-    padding: 20,
-    minHeight: 120,
-  },
-}));
+import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
 
 export default class TopAppBar extends React.Component {
   // hover state
@@ -50,7 +30,8 @@ export default class TopAppBar extends React.Component {
       <AppBar position="fixed" style={{ marginTop: 20 }}>
         <Toolbar style={styles.root}>
           <div style={{ height: 50, display: "flex", alignItems: "center" }}>
-            <h1
+            <Typography
+              variant="h1"
               style={{
                 margin: 0,
                 color: "#941616",
@@ -58,8 +39,8 @@ export default class TopAppBar extends React.Component {
                 fontSize: 50,
               }}
             >
-              GTD UNSOLVED{" "}
-            </h1>
+              GTD UNSOLVED
+            </Typography>
           </div>
           <div style={{ display: "flex", flexDirection: "row" }}>
             {this.routes.map((route) => (
@@ -69,8 +50,6 @@ export default class TopAppBar extends React.Component {
                 style={{ textDecoration: "none" }}
               >
                 <Button
-                  variant="dark"
-                  color="white"
                   style={{
                     backgroundColor: "none",
                     color: this.state.open[route.id] ? "grey" : "white",

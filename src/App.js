@@ -1,12 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Container, makeStyles } from "@material-ui/core";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { makeStyles } from "@material-ui/core";
 
 //import route file
 import { routes } from "./routes";
 
 //import components
-import TopAppBar from "./components/appbar";
+// import TopAppBar from "./components/appbar";
 import TopBar from "./components/topbar";
 import Footer from "./components/footer";
 
@@ -14,16 +19,18 @@ import Footer from "./components/footer";
 import Home from "./pages/home";
 import Registration from "./pages/registration";
 import AdminLogin from "./pages/adminlogin";
-import Game1 from "./pages/game1";
+// import Game1 from "./pages/game1";
 import Details from "./pages/gamedesc";
 import ComingSoon from "./pages/comingsoon";
 import FAQ from "./pages/faq";
 import Promotion from "./pages/promotion";
+import RoomStatus from "./pages/roomstatus";
 
 const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     alignItems: "center",
+    flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "#000",
     color: "white",
@@ -59,7 +66,7 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/admin-kalo-mau-login-disini">
+          <Route path="/admin-login-route">
             <AdminLogin />
           </Route>
           <Route path="/register">
@@ -71,6 +78,10 @@ function App() {
           <Route path="/promotion">
             <Promotion />
           </Route>
+          <Route path="/room-status">
+            <RoomStatus />
+          </Route>
+          <Route render={() => <Redirect to="/comingsoon" />} />
         </Switch>
         <Footer />
       </div>

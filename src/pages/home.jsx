@@ -1,58 +1,34 @@
 import React from "react";
-import { Container, Typography } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 //import redux
 import { useSelector } from "react-redux";
 
 //import components
-import HorizontalLabelPositionBelowStepper from "../components/home/progress";
 import Banner from "../components/home/banner";
 
 //import game pages here based on days
 
 export default function Home() {
-  const day = 1;
-
   const authToken = useSelector((state) => state.admin.authToken);
-  const roomDescriptions = [
-    {
-      room: 1,
-      description: "description 1",
-      time: "100",
-    },
-    {
-      room: 2,
-      description: " description 2",
-      time: "",
-    },
-    {
-      room: 3,
-      description: " description 3",
-      time: "",
-    },
-  ]; //test data
 
   return (
     <Container style={styles.root}>
-      <Banner gameNumber="1" />
-      <Banner gameNumber="2" />
-      <Banner gameNumber="3" />
-      {day === 1 ? (
-        <React.Fragment>
-          {roomDescriptions.map((room) => (
-            <HorizontalLabelPositionBelowStepper
-              title={"Room " + room.room}
-              description={room.description}
-              timer={room.time}
-              isAdmin={authToken !== "none" ? true : false} //use for admins only
-            />
-          ))}
-        </React.Fragment>
-      ) : (
-        <HorizontalLabelPositionBelowStepper
-          isAdmin={authToken !== "none" ? true : false} //use for admins only
-        />
-      )}
+      <Banner
+        gameNumber="1"
+        title="The Invitation"
+        image="./images/game_1_assets/game1_1x1.png"
+      />
+      <Banner
+        gameNumber="2"
+        title="A Death is Announced"
+        image="./images/comingsoon_1x1.png"
+      />
+      <Banner
+        gameNumber="3"
+        title="Second Chance"
+        image="./images/comingsoon_1x1.png"
+      />
     </Container>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Divider,
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     width: "60vw",
     padding: theme.spacing(1),
-    backgroundColor: 'lightblue',
+    backgroundColor: "lightblue",
     boxShadow: "2px 2px 5px grey",
     //margin:10,
   },
@@ -72,7 +72,6 @@ export default function TimeSlot(props) {
       </div>
       <Divider orientation="vertical" flexItem />
       <Container className={classes.details}>
-        
         <Divider
           orientation="vertical"
           flexItem
@@ -89,7 +88,7 @@ export default function TimeSlot(props) {
           className={classes.dividerVertical}
         />
         <Typography variant="inherit">
-            Capacity: {numSlot - numParticipants} persons left
+          Capacity: {numSlot - numParticipants} persons left
         </Typography>
       </Container>
     </div>
