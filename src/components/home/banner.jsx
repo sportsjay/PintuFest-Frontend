@@ -11,14 +11,17 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(5),
   },
   textTop: {
-    fontFamily: "XiaoWei",
+    fontFamily: "EastSea",
     textAlign: "center",
     paddingLeft: 5,
     paddingRight: 5,
-    marginBottom: 3,
+    marginBottom: 8,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    backgroundColor: "rgba(68, 31, 19, 1)",
+    color: '#941616',
+    textTransform:'uppercase',
+    fontWeight: 'bold',
+    //backgroundColor: "rgba(68, 31, 19, 1)",
     [theme.breakpoints.up("md")]: {
       fontSize: "3rem",
     },
@@ -32,12 +35,12 @@ const useStyles = makeStyles((theme) => ({
   textBottom: {
     fontFamily: "XiaoWei",
     textAlign: "center",
-    marginTop: 4,
+    marginTop: 10,
     paddingLeft: 5,
     paddingRight: 5,
     borderBottomLeftRadius: 3,
     borderBottomRightRadius: 3,
-    backgroundColor: "rgba(68, 31, 19, 1)",
+   // backgroundColor: "rgba(68, 31, 19, 1)",
     [theme.breakpoints.up("md")]: {
       fontSize: "3rem",
     },
@@ -80,7 +83,7 @@ export default function Banner(props) {
   const image = props.image;
   return (
     <div className={classes.banner}>
-      <Typography className={classes.textTop}>{title}</Typography>
+      <Typography variant="h1" className={classes.textTop} style={{fontSize: "calc(30px + 5vw)",  display: "inline-block"}}>{title}</Typography>
       <Link to={`game${gameNumber}`}>
         <Container className={classes.imgContainer}>
           <img src={image} className={classes.img} alt="Coming Soon!"></img>

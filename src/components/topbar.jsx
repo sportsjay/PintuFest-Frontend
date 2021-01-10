@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import { Link,useLocation } from "react-router-dom";
-import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
-
 import {
   AppBar,
+  Typography,
   Container,
   Toolbar,
   Button,
@@ -19,10 +18,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     backgroundColor: '#111111',
     color: 'white',
-    width: '100vw',
     padding: 20,
     minHeight: 120,
-    
+    overflow: 'hidden',
 
   },
 }));
@@ -53,7 +51,7 @@ export default class TopAppBar extends React.Component {
 
   render() {
     return (
-      <AppBar position="fixed" style={{ marginTop: 20 }}>
+      <AppBar position="fixed" style={{ marginTop: 20, width: '100%' }}>
         <Toolbar style={styles.root}>
           <div style={{ height: 50, display: "flex", alignItems: "center" }}>
             <Typography
@@ -117,8 +115,10 @@ const styles = {
     justifyContent: "space-around",
     backgroundColor: "#111111",
     color: "white",
-    width: "100vw",
+    width: "100%",
+    overflow: 'hidden',
     padding: 0,
+    margin: 0,
     height: 100,
     fontFamily: "XiaoWei",
   },

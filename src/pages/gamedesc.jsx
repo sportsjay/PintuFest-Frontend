@@ -136,7 +136,7 @@ export default function GameDesc(props) {
           <div id="container" style={styles.header}>
             <img
               alt="Header"
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              style={{ objectFit: "cover", width: "100%", height: "100%" , borderWidth:0, borderStyle:'none'}}
               src="./images/Thun.gif"
               height="120%"
               width="200%"
@@ -185,11 +185,17 @@ export default function GameDesc(props) {
               >
                 Can you solve the case?
               </p>
-              <div className="content" style={{ textAlign: "justify" }}>
-                <p style={{ margin: 0 }}>
-                  Hi there! You cannot hide from the Invitation.
-                </p>
-              </div>
+              <img
+                alt="asset 1"
+                style={{
+                    objectFit: "cover",
+                    width: '90vw',
+                    borderWidth:0, borderStyle:'none',
+                    marginTop: 40,
+                }}
+                src="./images/banner1.png"
+                height="100%"
+                />
             </div>
           </div>
           <div style={styles.block}>
@@ -228,6 +234,7 @@ export default function GameDesc(props) {
                 height: "50vh",
                 width: "80vw",
                 marginBottom: 20,
+                borderWidth:0, borderStyle:'none'
               }}
               src="./images/g1_1.jpeg"
               height="120%"

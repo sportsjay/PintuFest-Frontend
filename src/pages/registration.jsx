@@ -205,7 +205,6 @@ export default function Registration() {
             }}
           >
             <Typography
-              variant="h4"
               style={{
                 fontFamily: "XiaoWei",
                 color: "#941616",
@@ -232,113 +231,124 @@ export default function Registration() {
           borderRadius: 20,
         }}
       >
-        <p style={{ fontFamily: "XiaoWei", fontSize: 25 }}>Choose a timeslot</p>
 
         <Container className={classes.form}>
-          <FormControl component="fieldset">
+          
             {/* make 1 component for each escape room */}
 
-            <RadioGroup
-              value={selectTimeSlot}
-              onChange={(e) => setSelectTimeSlot(e.target.value)}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-                flexWrap: "wrap",
-              }}
-            >
               {timeSlots.length > 0 ? (
                 timeSlots.map((timeslot) => {
                   return (
-                    <React.Fragment key={timeslot.id}>
-                      <FormControlLabel
-                        className={classes.formcontrollabel}
-                        value={timeslot.id.toString()}
-                        control={
-                          <TimeSlot
-                            id={timeslot.id.toString()}
-                            name={timeslot.name}
-                            room={timeslot.roomNumber}
-                            timeslot={timeslot.timeSlot}
-                            numSlot={timeslot.maxNumberOfParticipants}
-                            numParticipants={timeslot.participants.length}
+                    <FormControl component="fieldset">
+                      <p style={{ fontFamily: "XiaoWei", fontSize: 25 }}>Choose a timeslot</p>
+                      <RadioGroup
+                        value={selectTimeSlot}
+                        onChange={(e) => setSelectTimeSlot(e.target.value)}
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <React.Fragment key={timeslot.id}>
+                          <FormControlLabel
+                            className={classes.formcontrollabel}
+                            value={timeslot.id.toString()}
+                            control={
+                              <TimeSlot
+                                id={timeslot.id.toString()}
+                                name={timeslot.name}
+                                room={timeslot.roomNumber}
+                                timeslot={timeslot.timeSlot}
+                                numSlot={timeslot.maxNumberOfParticipants}
+                                numParticipants={timeslot.participants.length}
+                              />
+                            }
                           />
-                        }
-                      />
-                    </React.Fragment>
+                        </React.Fragment>
+                      </RadioGroup>
+                      <TextField
+                      variant="filled"
+                      label="Name"
+                      style={{
+                        marginTop: 10,
+                        backgroundColor: "#941616",
+                        color: "white",
+                      }}
+                      onChange={(e) => {
+                        setUsername(e.target.value);
+                        console.log(e.target.value);
+                      }}
+                      value={username}
+                    />
+                    <TextField
+                      variant="filled"
+                      style={{
+                        marginTop: 10,
+                        marginBottom: 10,
+                        backgroundColor: "#941616",
+                        color: "white",
+                      }}
+                      label="E-mail"
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                    />
+                    {selectTimeSlot === null ? (
+                      <React.Fragment></React.Fragment>
+                    ) : (
+                      <div className={classes.dropdown}>
+                        <Typography style={{ margin: 10 }}>
+                          Select Number of Tickets
+                        </Typography>
+                        <Select
+                          style={{ color: "white", backgroundColor: "#941616" }}
+                          id="select-number-ticket"
+                          value={numberOfTickets}
+                          onChange={setNumberOfTicketsFunc}
+                        >
+                          <MenuItem value={1}>1</MenuItem>
+                          <MenuItem value={2}>2</MenuItem>
+                          <MenuItem value={3}>3</MenuItem>
+                          <MenuItem value={4}>4</MenuItem>
+                        </Select>
+                      </div>
+                    )}
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      style={{ textTransform: "none", marginTop: 10 }}
+                      onClick={openModal}
+                    >
+                      Submit
+                    </Button>
+                    <ConfirmationModal
+                      clickLink={clickLink}
+                      setClickLink={setClickLink}
+                      open={openConfirmationModal}
+                      numberOfTickets={numberOfTickets}
+                      price={price * numberOfTickets}
+                      onClose={closeModal}
+                      submitform={submitform}
+                    />
+                  </FormControl>
                   );
                 })
               ) : (
-                <Typography>No slots are available</Typography>
+                <div style={{textAlign: 'center'}}>
+                <Typography style={{fontFamily: 'XiaoWei'}}>Sorry! All tickets for The Invitation are sold out.</Typography>
+                <Typography style={{fontFamily: 'XiaoWei', margin: 5}}>Check out our upcoming games:</Typography>
+                <Typography style={{fontFamily: 'EastSea', color: '#941616',}}>-</Typography>
+                <Typography variant="h4" style={{fontFamily: 'EastSea', color: '#941616',}}>A Death Is Announced</Typography>
+                <Typography style={{fontFamily: 'EastSea', color: '#941616',}}>-</Typography>
+                <Typography variant="h4" style={{fontFamily: 'EastSea', color: '#941616',}}>Second Chance</Typography>
+                <Typography style={{fontFamily: 'EastSea', color: '#941616',}}>-</Typography>
+                </div>
               )}
-            </RadioGroup>
 
-            <TextField
-              variant="filled"
-              label="Name"
-              style={{
-                marginTop: 10,
-                backgroundColor: "#941616",
-                color: "white",
-              }}
-              onChange={(e) => {
-                setUsername(e.target.value);
-                console.log(e.target.value);
-              }}
-              value={username}
-            />
-            <TextField
-              variant="filled"
-              style={{
-                marginTop: 10,
-                marginBottom: 10,
-                backgroundColor: "#941616",
-                color: "white",
-              }}
-              label="E-mail"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            {selectTimeSlot === null ? (
-              <React.Fragment></React.Fragment>
-            ) : (
-              <div className={classes.dropdown}>
-                <Typography style={{ margin: 10 }}>
-                  Select Number of Tickets
-                </Typography>
-                <Select
-                  style={{ color: "white", backgroundColor: "#941616" }}
-                  id="select-number-ticket"
-                  value={numberOfTickets}
-                  onChange={setNumberOfTicketsFunc}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                </Select>
-              </div>
-            )}
-            <Button
-              type="submit"
-              variant="contained"
-              style={{ textTransform: "none", marginTop: 10 }}
-              onClick={openModal}
-            >
-              Submit
-            </Button>
-            <ConfirmationModal
-              clickLink={clickLink}
-              setClickLink={setClickLink}
-              open={openConfirmationModal}
-              numberOfTickets={numberOfTickets}
-              price={price * numberOfTickets}
-              onClose={closeModal}
-              submitform={submitform}
-            />
-          </FormControl>
+           
+    
         </Container>
       </div>
     </div>

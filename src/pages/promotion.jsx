@@ -1,7 +1,6 @@
 import React from "react";
 
 const qna = [
-<<<<<<< HEAD
     {
         q: 'How it Works?',
         a: [
@@ -31,34 +30,6 @@ const qna = [
         ]
     },
 ]
-=======
-  {
-    q: "How it Works?",
-    a: [
-      " Send your referral code to your friends so they can register on the Escape Room website",
-      "You and your invitees will get a cashback of S$0.5 after your invitees make their payment and the payment is successfully processed",
-      "You and your invitees may expect to receive the cashback by end of the third game as we will accumulate the cashback you obtained up to the last game.",
-    ],
-  },
-  {
-    q: "Terms & Conditions",
-    a: [
-      "Offer is valid from January 11th, 2021 to February 6th, 2021",
-      "You may invite anyone to join the Escape room and if your invitee follows the steps below and successfully completes the registration, you are eligible for the GTD Unsolved Referrals Offer.",
-    ],
-  },
-  {
-    q: "To qualify for this offer,",
-    a: [
-      "Receive your personalised referral code when you make your first successful transaction. Your referral code can be found on the confirmation email.",
-      "Send your referral code to your invitee. They can be from anywhere!",
-      "The invitee will then use your referral code to register on the Escape Room website for the first time.",
-      "One registration is valid for one person. so, one is not allowed to register for more than one slot per escape room. There are three escape rooms in total, meaning, you are allowed to book maximum 3 slots (one each).",
-      "One escape room is valid for a cashback of S$0.5, meaning, if your invitee registers for three escape rooms, you and your invitee will get a total cashback of S$1.5",
-    ],
-  },
-];
->>>>>>> d9e2ecc7ca0d9cf6b7a89ce95c3584a88ff880a8
 export default class Promotion extends React.Component {
   state = {
     play: false,
@@ -67,15 +38,11 @@ export default class Promotion extends React.Component {
   componentDidMount() {
     this.setState({ play: true });
   }
-<<<<<<< HEAD
   componentDidMount(){
     this.setState({play:true})
     console.log("hello, " ,this)
   }
   render(){
-=======
-  render() {
->>>>>>> d9e2ecc7ca0d9cf6b7a89ce95c3584a88ff880a8
     return (
       <div style={styles.root}>
         <h1 style={{ fontSize: 50, color: "white", marginBottom: 20 }}>
@@ -109,7 +76,7 @@ export default class Promotion extends React.Component {
 
         {qna.map((faq, index) => {
           return (
-            <div style={{ marginBottom: 20 }}>
+            <div style={{ marginBottom: 20,}}>
               <h1 style={{ fontSize: 40, color: "#941616", marginBottom: 20 }}>
                 {faq.q}
               </h1>
@@ -144,5 +111,6 @@ const styles = {
     // height: '80vh',
     padding: 50,
     fontFamily: "EastSea",
+    overflow: 'hidden',
   },
 };
