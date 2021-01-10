@@ -76,7 +76,6 @@ export default function Registration() {
   const [price, setPrice] = useState(0);
   const [username, setUsername] = useState("");
   const [usernames, setUsernames] = useState([]);
-  const [email, setEmail] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
   const [refreshOnSubmit, setRefreshOnSubmit] = useState(false);
   const [clickLink, setClickLink] = useState(false);
@@ -102,7 +101,6 @@ export default function Registration() {
       axios
         .post(GAMES_API.BOOK_GAME_SLOT, {
           username: username,
-          email: email,
           usernames: usernames,
           gameId: selectTimeSlot,
         })
@@ -112,7 +110,6 @@ export default function Registration() {
     }
     // reset after submit
     setUsername("");
-    setEmail("");
     setSelectTimeSlot(null);
     closeModal();
   };
@@ -288,18 +285,6 @@ export default function Registration() {
                 console.log(e.target.value);
               }}
               value={username}
-            />
-            <TextField
-              variant="filled"
-              style={{
-                marginTop: 10,
-                marginBottom: 10,
-                backgroundColor: "#941616",
-                color: "white",
-              }}
-              label="E-mail"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
             />
             {selectTimeSlot === null ? (
               <React.Fragment></React.Fragment>
