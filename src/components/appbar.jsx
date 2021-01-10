@@ -2,17 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
-  Container,
-  Typography,
   Toolbar,
   Button,
   makeStyles,
+  Typography,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "space-around",
   },
 }));
 
@@ -25,13 +24,22 @@ export default function TopAppBar(props) {
   return (
     <AppBar position={position}>
       <Toolbar className={classes.root}>
-        {routes.map((route) => (
-          <Link key={route.id} to={route.path}>
-            <Button>
-              <Typography>{route.name}</Typography>
-            </Button>
-          </Link>
-        ))}
+        <div>
+          <Typography variant="h3">Title</Typography>
+        </div>
+        <div>
+          {routes.map((route) => (
+            <Link key={route.id} to={route.path}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ textTransform: "none", marginRight: 10 }}
+              >
+                {route.name}
+              </Button>
+            </Link>
+          ))}
+        </div>
       </Toolbar>
     </AppBar>
   );
