@@ -10,7 +10,8 @@ import {
   FormControlLabel,
   TextField,
   RadioGroup,
-  Radio
+  Select,
+  MenuItem,
 } from "@material-ui/core";
 
 //import components
@@ -18,11 +19,6 @@ import TimeSlot from "../components/registration/slotComponent";
 import ConfirmationModal from "../components/registration/confirmationmodal";
 
 //import redux cache
-import { useSelector, useDispatch } from "react-redux";
-import {
-  setResetTimeSlotAction,
-  setSelectTimeSlotAction,
-} from "../actions/registration-action";
 
 //import api for registration
 import { GAMES_API } from "../api-routes/games.api";
@@ -32,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     paddingTop: 40,
-    fontFamily: 'XiaoWei',
+    fontFamily: "XiaoWei",
   },
   information: {
     display: "flex",
@@ -40,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     borderRadius: 5,
     width: "80vw",
-    
+
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
@@ -65,58 +61,41 @@ const useStyles = makeStyles((theme) => ({
   formcontrollabel: {
     margin: 0,
   },
+  dropdown: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 export default function Registration() {
-  const selectedTimeSlotsRedux = useSelector(
-    (state) => state.registration.selectedTimeSlot
-  );
-  //redux actions
-  const dispatch = useDispatch();
   //states
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
-  const [selectTimeSlot1, setSelectTimeSlot1] = useState(null);
-  const [selectTimeSlot2, setSelectTimeSlot2] = useState(null);
-  const [selectTimeSlot3, setSelectTimeSlot3] = useState(null);
+  const [selectTimeSlot, setSelectTimeSlot] = useState(null);
+  const [numberOfTickets, setNumberOfTickets] = useState(1);
   const [price, setPrice] = useState(0);
   const [username, setUsername] = useState("");
+  const [usernames, setUsernames] = useState([]);
   const [email, setEmail] = useState("");
-  // const [refCode, setRefCode] = useState("");
-  const [timeSlots1, setTimeSlots1] = useState([]);
-  const [timeSlots2, setTimeSlots2] = useState([]);
-  const [timeSlots3, setTimeSlots3] = useState([]);
+  const [timeSlots, setTimeSlots] = useState([]);
+  const [refreshOnSubmit, setRefreshOnSubmit] = useState(false);
+  const [clickLink, setClickLink] = useState(false);
 
   useEffect(() => {
     // get data from DB
     axios
-      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation"))
+      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation")) // change by day
       .then((res) => {
-        setTimeSlots1(res.data);
+        setTimeSlots(res.data);
       })
       .catch((error) => console.error("Error! " + error));
-    axios
-      .get(GAMES_API.GET_GAME_BY_NAME("A Death is Announced"))
-      .then((res) => {
-        setTimeSlots2(res.data);
-      })
-      .catch((error) => console.error("Error! " + error));
-    axios
-      .get(GAMES_API.GET_GAME_BY_NAME("Second Chance"))
-      .then((res) => {
-        setTimeSlots3(res.data);
-      })
-      .catch((error) => console.error("Error! " + error));
-  }, []);
+  }, [refreshOnSubmit]);
 
   const classes = useStyles();
   // submit form function
   const submitform = () => {
-    if (
-      selectedTimeSlotsRedux[0] === null &&
-      selectedTimeSlotsRedux[1] === null &&
-      selectedTimeSlotsRedux[2] === null
-    ) {
-      alert("Please select at least 1 timeslot! Thank you!");
+    if (selectTimeSlot === null) {
+      alert("Please select a timeslot! Thank you!");
     } else {
       // call submit function
       // sends username and array of gameId upon slot booking
@@ -124,104 +103,154 @@ export default function Registration() {
         .post(GAMES_API.BOOK_GAME_SLOT, {
           username: username,
           email: email,
-          // refcode: refCode,
-          gameId: selectedTimeSlotsRedux,
+          usernames: usernames,
+          gameId: selectTimeSlot,
         })
-        .then((res) => alert(res.data.msg))
+        .then((res) => alert(res.data))
         .catch((error) => alert(error.response.data));
+      setRefreshOnSubmit(!refreshOnSubmit);
     }
     // reset after submit
     setUsername("");
     setEmail("");
-    // setRefCode("");
-    dispatch(setResetTimeSlotAction());
-    setSelectTimeSlot1(null);
-    setSelectTimeSlot2(null);
-    setSelectTimeSlot3(null);
+    setSelectTimeSlot(null);
     closeModal();
   };
 
   // open modal function
   const openModal = () => {
     setOpenConfirmationModal(true);
-    dispatch(setSelectTimeSlotAction(selectTimeSlot1));
-    dispatch(setSelectTimeSlotAction(selectTimeSlot2));
-    dispatch(setSelectTimeSlotAction(selectTimeSlot3));
-    let countBook = 0;
     // count price
-    selectedTimeSlotsRedux.map((item) =>
-      item === null ? countBook : (countBook = countBook + 1)
-    );
-    setPrice(
-      countBook === 1 ? 6 : countBook === 2 ? 12 : countBook === 3 ? 18 : 0
-    );
+    setPrice(selectTimeSlot === null ? 0 : 6);
   };
 
   // close modal function
   const closeModal = () => {
     setOpenConfirmationModal(false);
-    dispatch(setResetTimeSlotAction());
+    setNumberOfTickets(1);
+    setSelectTimeSlot(null);
+  };
+
+  // select number of ticket function
+  const setNumberOfTicketsFunc = (event) => {
+    setUsernames([username]);
+    let tempUsernames = [username];
+    setNumberOfTickets(event.target.value);
+    if (event.target.value !== 1) {
+      for (let i = 0; i < event.target.value - 1; i++) {
+        tempUsernames.push(username);
+      }
+    }
+    setUsernames(tempUsernames);
+    console.log(usernames);
   };
 
   return (
     <div className={classes.root}>
       <div>
-          <Typography variant="h4" style={{ textAlign: "center", fontFamily: 'XiaoWei', margin: 20 }}>
-           BUY TICKETS
-          </Typography>
-          <div >
-          <Typography variant="h3" style={{ textAlign: "center" , fontFamily: 'EastSea', color: '#941616'}}>
+        <Typography
+          variant="h4"
+          style={{ textAlign: "center", fontFamily: "XiaoWei", margin: 20 }}
+        >
+          BUY TICKETS
+        </Typography>
+        <div>
+          <Typography
+            variant="h3"
+            style={{
+              textAlign: "center",
+              fontFamily: "EastSea",
+              color: "#941616",
+            }}
+          >
             GTD Unsolved:
           </Typography>
-          <Typography variant="h2" style={{ textAlign: "center" , fontFamily: 'EastSea', color: '#941616'}}>
-           The Invitation
+          <Typography
+            variant="h2"
+            style={{
+              textAlign: "center",
+              fontFamily: "EastSea",
+              color: "#941616",
+            }}
+          >
+            The Invitation
           </Typography>
-          </div>
-          <div style={{  display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection:'column', margin:20}}>
-          <Typography style={{fontFamily: 'XiaoWei',}}>Date: 16 January 2021</Typography>
-          <Typography style={{fontFamily: 'XiaoWei',}}>Duration: 2 hours</Typography>
-          <Typography style={{fontFamily: 'XiaoWei',}}>Price: $6 /person</Typography>
-          <Link key={3} to={'/promotion'}  style={{textDecoration: 'none',padding: 0,margin:0, marginBottom: 50,}}>
-            <Typography style={{fontFamily: 'XiaoWei',color: '#941616',marginTop:10, textDecoration:'underline'}}>any discounts?</Typography>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            margin: 20,
+          }}
+        >
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Date: 16 January 2021
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Duration: 2 hours
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Price: $6 /person
+          </Typography>
+          <Link
+            key={3}
+            to={"/promotion"}
+            style={{
+              textDecoration: "none",
+              padding: 0,
+              margin: 0,
+              marginBottom: 50,
+            }}
+          >
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: "XiaoWei",
+                color: "#941616",
+                marginTop: 10,
+                textDecoration: "underline",
+              }}
+            >
+              any discounts?
+            </Typography>
           </Link>
           {/* Mapping Escape Room 1 timeslots */}
-         
-          </div>
+        </div>
       </div>
-      
-      <div style={{  display: "flex",
-          backgroundColor: '#111111',
-          width: '80vw',
+
+      <div
+        style={{
+          display: "flex",
+          backgroundColor: "#111111",
+          width: "80vw",
           justifyContent: "center",
           alignItems: "center",
-          flexDirection:'column', 
-          margin:20 , 
+          flexDirection: "column",
+          margin: 20,
           borderRadius: 20,
-          }}>
-          <p style={{fontFamily: 'XiaoWei', fontSize: 25}}>Choose a timeslot</p>
+        }}
+      >
+        <p style={{ fontFamily: "XiaoWei", fontSize: 25 }}>Choose a timeslot</p>
 
         <Container className={classes.form}>
           <FormControl component="fieldset">
             {/* make 1 component for each escape room */}
-          
 
-          
             <RadioGroup
-              value={selectTimeSlot1}
-              onChange={(e) => setSelectTimeSlot1(e.target.value)}
+              value={selectTimeSlot}
+              onChange={(e) => setSelectTimeSlot(e.target.value)}
               style={{
-                display:'flex',
-                justifyContent:'center',
-                alignItems: 'center',
-                flexDirection:'row',
-                flexWrap: 'wrap'
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                flexWrap: "wrap",
               }}
             >
-              {timeSlots1.length > 0 ? (
-                timeSlots1.map((timeslot) => {
+              {timeSlots.length > 0 ? (
+                timeSlots.map((timeslot) => {
                   return (
                     <React.Fragment key={timeslot.id}>
                       <FormControlLabel
@@ -245,45 +274,73 @@ export default function Registration() {
                 <Typography>No slots are available</Typography>
               )}
             </RadioGroup>
-            
+
             <TextField
               variant="filled"
               label="Name"
-              style={{ marginTop: 10 , backgroundColor:'#941616'}}
-              onChange={(e) => setUsername(e.target.value)}
+              style={{
+                marginTop: 10,
+                backgroundColor: "#941616",
+                color: "white",
+              }}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                console.log(e.target.value);
+              }}
               value={username}
             />
             <TextField
               variant="filled"
-              style={{ marginTop: 10, marginBottom: 10, backgroundColor:'#941616' }}
+              style={{
+                marginTop: 10,
+                marginBottom: 10,
+                backgroundColor: "#941616",
+                color: "white",
+              }}
               label="E-mail"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
-            {/* <TextField
-              variant="filled"
-              style={{ marginBottom: 10 }}
-              label="Referral Code"
-              onChange={(e) => setRefCode(e.target.value)}
-              value={refCode}
-            /> */}
+            {selectTimeSlot === null ? (
+              <React.Fragment></React.Fragment>
+            ) : (
+              <div className={classes.dropdown}>
+                <Typography style={{ margin: 10 }}>
+                  Select Number of Tickets
+                </Typography>
+                <Select
+                  style={{ color: "white", backgroundColor: "#941616" }}
+                  id="select-number-ticket"
+                  value={numberOfTickets}
+                  onChange={setNumberOfTicketsFunc}
+                >
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                </Select>
+              </div>
+            )}
             <Button
               type="submit"
               variant="contained"
-              style={{ textTransform: "none", marginTop: 10, }}
+              style={{ textTransform: "none", marginTop: 10 }}
               onClick={openModal}
             >
               Submit
             </Button>
             <ConfirmationModal
+              clickLink={clickLink}
+              setClickLink={setClickLink}
               open={openConfirmationModal}
-              price={price}
+              numberOfTickets={numberOfTickets}
+              price={price * numberOfTickets}
               onClose={closeModal}
               submitform={submitform}
             />
           </FormControl>
         </Container>
-        </div>
+      </div>
     </div>
   );
 }

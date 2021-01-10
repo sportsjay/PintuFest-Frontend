@@ -1,65 +1,45 @@
 import React from "react";
 import { Container } from "@material-ui/core";
 
+//import redux
+import { useSelector } from "react-redux";
+
 //import components
-import HorizontalLabelPositionBelowStepper from "../components/home/progress";
+import Banner from "../components/home/banner";
 
 //import game pages here based on days
 
 export default function Home() {
-  const day = 1;
-  const roomDescriptions = [
-    {
-      room: 1,
-      description: "description 1",
-      time: "100",
-    },
-    {
-      room: 2,
-      description: " description 2",
-      time: "",
-    },
-    {
-      room: 3,
-      description: " description 3",
-      time: "",
-    },
-  ]; //test data
+  const authToken = useSelector((state) => state.admin.authToken);
 
   return (
-    <div style={styles.root}>
-      Home
-      {/* Test your development page below */}
-      {/* 
-      """"""""""
-      Code Test
-      """"""""""
-      */}
-      {/* get a progress slider */}
-      {day === 1 ? (
-        <React.Fragment>
-          {roomDescriptions.map((room) => (
-            <HorizontalLabelPositionBelowStepper
-              title={"Room " + room.room}
-              description={room.description}
-              timer={room.time}
-              isAdmin={false} //use for admins only
-            />
-          ))}
-        </React.Fragment>
-      ) : (
-        <HorizontalLabelPositionBelowStepper
-          isAdmin={false} //use for admins only
-        />
-      )}
-    </div>
+    <Container style={styles.root}>
+      <Banner
+        gameNumber="1"
+        title="The Invitation"
+        image="./images/game_1_assets/game1_1x1.png"
+      />
+      <Banner
+        gameNumber="2"
+        title="A Death is Announced"
+        image="./images/comingsoon_1x1.png"
+      />
+      <Banner
+        gameNumber="3"
+        title="Second Chance"
+        image="./images/comingsoon_1x1.png"
+      />
+    </Container>
   );
 }
 
 const styles = {
   root: {
-    backgroundColor: '#111111',
-    color: 'white',
-    width: '100vw'
-  }
-}
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    backgroundColor: "#111111",
+    color: "white",
+  },
+};
