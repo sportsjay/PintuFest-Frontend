@@ -6,10 +6,10 @@ const selectTimeSlotAction = (select) => ({
   payload: select,
 });
 
-const deSelectTimeSlotAction = (deselect) => ({
-  type: ActionTypes.DESELECT,
-  payload: deselect,
+const resetTimeSlotAction = (reset) => ({
+  type: ActionTypes.RESET,
+  payload: reset,
 });
 
 export const setSelectTimeSlotAction = (item) => selectTimeSlotAction(item);
-export const setDeSelectTimeSlotAction = (item) => deSelectTimeSlotAction(item);
+export const setResetTimeSlotAction = (item) => resetTimeSlotAction(item);

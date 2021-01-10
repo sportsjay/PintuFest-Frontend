@@ -1,26 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   Container,
   makeStyles,
   Button,
   Typography,
   FormControl,
-  Card,
-  InputLabel,
+  FormControlLabel,
   TextField,
+  RadioGroup,
+  Select,
+  MenuItem,
 } from "@material-ui/core";
 
 //import components
-import TimeSlot from "../components/registration/timeslot";
-import CardLink from "../components/registration/cardlink";
+import TimeSlot from "../components/registration/slotComponent";
+import ConfirmationModal from "../components/registration/confirmationmodal";
 
 //import redux cache
-import { useSelector } from "react-redux";
+
+//import api for registration
+import { GAMES_API } from "../api-routes/games.api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
+    paddingTop: 40,
+    fontFamily: "XiaoWei",
   },
   information: {
     display: "flex",
@@ -28,103 +36,311 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     borderRadius: 5,
     width: "80vw",
+
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
   },
   form: {
-    backgroundColor: "#8aa3cf",
+    backgroundColor: "#111111",
     marginTop: 10,
     marginBottom: 10,
     borderRadius: 5,
-    padding: 20,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "80vw",
+    width: "100%",
+    padding: 20,
+  },
+  selectPageButtonGroup: {
+    marginTop: theme.spacing(1),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  formcontrollabel: {
+    margin: 0,
+  },
+  dropdown: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 }));
 
 export default function Registration() {
-  const selectedTimeSlotsRedux = useSelector(
-    (state) => state.registrationReducer.selectedTimeSlot
-  );
-
+  //states
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [selectTimeSlot, setSelectTimeSlot] = useState(null);
+  const [numberOfTickets, setNumberOfTickets] = useState(1);
+  const [price, setPrice] = useState(0);
   const [username, setUsername] = useState("");
+  const [usernames, setUsernames] = useState([]);
   const [email, setEmail] = useState("");
-  const timeSlots = [
-    {
-      id: parseInt(Math.random() * 1000),
-      name: "game 1",
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-    {
-      id: parseInt(Math.random() * 1000),
-      name: "game 2",
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-    {
-      id: parseInt(Math.random() * 1000),
-      name: "game 3",
-      duration: "1 hour",
-      timeslot: "11:00 - 12:00",
-      numSlot: 6,
-    },
-  ];
+  const [timeSlots, setTimeSlots] = useState([]);
+  const [refreshOnSubmit, setRefreshOnSubmit] = useState(false);
+  const [clickLink, setClickLink] = useState(false);
+
+  useEffect(() => {
+    // get data from DB
+    axios
+      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation")) // change by day
+      .then((res) => {
+        setTimeSlots(res.data);
+      })
+      .catch((error) => console.error("Error! " + error));
+  }, [refreshOnSubmit]);
 
   const classes = useStyles();
+  // submit form function
+  const submitform = () => {
+    if (selectTimeSlot === null) {
+      alert("Please select a timeslot! Thank you!");
+    } else {
+      // call submit function
+      // sends username and array of gameId upon slot booking
+      axios
+        .post(GAMES_API.BOOK_GAME_SLOT, {
+          username: username,
+          email: email,
+          usernames: usernames,
+          gameId: selectTimeSlot,
+        })
+        .then((res) => alert(res.data))
+        .catch((error) => alert(error.response.data));
+      setRefreshOnSubmit(!refreshOnSubmit);
+    }
+    // reset after submit
+    setUsername("");
+    setEmail("");
+    setSelectTimeSlot(null);
+    closeModal();
+  };
+
+  // open modal function
+  const openModal = () => {
+    setOpenConfirmationModal(true);
+    // count price
+    setPrice(selectTimeSlot === null ? 0 : 6);
+  };
+
+  // close modal function
+  const closeModal = () => {
+    setOpenConfirmationModal(false);
+    setNumberOfTickets(1);
+    setSelectTimeSlot(null);
+  };
+
+  // select number of ticket function
+  const setNumberOfTicketsFunc = (event) => {
+    setUsernames([username]);
+    let tempUsernames = [username];
+    setNumberOfTickets(event.target.value);
+    if (event.target.value !== 1) {
+      for (let i = 0; i < event.target.value - 1; i++) {
+        tempUsernames.push(username);
+      }
+    }
+    setUsernames(tempUsernames);
+    console.log(usernames);
+  };
 
   return (
     <div className={classes.root}>
-      <Container className={classes.information}>
-        <CardLink></CardLink>
-        <CardLink></CardLink>
-        <CardLink></CardLink>
-      </Container>
-      <Container className={classes.form}>
-        <FormControl>
-          <TextField
-            label="Username"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-          <TextField
-            label="E-mail"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          {timeSlots.map((timeslot) => (
-            <React.Fragment key={timeslot.id}>
-              <TimeSlot
-                key={timeslot.id}
-                id={timeslot.id}
-                name={timeslot.name}
-                duration={timeslot.duration}
-                timeslot={timeslot.timeslot}
-                numSlot={timeslot.numSlot}
-              />
-            </React.Fragment>
-          ))}
-          <Button
-            variant="contained"
-            style={{ textTransform: "none", marginTop: 10 }}
-            onClick={() => {
-              // call submit function
-
-              // reset after submit
-              setUsername("");
-              setEmail("");
-              console.log(selectedTimeSlotsRedux);
+      <div>
+        <Typography
+          variant="h4"
+          style={{ textAlign: "center", fontFamily: "XiaoWei", margin: 20 }}
+        >
+          BUY TICKETS
+        </Typography>
+        <div>
+          <Typography
+            variant="h3"
+            style={{
+              textAlign: "center",
+              fontFamily: "EastSea",
+              color: "#941616",
             }}
           >
-            Submit
-          </Button>
-        </FormControl>
-      </Container>
+            GTD Unsolved:
+          </Typography>
+          <Typography
+            variant="h2"
+            style={{
+              textAlign: "center",
+              fontFamily: "EastSea",
+              color: "#941616",
+            }}
+          >
+            The Invitation
+          </Typography>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            margin: 20,
+          }}
+        >
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Date: 16 January 2021
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Duration: 2 hours
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Price: $6 /person
+          </Typography>
+          <Link
+            key={3}
+            to={"/promotion"}
+            style={{
+              textDecoration: "none",
+              padding: 0,
+              margin: 0,
+              marginBottom: 50,
+            }}
+          >
+            <Typography
+              variant="h4"
+              style={{
+                fontFamily: "XiaoWei",
+                color: "#941616",
+                marginTop: 10,
+                textDecoration: "underline",
+              }}
+            >
+              any discounts?
+            </Typography>
+          </Link>
+          {/* Mapping Escape Room 1 timeslots */}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          backgroundColor: "#111111",
+          width: "80vw",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          margin: 20,
+          borderRadius: 20,
+        }}
+      >
+        <p style={{ fontFamily: "XiaoWei", fontSize: 25 }}>Choose a timeslot</p>
+
+        <Container className={classes.form}>
+          <FormControl component="fieldset">
+            {/* make 1 component for each escape room */}
+
+            <RadioGroup
+              value={selectTimeSlot}
+              onChange={(e) => setSelectTimeSlot(e.target.value)}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                flexWrap: "wrap",
+              }}
+            >
+              {timeSlots.length > 0 ? (
+                timeSlots.map((timeslot) => {
+                  return (
+                    <React.Fragment key={timeslot.id}>
+                      <FormControlLabel
+                        className={classes.formcontrollabel}
+                        value={timeslot.id.toString()}
+                        control={
+                          <TimeSlot
+                            id={timeslot.id.toString()}
+                            name={timeslot.name}
+                            room={timeslot.roomNumber}
+                            timeslot={timeslot.timeSlot}
+                            numSlot={timeslot.maxNumberOfParticipants}
+                            numParticipants={timeslot.participants.length}
+                          />
+                        }
+                      />
+                    </React.Fragment>
+                  );
+                })
+              ) : (
+                <Typography>No slots are available</Typography>
+              )}
+            </RadioGroup>
+
+            <TextField
+              variant="filled"
+              label="Name"
+              style={{
+                marginTop: 10,
+                backgroundColor: "#941616",
+                color: "white",
+              }}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                console.log(e.target.value);
+              }}
+              value={username}
+            />
+            <TextField
+              variant="filled"
+              style={{
+                marginTop: 10,
+                marginBottom: 10,
+                backgroundColor: "#941616",
+                color: "white",
+              }}
+              label="E-mail"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            {selectTimeSlot === null ? (
+              <React.Fragment></React.Fragment>
+            ) : (
+              <div className={classes.dropdown}>
+                <Typography style={{ margin: 10 }}>
+                  Select Number of Tickets
+                </Typography>
+                <Select
+                  style={{ color: "white", backgroundColor: "#941616" }}
+                  id="select-number-ticket"
+                  value={numberOfTickets}
+                  onChange={setNumberOfTicketsFunc}
+                >
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                </Select>
+              </div>
+            )}
+            <Button
+              type="submit"
+              variant="contained"
+              style={{ textTransform: "none", marginTop: 10 }}
+              onClick={openModal}
+            >
+              Submit
+            </Button>
+            <ConfirmationModal
+              clickLink={clickLink}
+              setClickLink={setClickLink}
+              open={openConfirmationModal}
+              numberOfTickets={numberOfTickets}
+              price={price * numberOfTickets}
+              onClose={closeModal}
+              submitform={submitform}
+            />
+          </FormControl>
+        </Container>
+      </div>
     </div>
   );
 }

@@ -1,21 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Card,
   Container,
   Divider,
   Typography,
-  FormControl,
   makeStyles,
-  FormControlLabel,
-  Checkbox,
+  Radio,
 } from "@material-ui/core";
-
-// Redux
-import {
-  setSelectTimeSlotAction,
-  setDeSelectTimeSlotAction,
-} from "../../actions/registration-action";
-import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -63,45 +53,32 @@ const useStyles = makeStyles((theme) => ({
 export default function TimeSlot(props) {
   const classes = useStyles();
 
-  const [select, setSelect] = useState(false);
-
   const id = props.id || 0; //timeslot id
   const name = props.name || "game 1"; //game name
-  const duration = props.duration || "0 hours"; //game duration
+  const room = props.room || 1; //room number
   const timeslot = props.timeslot || "00:00 - 00:00"; //game timeslot
   const numSlot = props.numSlot || 1; //game room number of slots left
-
-  //execute actions from redux
-  const dispatch = useDispatch();
+  const numParticipants = props.numParticipants || 0; //current game slots participants
 
   return (
-    <Card className={classes.card}>
+    <div className={classes.card} key={id}>
       {/* if locked in then cannot change */}
       <div className={classes.checkbox}>
-        <FormControl>
-          <FormControlLabel
-            control={
-              <Checkbox
-                onChange={(e) => {
-                  if (select) {
-                    //detect if clicked then pop timeslot session in redux cache
-                    setSelect(false);
-                    dispatch(setDeSelectTimeSlotAction(id));
-                  } else {
-                    //detect if clicked then store timeslot session in redux cache
-                    setSelect(true);
-                    dispatch(setSelectTimeSlotAction(id));
-                  }
-                }}
-                color="primary"
-              />
-            }
-          />
-        </FormControl>
+        <Radio {...props} color="primary" />
       </div>
       <Divider orientation="vertical" flexItem />
       <Container className={classes.details}>
         <Typography variant="inherit">Game: {name}</Typography>
+        <Divider
+          orientation="horizontal"
+          className={classes.dividerHorizontal}
+        />
+        <Divider
+          orientation="vertical"
+          flexItem
+          className={classes.dividerVertical}
+        />
+        <Typography variant="inherit">Room: {room}</Typography>
         <Divider
           orientation="horizontal"
           className={classes.dividerHorizontal}
@@ -121,18 +98,10 @@ export default function TimeSlot(props) {
           flexItem
           className={classes.dividerVertical}
         />
-        <Typography variant="inherit">Duration: {duration}</Typography>
-        <Divider
-          orientation="horizontal"
-          className={classes.dividerHorizontal}
-        />
-        <Divider
-          orientation="vertical"
-          flexItem
-          className={classes.dividerVertical}
-        />
-        <Typography variant="inherit">Available slot: {numSlot}</Typography>
+        <Typography variant="inherit">
+          Available slot: {numSlot - numParticipants}
+        </Typography>
       </Container>
-    </Card>
+    </div>
   );
 }
