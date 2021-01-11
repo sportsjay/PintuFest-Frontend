@@ -424,11 +424,11 @@ export default function Registration() {
                     alignSelf: "center",
                     backgroundColor:
                       currentParticipants < numberOfTickets
-                        ? "#540d0d"
+                        ? "#333333"
                         : "#941616",
                     color:
                       currentParticipants < numberOfTickets
-                        ? "#333333"
+                        ? "#595959"
                         : "white",
                     fontFamily: "XiaoWei",
                     fontWeight: "bold",

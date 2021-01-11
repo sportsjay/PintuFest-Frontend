@@ -67,7 +67,7 @@ export default function ConfirmationModal(props) {
   const onClickLink = () => {
     setTimeout(() => {
       setClickLink(true);
-    }, 5000);
+    }, 120000);
   };
 
   return (
