@@ -1,6 +1,25 @@
 import React from "react";
 import {Typography} from "@material-ui/core";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
+const ColorButton = withStyles((theme) => ({
+  root: {
+    backgroundColor: "#941616",
+    color: "#000",
+    borderStyle: "solid",
+    borderColor: "#941616",
+    borderWidth: 2,
+    borderRadius: 0,
+    fontFamily: "XiaoWei",
+    fontWeight: "bold",
+
+    "&:hover": {
+      color: "#941616",
+      backgroundColor: "#000",
+    },
+  },
+}))(Button);
 const qnaRefCode = [
   {
     q: "How it Works?",
@@ -71,6 +90,20 @@ export default class Promotion extends React.Component {
           $0.5 cashback for each successful transaction that your friends made! (T&Cs applied)
         </h1>
 
+        <a
+            rel="noreferrer"
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdB2Jeq6VNKzL_S-J3WI6RanVVFvKPLB56SHvUTR94YHcqNmg/viewform?usp=sf_link"
+              style={{
+                textDecoration: "none",
+                padding: 0,
+                margin: 0,
+                marginBottom: 50,
+                marginTop: 50,
+              }}
+            >
+            <ColorButton>BUY TICKET</ColorButton>
+          </a>
         {qnaRefCode.map((faq, index) => {
           return (
             <div style={{ marginBottom: 20 }}>

@@ -102,9 +102,10 @@ export default function Home() {
           <Typography style={{ fontFamily: "XiaoWei" }}>
           Bundle of 7: $35/group
           </Typography>
-          <Link
-              key={3}
-              to={"/register"}
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdB2Jeq6VNKzL_S-J3WI6RanVVFvKPLB56SHvUTR94YHcqNmg/viewform?usp=sf_link"
               style={{
                 textDecoration: "none",
                 padding: 0,
@@ -114,7 +115,7 @@ export default function Home() {
               }}
             >
               <ColorButton>BUY TICKET</ColorButton>
-            </Link>
+            </a>
         </div>
       </div>
     </Container>

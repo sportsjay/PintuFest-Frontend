@@ -24,6 +24,24 @@ import ConfirmationModal from "../components/registration/confirmationmodal";
 //import api for registration
 import { GAMES_API } from "../api-routes/games.api";
 
+const ColorButton = withStyles((theme) => ({
+  root: {
+    backgroundColor: "#941616",
+    color: "#000",
+    borderStyle: "solid",
+    borderColor: "#941616",
+    borderWidth: 2,
+    borderRadius: 0,
+    fontFamily: "XiaoWei",
+    fontWeight: "bold",
+
+    "&:hover": {
+      color: "#941616",
+      backgroundColor: "#000",
+    },
+  },
+}))(Button);
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -277,162 +295,22 @@ export default function Registration() {
               About referral code
             </Typography>
           </Link>
+
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdB2Jeq6VNKzL_S-J3WI6RanVVFvKPLB56SHvUTR94YHcqNmg/viewform?usp=sf_link"
+              style={{
+                textDecoration: "none",
+                padding: 0,
+                margin: 0,
+                marginBottom: 50,
+              }}
+            >
+            <ColorButton>BUY TICKET</ColorButton>
+          </a>
           {/* Mapping Escape Room 1 timeslots */}
         </div>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          backgroundColor: "#111111",
-          width: "80vw",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          margin: 20,
-          borderRadius: 20,
-        }}
-      >
-        <Container className={classes.form}>
-          {/* make 1 component for each escape room */}
-          <FormControl component="fieldset">
-            {timeSlots.length > 0 ? (
-              <React.Fragment>
-                <p style={{ fontFamily: "XiaoWei", textAlign:"center", fontSize: 25 }}>
-                  Choose a timeslot
-                </p>
-                <RadioGroup
-                  value={selectTimeSlot}
-                  onChange={(e) => {
-                    setSelectTimeSlot(e.target.value);
-                  }}
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {timeSlots.map((timeslot) => (
-                    <React.Fragment key={timeslot.id}>
-                      <React.Fragment key={timeslot.id}>
-                        <FormControlLabel
-                          onClick={() => {
-                            setTime(timeslot.timeSlot);
-                          }}
-                          className={classes.formcontrollabel}
-                          value={timeslot.id.toString()}
-                          control={
-                            <TimeSlot
-                              id={timeslot.id.toString()}
-                              name={timeslot.name}
-                              room={timeslot.roomNumber}
-                              timeslot={timeslot.timeSlot}
-                              numSlot={timeslot.maxNumberOfParticipants}
-                              numParticipants={timeslot.participants.length}
-                            />
-                          }
-                        />
-                      </React.Fragment>
-                    </React.Fragment>
-                  ))}
-                </RadioGroup>
-                <Typography style={{ fontFamily: "XiaoWei", textAlign: 'center' }}>
-                {time ? "You have selected slot " + time : ""}
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <div style={{ textAlign: "center" }}>
-                <Typography style={{ fontFamily: "XiaoWei" }}>
-                  Sorry! All tickets for The Invitation are sold out.
-                </Typography>
-                <Typography style={{ fontFamily: "XiaoWei", margin: 5 }}>
-                  Check out our upcoming games:
-                </Typography>
-                <Typography style={{ fontFamily: "EastSea", color: "#941616" }}>
-                  -
-                </Typography>
-                <Typography
-                  variant="h4"
-                  style={{ fontFamily: "EastSea", color: "#941616" }}
-                >
-                  A Death Is Announced
-                </Typography>
-                <Typography style={{ fontFamily: "EastSea", color: "#941616" }}>
-                  -
-                </Typography>
-                <Typography
-                  variant="h4"
-                  style={{ fontFamily: "EastSea", color: "#941616" }}
-                >
-                  Second Chance
-                </Typography>
-                <Typography style={{ fontFamily: "EastSea", color: "#941616" }}>
-                  -
-                </Typography>
-              </div>
-            )}
-            {timeSlots.length > 0 ? (
-              <React.Fragment>
-                <TextField
-                  variant="filled"
-                  label="Name"
-                  style={{
-                    marginTop: 10,
-                    backgroundColor: "white",
-                    width: '80%',
-                    alignSelf:'center',
-                    borderRadius: 5,
-                  }}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    console.log(e.target.value);
-                  }}
-                  value={username}
-                />
-                {selectTimeSlot !== null ? (
-                  <div className={classes.dropdown}>
-                    <Typography style={{ margin: 10,fontFamily: "XiaoWei",  }}>
-                      Select Number of Tickets: 
-                    </Typography>
-                    <Select
-                      style={{ color: "white", backgroundColor: "#941616" }}
-                      id="select-number-ticket"
-                      value={numberOfTickets}
-                      onChange={setNumberOfTicketsFunc}
-                    >
-                      {numOfTicket()}
-                    </Select>
-                  </div>
-                ) : (
-                  <React.Fragment></React.Fragment>
-                )}
-                <Button
-                  type="submit"
-                  variant="contained"
-                  style={{ textTransform: "none", marginTop: 10, width: '80%', maxWidth: 150, alignSelf:'center', backgroundColor:  "#941616", color: 'white' , fontFamily:'XiaoWei', fontWeight: 'bold'}}
-                  onClick={openModal}
-                >
-                  BOOK NOW
-                </Button>
-                <ConfirmationModal
-                  time={time}
-                  clickLink={clickLink}
-                  setClickLink={setClickLink}
-                  open={openConfirmationModal}
-                  numberOfTickets={numberOfTickets}
-                  price={numberOfTickets === 1 ? price : 5.5 * numberOfTickets}
-                  onClose={closeModal}
-                  submitform={submitform}
-                  username={username}
-                />
-              </React.Fragment>
-            ) : (
-              <React.Fragment></React.Fragment>
-            )}
-          </FormControl>
-        </Container>
       </div>
     </div>
   );

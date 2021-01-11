@@ -144,18 +144,20 @@ export default function GameDesc(props) {
               <p style={{ margin: 0, fontSize: 20 }}>Capacity: 5-7 person(s)</p>
             </div>
             <div style={styles.center}>
-              <Link
-                key={3}
-                to={"/register"}
-                style={{
-                  textDecoration: "none",
-                  padding: 0,
-                  margin: 0,
-                  marginBottom: 50,
-                }}
-              >
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdB2Jeq6VNKzL_S-J3WI6RanVVFvKPLB56SHvUTR94YHcqNmg/viewform?usp=sf_link"
+                  style={{
+                    textDecoration: "none",
+                    padding: 0,
+                    margin: 0,
+                    marginBottom: 50,
+                    marginTop: 50,
+                  }}
+                >
                 <ColorButton>BUY TICKET</ColorButton>
-              </Link>
+              </a>
             </div>
           </div>
           <div style={styles.block}>
@@ -248,23 +250,24 @@ export default function GameDesc(props) {
                 <p>Solve the puzzles with your creative mind</p>
                 <p>Trace the story like no one else could</p>
               </div>
-              <Link
-                key={3}
-                to={"/register"}
-                style={{
-                  textDecoration: "none",
-                  padding: 0,
-                  margin: 0,
-                  marginBottom: 50,
-                  marginTop: 20,
-                }}
-              >
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdB2Jeq6VNKzL_S-J3WI6RanVVFvKPLB56SHvUTR94YHcqNmg/viewform?usp=sf_link"
+                  style={{
+                    textDecoration: "none",
+                    padding: 0,
+                    margin: 0,
+                    marginBottom: 50,
+                    marginTop: 50,
+                  }}
+                >
                 <ColorButton
                     onClick={()=>{props.history.push('/register')}}
                 >
                   REGISTER NOW
                 </ColorButton>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
