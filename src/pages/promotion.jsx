@@ -10,13 +10,6 @@ const qnaRefCode = [
     ],
   },
   {
-    q: "Terms & Conditions",
-    a: [
-      "Offer is valid from January 11th, 2021 to February 6th, 2021",
-      "You may invite anyone to join the Escape room and if your invitee follows the steps below and successfully completes the registration, you are eligible for the GTD Unsolved Referrals Offer.",
-    ],
-  },
-  {
     q: "To qualify for this offer,",
     a: [
       "Receive your personalised referral code when you make your first successful transaction. Your referral code can be found on the confirmation email.",
@@ -24,6 +17,13 @@ const qnaRefCode = [
       "The invitee will then use your referral code to register on the Escape Room website for the first time.",
       "For the invitees, the discount will be applied directly once you've entered the correct referral code.",
       "You will claim your referral bonus of $0.5 per ticket after 6th February 2021 from GTD XXIII BFM team",
+    ],
+  },
+  {
+    q: "Terms & Conditions",
+    a: [
+      "Offer is valid from January 11th, 2021 to February 6th, 2021",
+      "You may invite anyone to join the Escape room and if your invitee follows the steps below and successfully completes the registration, you are eligible for the GTD Unsolved Referrals Offer.",
       "For more information please contact Timothy at (+65 8147 1852)",
     ],
   },
@@ -51,9 +51,8 @@ export default class Promotion extends React.Component {
             fontFamily: "XiaoWei",
           }}
         >
-          GET $0.5 CASHBACK WHEN YOU USE A REFERRAL CODE!
+          INVITE YOUR FRIENDS TO JOIN GTD UNSOLVED AND EARN CASHBACKS!
         </h1>
-
         <h1
           style={{
             fontSize: 14,
@@ -63,9 +62,9 @@ export default class Promotion extends React.Component {
             fontFamily: "XiaoWei",
           }}
         >
-          It's time for you to refer a friend using your referal code and get a
-          $0.5 cashback for each friend you bring! Plus, your friends will also
-          get a $0.5 discount to their purchases.
+          It's time for you to refer a friend using your unique referal code and
+          get a $0.5 cashback for each successful transaction that your friends
+          made! (T&Cs applied)
         </h1>
 
         {qnaRefCode.map((faq, index) => {
@@ -88,6 +87,7 @@ export default class Promotion extends React.Component {
                       fontSize: 14,
                       color: "white",
                       fontFamily: "XiaoWei",
+                      lineHeight: 1.2,
                     }}
                   >
                     {index + 1 + ". " + ans}
@@ -109,8 +109,8 @@ const styles = {
     flexDirection: "column",
     backgroundColor: "#000",
     color: "white",
-    maxWidth: "70vw",
-    padding: 50,
+    maxWidth: "90vw",
+    padding: 20,
     fontFamily: "EastSea",
     overflow: "hidden",
   },

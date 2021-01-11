@@ -180,16 +180,6 @@ export default function Registration() {
         </Typography>
         <div>
           <Typography
-            variant="h3"
-            style={{
-              textAlign: "center",
-              fontFamily: "EastSea",
-              color: "#941616",
-            }}
-          >
-            GTD Unsolved:
-          </Typography>
-          <Typography
             variant="h2"
             style={{
               textAlign: "center",
@@ -236,7 +226,6 @@ export default function Registration() {
               textDecoration: "none",
               padding: 0,
               margin: 0,
-              marginBottom: 50,
             }}
           >
             <Typography
@@ -364,7 +353,7 @@ export default function Registration() {
                   variant="filled"
                   label="Name"
                   style={{
-                    marginTop: 10,
+                    marginTop: "2em",
                     backgroundColor: "white",
                     width: "80%",
                     alignSelf: "center",
@@ -418,7 +407,7 @@ export default function Registration() {
                   disabled={currentParticipants < numberOfTickets}
                   style={{
                     textTransform: "none",
-                    marginTop: 10,
+                    marginTop: "3em",
                     width: "80%",
                     maxWidth: 150,
                     alignSelf: "center",

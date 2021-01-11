@@ -6,6 +6,27 @@ import { Animate } from "react-simple-animate";
 import Banner from "../components/home/banner";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#000",
+    color: "white",
+    flexDirection: "column",
+  },
+  banners: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#000",
+    color: "white",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+    },
+  },
   text: {
     [theme.breakpoints.down("xs")]: {
       fontSize: "1rem",
@@ -20,7 +41,7 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <Container style={styles.root}>
+    <Container className={classes.root}>
       <div style={styles.block}>
         <div style={styles.block}>
           <Animate
@@ -35,22 +56,24 @@ export default function Home() {
           </Animate>
         </div>
       </div>
-      <Banner
-        gameNumber="1"
-        title="The Invitation"
-        status="16 January 2021"
-        image="./images/game_1_assets/game1_1x1.png"
-      />
-      <Banner
-        gameNumber="2"
-        title="A Death is Announced"
-        image="./images/comingsoon_1x1.png"
-      />
-      <Banner
-        gameNumber="3"
-        title="Second Chance"
-        image="./images/comingsoon_1x1.png"
-      />
+      <div className={classes.banners}>
+        <Banner
+          gameNumber="1"
+          title="The Invitation"
+          status="16 January 2021"
+          image="./images/game_1_assets/game1_1x1.png"
+        />
+        <Banner
+          gameNumber="2"
+          title="A Death is Announced"
+          image="./images/comingsoon_1x1.png"
+        />
+        <Banner
+          gameNumber="3"
+          title="Second Chance"
+          image="./images/comingsoon_1x1.png"
+        />
+      </div>
       <div style={styles.block}>
         <div style={styles.block}>
           <p style={styles.title}>GTD Unsolved</p>
@@ -77,14 +100,6 @@ export default function Home() {
 }
 
 const styles = {
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexWrap: "wrap",
-    backgroundColor: "#000",
-    color: "white",
-  },
   title: {
     margin: 0,
     marginTop: 20,
