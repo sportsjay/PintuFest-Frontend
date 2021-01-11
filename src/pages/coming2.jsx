@@ -3,26 +3,19 @@ import { Animate, AnimateGroup } from "react-simple-animate";
 
 const dot = [".", ".", "."];
 const title = [
-  "A",
-  "-",
-  "D",
-  "E",
-  "A",
-  "T",
-  "H",
-  "-",
-  "I",
   "S",
-  "-",
-  "A",
-  "N",
-  "N",
+  "E",
+  "C",
   "O",
-  "U",
+  "N",
+  "D",
+  "-",
+  "C",
+  "H",
+  "A",
   "N",
   "C",
   "E",
-  "D",
 ];
 export default class ComingSoon extends React.Component {
   state = {

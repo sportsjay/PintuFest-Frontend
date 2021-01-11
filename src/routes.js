@@ -28,13 +28,13 @@ export const routes = [
     id: 1,
     name: "NOW PLAYING",
     expand: "The Invitation",
-    path: "/game1",
+    path: "/nowplaying",
   },
   {
     id: 2,
     name: "BUY NOW",
     expand: "play NOW",
-    path: "/register",
+    path: "/buynow",
   },
   {
     id: 3,

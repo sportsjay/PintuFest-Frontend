@@ -25,6 +25,7 @@ import ComingSoon from "./pages/comingsoon";
 import FAQ from "./pages/faq";
 import Promotion from "./pages/promotion";
 import RoomStatus from "./pages/roomstatus";
+import ComingSoon2 from "./pages/coming2";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -61,8 +62,11 @@ function App() {
           <Route path="/register">
             <Registration />
           </Route>
-          <Route path="/comingsoon">
+          <Route path="/comingsoon/2">
             <ComingSoon />
+          </Route>
+          <Route path="/comingsoon/3">
+            <ComingSoon2/>
           </Route>
           <Route path="/" exact>
             <Home />
@@ -70,10 +74,10 @@ function App() {
           <Route path="/admin-login-route">
             <AdminLogin />
           </Route>
-          <Route path="/register">
+          <Route path="/buynow">
             <Registration />
           </Route>
-          <Route path="/game1">
+          <Route path="/nowplaying">
             <Details />
           </Route>
           <Route path="/promotion">

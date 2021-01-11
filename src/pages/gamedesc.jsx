@@ -196,7 +196,7 @@ export default function GameDesc(props) {
                 <iframe
                   style={{ width: "80%", height: "auto" }}
                   title="trailer"
-                  src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                  src="https://youtu.be/dHAdqd7OH5M"
                   allowFullScreen
                 />
               </div>
