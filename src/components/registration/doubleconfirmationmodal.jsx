@@ -35,9 +35,9 @@ export default function DoubleConfirmationModal(props) {
       <Paper className={classes.paper}>
         <Typography style={{ color: "red" }} variant="h5">
           Once transaction is confirmed, no changing of time slot and refunds
-          are entertained
+          are entertained.
         </Typography>
-        <Button onClick={submitform}>Confirm</Button>
+        <Button onClick={submitform}>CONFIRM</Button>
       </Paper>
     </Modal>
   );

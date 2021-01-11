@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) =>
       backgroundColor: theme.palette.background.paper,
       border: "2px solid #000",
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
+      padding: theme.spacing(3, 10, 3),
+      maxWidth: 500,
     },
   })
 );
@@ -40,6 +41,7 @@ export default function ConfirmationModal(props) {
   const setClickLink = props.setClickLink;
   // props
   const price = props.price;
+  const time = props.time;
   const numSlots = props.numSlots;
   const numberOfTickets = props.numberOfTickets;
   // functions
@@ -69,21 +71,19 @@ export default function ConfirmationModal(props) {
   return (
     <Modal {...props} className={classes.modal}>
       <Paper className={classes.paper}>
-        <Typography variant="h6">Summary: </Typography>
+        <Typography variant="h6" style={{textAlign:'center', marginBottom: 10}}>BOOKING SUMMARY</Typography>
         {/* summary of payment and slots */}
-        <Typography>You book timeslot: 12:00</Typography>
-        <Typography>
-          Number of Tickets: {numberOfTickets}
+        <Typography>Dear <span style={{fontWeight: 'bold'}}>Name</span>,</Typography>
+        <Typography>You book <span style={{ fontWeight: 'bold'}}>{numberOfTickets} tickets </span>for</Typography>
+        <Typography >
+            16 January 2021,
+            <span style={{ fontWeight: 'bold'}}> {time}</span>
         </Typography>
-        <Typography>
-          Total price: ${price}
+        <Typography >
+          Total price: <span style={{ fontWeight: 'bold',color: '#941616'}}>${price}</span> 
         </Typography>
-        <Typography>
-          Please provide a screenshot of your receipt in the Google Form!
-        </Typography>
-        <Typography variant="h5" style={{ color: "red" }}>
-          Reminder: Please pay IMMEDIATELY upon opening the google form! Thank
-          you!
+        <Typography  style={{ fontSize: 12,fontWeight: 'bold', marginTop:10}}>
+          Please provide a screenshot of your payment in the link below.
         </Typography>
         <Typography>
           Link:{" "}
@@ -92,12 +92,17 @@ export default function ConfirmationModal(props) {
             rel="noreferrer"
             target="_blank"
             href="https://docs.google.com/forms/d/e/1FAIpQLSdB2Jeq6VNKzL_S-J3WI6RanVVFvKPLB56SHvUTR94YHcqNmg/viewform?usp=sf_link"
+            style={{fontWeight:'bold',color: '#941616' }}
           >
-            Google Form
+            PAYMENT
           </a>
         </Typography>
+        <Typography style={{ color: "red" , fontSize: 10,marginBottom: 10 }}>
+          Reminder: Please pay IMMEDIATELY upon opening the Google Form! 
+          Booking will be forfeited if payment is not made within 24 hours, Thank you!
+        </Typography>
         <Button variant="contained" onClick={openModal} disabled={!clickLink}>
-          Re-confirmation
+          CONFIRM PAYMENT
         </Button>
         <DoubleConfirmationModal
           submitform={submitform}

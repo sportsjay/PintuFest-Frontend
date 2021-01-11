@@ -1,29 +1,6 @@
-import React, {useState} from "react";
-import { Link,useLocation } from "react-router-dom";
-import {
-  AppBar,
-  Typography,
-  Container,
-  Toolbar,
-  Button,
-  makeStyles,
-} from "@material-ui/core";
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexDirection: 'column',
-    alignItems:'center',
-    justifyContent: "space-around",
-    backgroundColor: '#111111',
-    color: 'white',
-    padding: 20,
-    minHeight: 120,
-    overflow: 'hidden',
-
-  },
-}));
+import React from "react";
+import { Link } from "react-router-dom";
+import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
 
 export default class TopAppBar extends React.Component {
   // hover state
@@ -51,7 +28,7 @@ export default class TopAppBar extends React.Component {
 
   render() {
     return (
-      <AppBar position="fixed" style={{ marginTop: 20, width: '100%' }}>
+      <AppBar position="fixed" style={{ width: "100%" }}>
         <Toolbar style={styles.root}>
           <div style={{ height: 50, display: "flex", alignItems: "center" }}>
             <Typography
@@ -116,7 +93,7 @@ const styles = {
     backgroundColor: "#111111",
     color: "white",
     width: "100%",
-    overflow: 'hidden',
+    overflow: "hidden",
     padding: 0,
     margin: 0,
     height: 100,
