@@ -53,6 +53,19 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  trailer: {
+    marginTop: 20,
+    width: "80vw",
+    height: "50vh",
+    display: "flex",
+    justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      height: "30vh",
+    },
+    [theme.breakpoints.up("md")]: {
+      maxWidth: "800px",
+    },
+  },
   focusVisible: {},
   imageButton: {
     left: 0,
@@ -177,8 +190,13 @@ export default function GameDesc(props) {
               <p style={{ margin: 0 }} className="subheading">
                 Trailer
               </p>
-              <div className="content" style={{ textAlign: "justify" }}>
-                video
+              <div className={classes.trailer} style={{ textAlign: "justify" }}>
+                <iframe
+                  style={{ width: "80%", height: "auto" }}
+                  title="trailer"
+                  src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>
@@ -238,12 +256,7 @@ export default function GameDesc(props) {
                   marginBottom: 50,
                 }}
               >
-                <ColorButton
-
-                //onClick={()=>{props.history.push('/register')}}
-                >
-                  REGISTER
-                </ColorButton>
+                <ColorButton>REGISTER</ColorButton>
               </Link>
             </div>
           </div>
