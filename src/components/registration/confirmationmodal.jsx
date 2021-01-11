@@ -40,6 +40,7 @@ export default function ConfirmationModal(props) {
   const clickLink = props.clickLink;
   const setClickLink = props.setClickLink;
   // props
+  const username = props.username
   const price = props.price;
   const time = props.time;
   const numSlots = props.numSlots;
@@ -73,7 +74,7 @@ export default function ConfirmationModal(props) {
       <Paper className={classes.paper}>
         <Typography variant="h6" style={{textAlign:'center', marginBottom: 10}}>BOOKING SUMMARY</Typography>
         {/* summary of payment and slots */}
-        <Typography>Dear <span style={{fontWeight: 'bold'}}>Name</span>,</Typography>
+        <Typography>Dear <span style={{fontWeight: 'bold'}}>{username}</span>,</Typography>
         <Typography>You book <span style={{ fontWeight: 'bold'}}>{numberOfTickets} tickets </span>for</Typography>
         <Typography >
             16 January 2021,

@@ -15,12 +15,17 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      
     },
     paper: {
       backgroundColor: theme.palette.background.paper,
       border: "2px solid #000",
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "column",
     },
   })
 );
@@ -37,7 +42,7 @@ export default function DoubleConfirmationModal(props) {
           Once transaction is confirmed, no changing of time slot and refunds
           are entertained.
         </Typography>
-        <Button onClick={submitform}>CONFIRM</Button>
+        <Button style={{alignSelf:'center'}} onClick={submitform}>CONFIRM</Button>
       </Paper>
     </Modal>
   );

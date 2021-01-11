@@ -140,6 +140,7 @@ export default function Registration() {
         .then((res) => alert(res.data))
         .catch((error) => alert(error.response.data));
       setRefreshOnSubmit(!refreshOnSubmit);
+
     }
     // reset after submit
     setUsername("");
@@ -152,9 +153,13 @@ export default function Registration() {
   const maxTicket = 7;
   // open modal function
   const openModal = () => {
-    setOpenConfirmationModal(true);
-    // count price
-    setPrice(selectTimeSlot === null ? 0 : 6);
+    if (username === "") {
+      alert("Please fill your username!");
+    } else {
+      setOpenConfirmationModal(true);
+      // count price
+      setPrice(selectTimeSlot === null ? 0 : 6);
+    }
   };
 
   // close modal function
@@ -239,8 +244,17 @@ export default function Registration() {
           <Typography style={{ fontFamily: "XiaoWei" }}>
             Duration: 2 hours
           </Typography>
+          <Typography style={{ fontFamily: "XiaoWei", marginTop:10, fontWeight:'bold' }}>
+            Price:
+          </Typography>
           <Typography style={{ fontFamily: "XiaoWei" }}>
-            Price: $6/person
+            Individual: $6/person
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Bundle of 4: $22/group
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Bundle of 7: $35/group
           </Typography>
           <Link
             key={3}
@@ -260,7 +274,7 @@ export default function Registration() {
                 textDecoration: "underline",
               }}
             >
-              any discounts?
+              About referral code
             </Typography>
           </Link>
           {/* Mapping Escape Room 1 timeslots */}
@@ -325,7 +339,7 @@ export default function Registration() {
                   ))}
                 </RadioGroup>
                 <Typography style={{ fontFamily: "XiaoWei", textAlign: 'center' }}>
-                 You have selected slot 09:00-11:00
+                {time ? "You have selected slot " + time : ""}
                 </Typography>
               </React.Fragment>
             ) : (
@@ -411,6 +425,7 @@ export default function Registration() {
                   price={numberOfTickets === 1 ? price : 5.5 * numberOfTickets}
                   onClose={closeModal}
                   submitform={submitform}
+                  username={username}
                 />
               </React.Fragment>
             ) : (

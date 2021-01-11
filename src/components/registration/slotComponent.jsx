@@ -11,7 +11,7 @@ export default function TimeSlot(props) {
       style={{
         width: 110,
         height: 45,
-        backgroundColor: "white",
+        backgroundColor: numSlot<=numParticipants ? "grey" : "white",
         display: "flex",
         color: "black",
         justifyContent: "center",
@@ -32,7 +32,9 @@ export default function TimeSlot(props) {
             "#941616" 
         }}
       >
-        <Radio {...props} color="default" style={{ padding: 0, width:15 }} size="small" />
+        <Radio {...props} color="default" style={{ padding: 0, width:15 }} size="small" 
+          disabled= {numSlot<=numParticipants}
+        />
         <Typography
           variant="h6"
           style={{
