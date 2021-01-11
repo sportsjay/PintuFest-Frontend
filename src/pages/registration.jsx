@@ -18,8 +18,6 @@ import {
 import TimeSlot from "../components/registration/slotComponent";
 import ConfirmationModal from "../components/registration/confirmationmodal";
 
-//import redux cache
-
 //import api for registration
 import { GAMES_API } from "../api-routes/games.api";
 
@@ -76,11 +74,11 @@ export default function Registration() {
   const [numberOfTickets, setNumberOfTickets] = useState(1);
   const [price, setPrice] = useState(0);
   const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [usernames, setUsernames] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
   const [refreshOnSubmit, setRefreshOnSubmit] = useState(false);
   const [clickLink, setClickLink] = useState(false);
-
   useEffect(() => {
     // get data from DB
     axios
@@ -88,7 +86,7 @@ export default function Registration() {
       .then((res) => {
         setTimeSlots(res.data);
       })
-      .catch((error) => console.error("Error! " + error));
+      .catch((error) => console.error(error.response.data));
   }, [refreshOnSubmit]);
 
   const classes = useStyles();
@@ -100,18 +98,26 @@ export default function Registration() {
       // call submit function
       // sends username and array of gameId upon slot booking
       axios
-        .post(GAMES_API.BOOK_GAME_SLOT, {
-          username: username,
-          usernames: usernames,
-          gameId: selectTimeSlot,
-        })
+        .post(
+          GAMES_API.BOOK_GAME_SLOT,
+          {
+            username: username,
+            usernames: usernames.length === 0 ? [username] : usernames,
+            gameId: selectTimeSlot,
+          },
+          { "Content-Type": "application/json" }
+        )
         .then((res) => alert(res.data))
+        .then(() => window.location.reload())
         .catch((error) => alert(error.response.data));
+      setUsernames([]);
+
       setRefreshOnSubmit(!refreshOnSubmit);
     }
     // reset after submit
     setUsername("");
     setTime("");
+    setPhoneNumber("");
     setSelectTimeSlot(null);
     closeModal();
   };
@@ -119,8 +125,9 @@ export default function Registration() {
   // open modal function
   const openModal = () => {
     if (username === "") {
-      alert("Please fill your username!");
+      alert("Please fill your name!");
     } else {
+      setRefreshOnSubmit(!refreshOnSubmit);
       setOpenConfirmationModal(true);
       // count price
       setPrice(selectTimeSlot === null ? 0 : 6);
@@ -134,19 +141,23 @@ export default function Registration() {
     setSelectTimeSlot(null);
     setClickLink(false);
     setTime("");
+    setUsername("");
+    setPhoneNumber("");
   };
 
   // select number of ticket function
   const setNumberOfTicketsFunc = (event) => {
-    setUsernames([username]);
-    let tempUsernames = [username];
+    if (event.target.value === 1) {
+      setUsernames([username]);
+    }
+    let tempUsernames = [];
     setNumberOfTickets(event.target.value);
-    if (event.target.value !== 1) {
-      for (let i = 0; i < event.target.value - 1; i++) {
+    if (event.target.value > 1) {
+      for (let i = 1; i <= event.target.value; i++) {
         tempUsernames.push(username);
       }
+      setUsernames(tempUsernames);
     }
-    setUsernames(tempUsernames);
     console.log(usernames);
   };
 
@@ -325,9 +336,21 @@ export default function Registration() {
                   }}
                   onChange={(e) => {
                     setUsername(e.target.value);
-                    console.log(e.target.value);
                   }}
                   value={username}
+                />
+                <TextField
+                  variant="filled"
+                  label="Phone Number"
+                  style={{
+                    marginTop: 10,
+                    backgroundColor: "#941616",
+                    color: "white",
+                  }}
+                  onChange={(e) => {
+                    setPhoneNumber(e.target.value);
+                  }}
+                  value={phoneNumber}
                 />
                 {selectTimeSlot !== null ? (
                   <div className={classes.dropdown}>
@@ -341,15 +364,14 @@ export default function Registration() {
                       onChange={setNumberOfTicketsFunc}
                     >
                       <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
                       <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={7}>7</MenuItem>
                     </Select>
                   </div>
                 ) : (
                   <React.Fragment></React.Fragment>
                 )}
                 <Button
-                  type="submit"
                   variant="contained"
                   style={{ textTransform: "none", marginTop: 10 }}
                   onClick={openModal}
@@ -357,12 +379,16 @@ export default function Registration() {
                   Submit
                 </Button>
                 <ConfirmationModal
+                  name={username}
+                  phoneNumber={phoneNumber}
                   time={time}
                   clickLink={clickLink}
                   setClickLink={setClickLink}
                   open={openConfirmationModal}
                   numberOfTickets={numberOfTickets}
-                  price={numberOfTickets === 1 ? price : 5.5 * numberOfTickets}
+                  price={
+                    numberOfTickets === 1 ? 6 : numberOfTickets === 4 ? 22 : 35
+                  }
                   onClose={closeModal}
                   submitform={submitform}
                 />

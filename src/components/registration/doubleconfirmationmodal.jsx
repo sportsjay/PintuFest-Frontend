@@ -29,15 +29,40 @@ export default function DoubleConfirmationModal(props) {
   const classes = useStyles();
   // onSubmit function
   const submitform = props.submitform;
-
+  const closeModal = props.closeModal;
+  const name = props.name;
+  const phoneNumber = props.phoneNumber;
   return (
     <Modal {...props} className={classes.modal}>
       <Paper className={classes.paper}>
-        <Typography style={{ color: "red" }} variant="h5">
-          Once transaction is confirmed, no changing of time slot and refunds
-          are entertained
-        </Typography>
-        <Button onClick={submitform}>Confirm</Button>
+        <form
+          action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfxCoo4NAHCYrsw4RmSWIw0l90nJyt3EDK8R4Jh63lDMU1ZKA/formResponse"
+          method="POST"
+        >
+          <input
+            value={name}
+            name="entry.1274151678"
+            style={{ display: "none" }}
+          />
+          <input
+            value={phoneNumber}
+            name="entry.2122737765"
+            style={{ display: "none" }}
+          />
+          <Typography style={{ color: "red" }} variant="h5">
+            Once transaction is confirmed, no changing of time slot and refunds
+            are entertained
+          </Typography>
+          <Button
+            type="submit"
+            onClick={() => {
+              submitform();
+              closeModal();
+            }}
+          >
+            Confirm
+          </Button>
+        </form>
       </Paper>
     </Modal>
   );

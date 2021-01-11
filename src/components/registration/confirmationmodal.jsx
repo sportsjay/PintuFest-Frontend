@@ -38,6 +38,8 @@ export default function ConfirmationModal(props) {
   const clickLink = props.clickLink;
   const setClickLink = props.setClickLink;
   // props
+  const name = props.name;
+  const phoneNumber = props.phoneNumber;
   const price = props.price;
   const time = props.time;
   const numSlots = props.numSlots;
@@ -54,7 +56,7 @@ export default function ConfirmationModal(props) {
   };
 
   // close modal function
-  const closeModal = () => {
+  const closeModal2 = () => {
     setOpenDoubleConfirmationModal(false);
     setClickLink(false);
   };
@@ -69,7 +71,7 @@ export default function ConfirmationModal(props) {
   return (
     <Modal {...props} className={classes.modal}>
       <Paper className={classes.paper}>
-        <Typography variant="h4">Summary: </Typography>
+        <Typography variant="h6">Dear {name},</Typography>
         {/* summary of payment and slots */}
         <Typography>You booked a slot at: {time}</Typography>
         <Typography>Number of slots booked: {numSlots}</Typography>
@@ -98,8 +100,11 @@ export default function ConfirmationModal(props) {
           Re-confirmation
         </Button>
         <DoubleConfirmationModal
+          name={name}
+          phoneNumber={phoneNumber}
           submitform={submitform}
-          onClose={closeModal}
+          closeModal={closeModal2}
+          onClose={closeModal2}
           open={openDoubleConfirmationModal}
         />
       </Paper>
