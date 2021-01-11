@@ -303,13 +303,6 @@ export default function Registration() {
                               timeslot.maxNumberOfParticipants -
                                 timeslot.participants.length
                             );
-                            if (
-                              timeslot.maxNumberOfParticipants -
-                                timeslot.participants.length ===
-                              0
-                            ) {
-                              window.location.reload();
-                            }
                           }}
                           className={classes.formcontrollabel}
                           value={timeslot.id.toString()}
@@ -412,15 +405,9 @@ export default function Registration() {
                       value={numberOfTickets}
                       onChange={setNumberOfTicketsFunc}
                     >
-                      <MenuItem disabled={currentParticipants < 1} value={1}>
-                        1
-                      </MenuItem>
-                      <MenuItem disabled={currentParticipants < 4} value={4}>
-                        4
-                      </MenuItem>
-                      <MenuItem disabled={currentParticipants < 7} value={7}>
-                        7
-                      </MenuItem>
+                      <MenuItem value={1}>1</MenuItem>
+                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={7}>7</MenuItem>
                     </Select>
                   </div>
                 ) : (
@@ -428,14 +415,21 @@ export default function Registration() {
                 )}
                 <Button
                   variant="contained"
+                  disabled={currentParticipants < numberOfTickets}
                   style={{
                     textTransform: "none",
                     marginTop: 10,
                     width: "80%",
                     maxWidth: 150,
                     alignSelf: "center",
-                    backgroundColor: "#941616",
-                    color: "white",
+                    backgroundColor:
+                      currentParticipants < numberOfTickets
+                        ? "#540d0d"
+                        : "#941616",
+                    color:
+                      currentParticipants < numberOfTickets
+                        ? "#333333"
+                        : "white",
                     fontFamily: "XiaoWei",
                     fontWeight: "bold",
                   }}
