@@ -173,18 +173,7 @@ export default function GameDesc(props) {
               >
                 Can you solve the case?
               </p>
-              <img
-                alt="asset 1"
-                style={{
-                  objectFit: "cover",
-                  width: "80vw",
-                  height: "auto",
-                  borderWidth: 0,
-                  borderStyle: "none",
-                  marginTop: 40,
-                }}
-                src="./images/game_1_assets/banner_1.png"
-              />
+             
             </div>
           </div>
           <div style={styles.block}>
