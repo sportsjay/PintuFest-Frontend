@@ -1,9 +1,28 @@
 import React from "react";
-import { Container, Typography, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Container, Typography, makeStyles, Button, withStyles } from "@material-ui/core";
 import { Animate } from "react-simple-animate";
 
 //import components
 import Banner from "../components/home/banner";
+
+const ColorButton = withStyles((theme) => ({
+  root: {
+    backgroundColor: "#941616",
+    color: "#000",
+    borderStyle: "solid",
+    borderColor: "#941616",
+    borderWidth: 2,
+    borderRadius: 0,
+    fontFamily: "XiaoWei",
+    fontWeight: "bold",
+
+    "&:hover": {
+      color: "#941616",
+      backgroundColor: "#000",
+    },
+  },
+}))(Button);
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -53,6 +72,7 @@ export default function Home() {
       />
       <div style={styles.block}>
         <div style={styles.block}>
+          
           <p style={styles.title}>GTD Unsolved</p>
           <div
             className="content"
@@ -70,6 +90,31 @@ export default function Home() {
               colleagues to discover!
             </p>
           </div>
+          <h1 style={{ fontSize: 50, color: "white", fontFamily: "EastSea", marginBottom: 20, marginTop: 50 }}>
+            PRICING
+          </h1>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+          Individual: $6/person
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+          Bundle of 4: $22/group
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+          Bundle of 7: $35/group
+          </Typography>
+          <Link
+              key={3}
+              to={"/register"}
+              style={{
+                textDecoration: "none",
+                padding: 0,
+                margin: 0,
+                marginBottom: 50,
+                marginTop: 50,
+              }}
+            >
+              <ColorButton>BUY TICKET</ColorButton>
+            </Link>
         </div>
       </div>
     </Container>
