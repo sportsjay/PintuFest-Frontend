@@ -1,33 +1,40 @@
-import React, {Component, useState} from "react";
-import { Container, Typography } from "@material-ui/core";
-import { Animate }  from 'react-simple-animate';
-//import redux
-import { useSelector } from "react-redux";
+import React from "react";
+import { Container, Typography, makeStyles } from "@material-ui/core";
+import { Animate } from "react-simple-animate";
 
 //import components
 import Banner from "../components/home/banner";
 
-//import game pages here based on days
+const useStyles = makeStyles((theme) => ({
+  text: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "1.4rem",
+    },
+  },
+}));
 
 export default function Home() {
-  const authToken = useSelector((state) => state.admin.authToken);
+  const classes = useStyles();
 
   return (
     <Container style={styles.root}>
       <div style={styles.block}>
-          <div style={styles.block}>
-            <Animate
-              play={true}
-              duration = "5"
-              end={{ opacity: 1, filter: 'blur(0)' }}
-              start={{ opacity: 0, filter: 'blur(10px)' }}
-            >
-              <Typography  style={styles.title} >
-                Are you ready to solve the Unsolved?
-              </Typography>
-            </Animate>
-          </div>
+        <div style={styles.block}>
+          <Animate
+            play={true}
+            duration="5"
+            end={{ opacity: 1, filter: "blur(0)" }}
+            start={{ opacity: 0, filter: "blur(10px)" }}
+          >
+            <Typography style={styles.title}>
+              Are you ready to solve the Unsolved?
+            </Typography>
+          </Animate>
         </div>
+      </div>
       <Banner
         gameNumber="1"
         title="The Invitation"
@@ -44,18 +51,27 @@ export default function Home() {
         title="Second Chance"
         image="./images/comingsoon_1x1.png"
       />
-       <div style={styles.block}>
-          <div style={styles.block}>
-            <p  style={styles.title} >
-              GTD Unsolved
+      <div style={styles.block}>
+        <div style={styles.block}>
+          <p style={styles.title}>GTD Unsolved</p>
+          <div
+            className="content"
+            style={{
+              textAlign: "justify",
+              fontFamily: "XiaoWei",
+              fontSize: 12,
+            }}
+          >
+            <p className={classes.text} style={{ margin: 0 }}>
+              GTD Unsolved is a series of escape room-esque games where you are
+              tasked to solve cases and figure out their underlying enigmatic
+              stories along the way. Expect brain-teasing puzzles and
+              tantalizing mysteries for you and your inquisitive friends and
+              colleagues to discover!
             </p>
-            <div className="content" style={{ textAlign: "justify", fontFamily: 'XiaoWei', fontSize: 12 }}>
-              <p style={{ margin: 0 }}>
-              GTD Unsolved is a series of escape room-esque games where you are tasked to solve cases and figure out their underlying enigmatic stories along the way. Expect brain-teasing puzzles and tantalizing mysteries for you and your inquisitive friends and colleagues to discover!
-              </p>
-            </div>
           </div>
         </div>
+      </div>
     </Container>
   );
 }
@@ -75,7 +91,7 @@ const styles = {
     color: "white",
     fontSize: 50,
     textAlign: "center",
-    fontFamily: "EastSea"
+    fontFamily: "EastSea",
   },
   block: {
     display: "flex",
@@ -84,6 +100,6 @@ const styles = {
     flexDirection: "column",
     width: "90%",
     paddingTop: 50,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
 };
