@@ -90,7 +90,10 @@ export default function ConfirmationModal(props) {
         </Typography>
         <Typography>
           16 January 2021,
-          <span style={{ fontWeight: "bold" }}> {time}</span>
+          <span style={{ fontWeight: "bold" }}>
+            {" "}
+            {time.split("-").join(" - ")}
+          </span>
         </Typography>
         <Typography>
           Total price:{" "}
@@ -105,7 +108,7 @@ export default function ConfirmationModal(props) {
             onClick={onClickLink}
             rel="noreferrer"
             target="_blank"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdB2Jeq6VNKzL_S-J3WI6RanVVFvKPLB56SHvUTR94YHcqNmg/viewform?usp=sf_link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScJCyNq10bZWPngTyI3aZe3MZOlgZBjEii-9yeii6fSgv3hUQ/viewform?usp=sf_link"
             style={{ fontWeight: "bold", color: "#941616" }}
           >
             PAYMENT
