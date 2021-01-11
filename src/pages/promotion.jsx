@@ -1,12 +1,5 @@
 import React from "react";
 
-const qnaGroup = [
-  {
-    q: "Terms & Conditions",
-    a: ["Offer is valid from January 11th, 2021 to February 6th, 2021"],
-  },
-];
-
 const qnaRefCode = [
   {
     q: "How it Works?",
@@ -50,45 +43,6 @@ export default class Promotion extends React.Component {
         <h1 style={{ fontSize: 50, color: "white", marginBottom: 20 }}>
           PROMOTION
         </h1>
-        <h1
-          style={{
-            fontSize: 22,
-            textAlign: "center",
-            color: "white",
-            fontFamily: "XiaoWei",
-          }}
-        >
-          GET $1.5-$2 CASHBACK FOR GROUPS OF 3/4
-        </h1>
-        {qnaGroup.map((faq, index) => {
-          return (
-            <div style={{ marginBottom: 20 }}>
-              <h1
-                style={{
-                  fontSize: 40,
-                  color: "#941616",
-                  marginBottom: 20,
-                  textAlign: "center",
-                }}
-              >
-                {faq.q}
-              </h1>
-              {faq.a.map((ans, index) => {
-                return (
-                  <h1
-                    style={{
-                      fontSize: 14,
-                      color: "white",
-                      fontFamily: "XiaoWei",
-                    }}
-                  >
-                    {index + 1 + ". " + ans}
-                  </h1>
-                );
-              })}
-            </div>
-          );
-        })}
         <h1
           style={{
             fontSize: 22,
