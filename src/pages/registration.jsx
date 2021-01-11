@@ -81,6 +81,7 @@ export default function Registration() {
   const [time, setTime] = useState("");
   const [numberOfTickets, setNumberOfTickets] = useState(1);
   const [price, setPrice] = useState(0);
+  const [currentParticipants, setCurrentParticipants] = useState(0);
   const [username, setUsername] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [usernames, setUsernames] = useState([]);
@@ -298,6 +299,17 @@ export default function Registration() {
                         <FormControlLabel
                           onClick={() => {
                             setTime(timeslot.timeSlot);
+                            setCurrentParticipants(
+                              timeslot.maxNumberOfParticipants -
+                                timeslot.participants.length
+                            );
+                            if (
+                              timeslot.maxNumberOfParticipants -
+                                timeslot.participants.length ===
+                              0
+                            ) {
+                              window.location.reload();
+                            }
                           }}
                           className={classes.formcontrollabel}
                           value={timeslot.id.toString()}
@@ -391,14 +403,24 @@ export default function Registration() {
                       Select Number of Tickets:
                     </Typography>
                     <Select
-                      style={{ color: "white", backgroundColor: "#941616" }}
+                      style={{
+                        color: "white",
+                        backgroundColor: "#941616",
+                        textAlign: "center",
+                      }}
                       id="select-number-ticket"
                       value={numberOfTickets}
                       onChange={setNumberOfTicketsFunc}
                     >
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
-                      <MenuItem value={7}>7</MenuItem>
+                      <MenuItem disabled={currentParticipants < 1} value={1}>
+                        1
+                      </MenuItem>
+                      <MenuItem disabled={currentParticipants < 4} value={4}>
+                        4
+                      </MenuItem>
+                      <MenuItem disabled={currentParticipants < 7} value={7}>
+                        7
+                      </MenuItem>
                     </Select>
                   </div>
                 ) : (
