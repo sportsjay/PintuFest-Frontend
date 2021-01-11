@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      borderStyle: 'none',
     },
     paper: {
       backgroundColor: theme.palette.background.paper,
@@ -33,7 +34,7 @@ export default function ConfirmationModal(props) {
     openDoubleConfirmationModal,
     setOpenDoubleConfirmationModal,
   ] = useState(false);
-
+  console.log("modal ",props);
   //state props
   const clickLink = props.clickLink;
   const setClickLink = props.setClickLink;
@@ -68,11 +69,14 @@ export default function ConfirmationModal(props) {
   return (
     <Modal {...props} className={classes.modal}>
       <Paper className={classes.paper}>
-        <Typography variant="h4">Summary: </Typography>
+        <Typography variant="h6">Summary: </Typography>
         {/* summary of payment and slots */}
-        <Typography>Number of slots booked: {numSlots}</Typography>
+        <Typography>You book timeslot: 12:00</Typography>
         <Typography>
-          Total price: ${price} | Number of Tickets: {numberOfTickets}
+          Number of Tickets: {numberOfTickets}
+        </Typography>
+        <Typography>
+          Total price: ${price}
         </Typography>
         <Typography>
           Please provide a screenshot of your receipt in the Google Form!

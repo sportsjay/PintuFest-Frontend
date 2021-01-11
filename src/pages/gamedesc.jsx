@@ -224,9 +224,11 @@ export default function GameDesc(props) {
               <p style={{ margin: 0, marginTop: 20 }} className="subheading">
                 You have to:
               </p>
-              <div className="content" style={{ textAlign: "justify" }}>
-                <p style={{ margin: 0 }}>be courageous</p>
-                <p>have an eye like sherlock</p>
+              <div className="content" style={{ textAlign: "center" }}>
+                <p style={{ margin: 0 }}>Be courageous</p>
+                <p>Have an eye like Sherlock</p>
+                <p>Solve the puzzles with your creative mind</p>
+                <p>Trace the story like no one else could</p>
               </div>
               <Link
                 key={3}
@@ -236,13 +238,14 @@ export default function GameDesc(props) {
                   padding: 0,
                   margin: 0,
                   marginBottom: 50,
+                  marginTop: 20,
                 }}
               >
                 <ColorButton
 
                 //onClick={()=>{props.history.push('/register')}}
                 >
-                  REGISTER
+                  REGISTER NOW
                 </ColorButton>
               </Link>
             </div>

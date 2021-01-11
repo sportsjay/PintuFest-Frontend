@@ -12,6 +12,7 @@ import {
   RadioGroup,
   Select,
   MenuItem,
+  withStyles
 } from "@material-ui/core";
 
 //import components
@@ -66,7 +67,34 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  multilineColor: {
+    borderColor: '#fff',
+    borderWidth: 10,
+    color:'white'
+  }
 }));
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'green',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'green',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'red',
+      },
+      '&:hover fieldset': {
+        borderColor: 'yellow',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'green',
+      },
+    },
+  },
+})(TextField);
 
 export default function Registration() {
   //states
@@ -237,10 +265,9 @@ export default function Registration() {
             {/* make 1 component for each escape room */}
 
               {timeSlots.length > 0 ? (
-                timeSlots.map((timeslot) => {
-                  return (
+              
                     <FormControl component="fieldset">
-                      <p style={{ fontFamily: "XiaoWei", fontSize: 25 }}>Choose a timeslot</p>
+                      <p style={{ fontFamily: "XiaoWei", fontSize: 25, textAlign:'center' }}>Choose a timeslot</p>
                       <RadioGroup
                         value={selectTimeSlot}
                         onChange={(e) => setSelectTimeSlot(e.target.value)}
@@ -252,6 +279,8 @@ export default function Registration() {
                           flexWrap: "wrap",
                         }}
                       >
+                       {   timeSlots.map((timeslot) => {
+                          return (
                         <React.Fragment key={timeslot.id}>
                           <FormControlLabel
                             className={classes.formcontrollabel}
@@ -268,13 +297,21 @@ export default function Registration() {
                             }
                           />
                         </React.Fragment>
+                          )})
+                        }
                       </RadioGroup>
+                      <TextField
+                        className={classes.margin}
+                        label="ThemeProvider"
+                        variant="outlined"
+                        id="mui-theme-provider-outlined-input"
+                      />
                       <TextField
                       variant="filled"
                       label="Name"
                       style={{
                         marginTop: 10,
-                        backgroundColor: "#941616",
+                        backgroundColor: "#000",
                         color: "white",
                       }}
                       onChange={(e) => {
@@ -284,12 +321,19 @@ export default function Registration() {
                       value={username}
                     />
                     <TextField
-                      variant="filled"
+                      id="outlined-basic" 
+                      label="Outlined" 
+                      variant="outlined"
+                      InputProps={{
+                        className: classes.multilineColor
+                      }}
                       style={{
                         marginTop: 10,
                         marginBottom: 10,
-                        backgroundColor: "#941616",
-                        color: "white",
+                        backgroundColor: "#000",
+                        borderColor: '#fff',
+                        borderWidth: 10,
+                        //color: "white",
                       }}
                       label="E-mail"
                       onChange={(e) => setEmail(e.target.value)}
@@ -333,8 +377,8 @@ export default function Registration() {
                       submitform={submitform}
                     />
                   </FormControl>
-                  );
-                })
+                
+                
               ) : (
                 <div style={{textAlign: 'center'}}>
                 <Typography style={{fontFamily: 'XiaoWei'}}>Sorry! All tickets for The Invitation are sold out.</Typography>
