@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     backgroundColor: "#000",
     color: "white",
-    width: "100vw",
+    // width: "100vw",
+    overflow: "hidden",
     paddingTop: 100,
     //inject theme here
     [theme.breakpoints.up("md")]: {
@@ -51,8 +52,8 @@ function App() {
   const classes = useStyles();
   return (
     <Router>
-      <TopBar position="relative" routes={routes} />
       <div className={classes.content}>
+        <TopBar position="relative" routes={routes} />
         <Switch>
           <Route path="/faq">
             <FAQ />

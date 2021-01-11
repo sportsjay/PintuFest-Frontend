@@ -12,6 +12,7 @@ export default class TopAppBar extends React.Component {
   //extract routes
   routes = this.props.routes;
   position = this.props.position;
+
   //initialize styles
 
   onHover = (id) => {
@@ -27,7 +28,7 @@ export default class TopAppBar extends React.Component {
 
   render() {
     return (
-      <AppBar position="fixed" style={{ marginTop: 20 }}>
+      <AppBar position="fixed" style={{ width: "100%" }}>
         <Toolbar style={styles.root}>
           <div style={{ height: 50, display: "flex", alignItems: "center" }}>
             <Typography
@@ -91,8 +92,10 @@ const styles = {
     justifyContent: "space-around",
     backgroundColor: "#111111",
     color: "white",
-    width: "100vw",
+    width: "100%",
+    overflow: "hidden",
     padding: 0,
+    margin: 0,
     height: 100,
     fontFamily: "XiaoWei",
   },

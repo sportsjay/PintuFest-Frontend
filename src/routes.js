@@ -38,7 +38,7 @@ export const routes = [
   },
   {
     id: 3,
-    name: "Promos",
+    name: "Promo",
     expand: "Promotion",
     path: "/promotion",
   },

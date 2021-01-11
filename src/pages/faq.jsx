@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import React from "react";
 
 const qna = [
@@ -25,10 +26,14 @@ export default class ComingSoon extends React.Component {
   render() {
     return (
       <div style={styles.root}>
-        <h1 style={{ fontSize: 50, color: "white", marginBottom: 20 }}>
+        <Typography
+          variant="h1"
+          style={{ fontSize: 50, color: "white", marginBottom: 20 }}
+        >
           PROMOTION
-        </h1>
-        <h1
+        </Typography>
+        <Typography
+          variant="h1"
           style={{
             fontSize: 14,
             color: "white",
@@ -37,9 +42,10 @@ export default class ComingSoon extends React.Component {
           }}
         >
           GET $0.5 DISCOUNT WHEN YOU USE A REFERRAL CODE!
-        </h1>
+        </Typography>
 
-        <h1
+        <Typography
+          variant="h1"
           style={{
             fontSize: 14,
             color: "white",
@@ -50,18 +56,25 @@ export default class ComingSoon extends React.Component {
           It's time for you to refer a friend using your referal code and get a
           $0.5 cashback for each friend you bring! Plus, your friends will also
           get a $0.5 discount to their purchases.
-        </h1>
+        </Typography>
 
-        <h1 style={{ fontSize: 50, color: "white", marginBottom: 20 }}>
+        <Typography
+          variant="h1"
+          style={{ fontSize: 50, color: "white", marginBottom: 20 }}
+        >
           How it works?
-        </h1>
+        </Typography>
         {qna.map((faq, index) => {
           return (
             <div style={{ marginBottom: 20 }}>
-              <h1 style={{ fontSize: 30, color: "#941616", margin: 0 }}>
+              <Typography
+                variant="h1"
+                style={{ fontSize: 30, color: "#941616", margin: 0 }}
+              >
                 {index + 1}. {faq.q}{" "}
-              </h1>
-              <h1
+              </Typography>
+              <Typography
+                variant="h1"
                 style={{
                   fontSize: 14,
                   color: "white",
@@ -70,7 +83,7 @@ export default class ComingSoon extends React.Component {
                 }}
               >
                 {faq.a}
-              </h1>
+              </Typography>
             </div>
           );
         })}
