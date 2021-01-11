@@ -28,7 +28,7 @@ export const routes = [
     id: 1,
     name: "NOW PLAYING",
     expand: "The Invitation",
-    path: "/nowplaying",
+    path: "/game1",
   },
   {
     id: 2,

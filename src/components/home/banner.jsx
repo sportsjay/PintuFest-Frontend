@@ -91,7 +91,7 @@ export default function Banner(props) {
       <div style={{flex:1,margin: 0, padding: 0,display: 'flex',alignItems:'center', }}>
         <Typography variant="h1" className={classes.textTop} style={{display: "inline-block", }}>{title}</Typography>
       </div>
-      <Link to={`comingsoon/${gameNumber}`}>
+      <Link to={`game${gameNumber}`}>
         <Container className={classes.imgContainer} style={{flex:4}}>
           <img src={image} className={classes.img} alt="Coming Soon!"></img>
         </Container>

@@ -62,10 +62,10 @@ function App() {
           <Route path="/register">
             <Registration />
           </Route>
-          <Route path="/comingsoon/2">
+          <Route path="/game2">
             <ComingSoon />
           </Route>
-          <Route path="/comingsoon/3">
+          <Route path="/game3">
             <ComingSoon2/>
           </Route>
           <Route path="/" exact>
