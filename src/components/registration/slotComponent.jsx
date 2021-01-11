@@ -9,9 +9,9 @@ export default function TimeSlot(props) {
   return (
     <div
       style={{
-        width: 120,
-        height: 50,
-        backgroundColor: "white",
+        width: 110,
+        height: 45,
+        backgroundColor: numSlot<=numParticipants ? "grey" : "white",
         display: "flex",
         color: "black",
         justifyContent: "center",
@@ -22,17 +22,19 @@ export default function TimeSlot(props) {
     >
       <div
         style={{
-          width: 70,
+          width: 65,
           display: "flex",
           flexDirection: "row",
           justifyContent: "left",
           paddingLeft: 5,
           alignItems: "center",
           color:
-            "#941616" /*borderRightWidth: 2,borderRightStyle:'solid', borderRightColor: 'black'*/,
+            "#941616" 
         }}
       >
-        <Radio {...props} color="default" style={{ padding: 0 }} size="small" />
+        <Radio {...props} color="default" style={{ padding: 0, width:15 }} size="small" 
+          disabled= {numSlot<=numParticipants}
+        />
         <Typography
           variant="h6"
           style={{
@@ -40,6 +42,7 @@ export default function TimeSlot(props) {
             fontSize: 16,
             marginRight: 5,
             marginLeft: 5,
+            fontFamily: 'XiaoWei'
           }}
         >
           {timeslot.substring(0, 5)}
@@ -47,7 +50,7 @@ export default function TimeSlot(props) {
       </div>
       <div
         style={{
-          width: 50,
+          width: 45,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -59,10 +62,10 @@ export default function TimeSlot(props) {
           borderTopRightRadius: 5,
         }}
       >
-        <Typography style={{ textAlign: "center", fontSize: 16 }}>
+        <Typography style={{ textAlign: "center", fontSize: 16 ,fontFamily: 'XiaoWei'}}>
           {numSlot - numParticipants}
         </Typography>
-        <Typography style={{ textAlign: "center", fontSize: 8 }}>
+        <Typography style={{ textAlign: "center", fontSize: 8 ,fontFamily: 'XiaoWei'}}>
           slots left
         </Typography>
       </div>

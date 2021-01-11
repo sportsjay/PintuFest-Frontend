@@ -3,7 +3,7 @@ import React from "react";
 const qnaGroup = [
   {
     q: "Terms & Conditions",
-    a: ["Offer is valid from January 11th, 2021 to February 6th, 2021", ""],
+    a: ["Offer is valid from January 11th, 2021 to February 6th, 2021"],
   },
 ];
 

@@ -12,6 +12,7 @@ import {
   RadioGroup,
   Select,
   MenuItem,
+  withStyles,
 } from "@material-ui/core";
 
 //import components
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: "100%",
     padding: 20,
+    maxWidth: 700,
   },
   selectPageButtonGroup: {
     marginTop: theme.spacing(1),
@@ -64,7 +66,35 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  multilineColor: {
+    borderColor: "#fff",
+    borderWidth: 10,
+    color: "red",
+    backgroundColor: "white",
+  },
 }));
+
+const CssTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "green",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "green",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "red",
+      },
+      "&:hover fieldset": {
+        borderColor: "yellow",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "green",
+      },
+    },
+  },
+})(TextField);
 
 export default function Registration() {
   //states
@@ -158,7 +188,6 @@ export default function Registration() {
       }
       setUsernames(tempUsernames);
     }
-    console.log(usernames);
   };
 
   return (
@@ -207,8 +236,19 @@ export default function Registration() {
           <Typography style={{ fontFamily: "XiaoWei" }}>
             Duration: 2 hours
           </Typography>
+          <Typography
+            style={{ fontFamily: "XiaoWei", marginTop: 10, fontWeight: "bold" }}
+          >
+            Price:
+          </Typography>
           <Typography style={{ fontFamily: "XiaoWei" }}>
-            Price: $6/person
+            Individual: $6/person
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Bundle of 4: $22/group
+          </Typography>
+          <Typography style={{ fontFamily: "XiaoWei" }}>
+            Bundle of 7: $35/group
           </Typography>
           <Link
             key={3}
@@ -228,7 +268,7 @@ export default function Registration() {
                 textDecoration: "underline",
               }}
             >
-              any discounts?
+              About referral code
             </Typography>
           </Link>
           {/* Mapping Escape Room 1 timeslots */}
@@ -252,7 +292,13 @@ export default function Registration() {
           <FormControl component="fieldset">
             {timeSlots.length > 0 ? (
               <React.Fragment>
-                <p style={{ fontFamily: "XiaoWei", fontSize: 25 }}>
+                <p
+                  style={{
+                    fontFamily: "XiaoWei",
+                    textAlign: "center",
+                    fontSize: 25,
+                  }}
+                >
                   Choose a timeslot
                 </p>
                 <RadioGroup
@@ -292,6 +338,11 @@ export default function Registration() {
                     </React.Fragment>
                   ))}
                 </RadioGroup>
+                <Typography
+                  style={{ fontFamily: "XiaoWei", textAlign: "center" }}
+                >
+                  {time ? "You have selected slot " + time : ""}
+                </Typography>
               </React.Fragment>
             ) : (
               <div style={{ textAlign: "center" }}>
@@ -331,8 +382,10 @@ export default function Registration() {
                   label="Name"
                   style={{
                     marginTop: 10,
-                    backgroundColor: "#941616",
-                    color: "white",
+                    backgroundColor: "white",
+                    width: "80%",
+                    alignSelf: "center",
+                    borderRadius: 5,
                   }}
                   onChange={(e) => {
                     setUsername(e.target.value);
@@ -344,8 +397,10 @@ export default function Registration() {
                   label="Phone Number"
                   style={{
                     marginTop: 10,
-                    backgroundColor: "#941616",
-                    color: "white",
+                    backgroundColor: "white",
+                    width: "80%",
+                    alignSelf: "center",
+                    borderRadius: 5,
                   }}
                   onChange={(e) => {
                     setPhoneNumber(e.target.value);
@@ -354,8 +409,8 @@ export default function Registration() {
                 />
                 {selectTimeSlot !== null ? (
                   <div className={classes.dropdown}>
-                    <Typography style={{ margin: 10 }}>
-                      Select Number of Tickets
+                    <Typography style={{ margin: 10, fontFamily: "XiaoWei" }}>
+                      Select Number of Tickets:
                     </Typography>
                     <Select
                       style={{ color: "white", backgroundColor: "#941616" }}
@@ -373,10 +428,20 @@ export default function Registration() {
                 )}
                 <Button
                   variant="contained"
-                  style={{ textTransform: "none", marginTop: 10 }}
+                  style={{
+                    textTransform: "none",
+                    marginTop: 10,
+                    width: "80%",
+                    maxWidth: 150,
+                    alignSelf: "center",
+                    backgroundColor: "#941616",
+                    color: "white",
+                    fontFamily: "XiaoWei",
+                    fontWeight: "bold",
+                  }}
                   onClick={openModal}
                 >
-                  Submit
+                  BOOK NOW
                 </Button>
                 <ConfirmationModal
                   name={username}
@@ -391,6 +456,7 @@ export default function Registration() {
                   }
                   onClose={closeModal}
                   submitform={submitform}
+                  username={username}
                 />
               </React.Fragment>
             ) : (
