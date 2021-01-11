@@ -192,9 +192,9 @@ export default function GameDesc(props) {
               </p>
               <div className={classes.trailer} style={{ textAlign: "justify" }}>
                 <iframe
-                  style={{ width: "80%", height: "auto" }}
+                  style={{ width: "80%", height: "auto", borderStyle: "none" }}
                   title="trailer"
-                  src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                  src="https://www.youtube.com/embed/dHAdqd7OH5M"
                   allowFullScreen
                 />
               </div>
@@ -260,7 +260,9 @@ export default function GameDesc(props) {
                 }}
               >
                 <ColorButton
-                    onClick={()=>{props.history.push('/register')}}
+                  onClick={() => {
+                    props.history.push("/register");
+                  }}
                 >
                   REGISTER NOW
                 </ColorButton>
