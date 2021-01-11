@@ -35,7 +35,7 @@ export default function ConfirmationModal(props) {
     openDoubleConfirmationModal,
     setOpenDoubleConfirmationModal,
   ] = useState(false);
-  console.log("modal ", props);
+
   //state props
   const clickLink = props.clickLink;
   const setClickLink = props.setClickLink;

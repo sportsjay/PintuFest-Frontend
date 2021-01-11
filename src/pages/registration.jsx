@@ -74,28 +74,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CssTextField = withStyles({
-  root: {
-    "& label.Mui-focused": {
-      color: "green",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "green",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "red",
-      },
-      "&:hover fieldset": {
-        borderColor: "yellow",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "green",
-      },
-    },
-  },
-})(TextField);
-
 export default function Registration() {
   //states
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
@@ -116,7 +94,7 @@ export default function Registration() {
       .then((res) => {
         setTimeSlots(res.data);
       })
-      .catch((error) => console.error(error.response.data));
+      .catch((error) => alert(error.response.data));
   }, [refreshOnSubmit]);
 
   const classes = useStyles();
