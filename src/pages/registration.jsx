@@ -121,9 +121,13 @@ export default function Registration() {
 
   // open modal function
   const openModal = () => {
-    setOpenConfirmationModal(true);
-    // count price
-    setPrice(selectTimeSlot === null ? 0 : 6);
+    if (username === "") {
+      alert("Please fill your username!");
+    } else {
+      setOpenConfirmationModal(true);
+      // count price
+      setPrice(selectTimeSlot === null ? 0 : 6);
+    }
   };
 
   // close modal function

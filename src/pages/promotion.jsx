@@ -1,10 +1,20 @@
 import React from "react";
 
-const qna = [
+const qnaGroup = [
+  {
+    q: "",
+  },
+  {
+    q: "Terms & Conditions",
+    a: ["Offer is valid from January 11th, 2021 to February 6th, 2021", ""],
+  },
+];
+
+const qnaRefCode = [
   {
     q: "How it Works?",
     a: [
-      " Send your referral code to your friends so they can register on the Escape Room website",
+      "Send your referral code to your friends so they can register on the Escape Room website",
       "You and your invitees will get a cashback of S$0.5 after your invitees make their payment and the payment is successfully processed",
       "You and your invitees may expect to receive the cashback by end of the third game as we will accumulate the cashback you obtained up to the last game.",
     ],
@@ -43,7 +53,6 @@ export default class Promotion extends React.Component {
         <h1 style={{ fontSize: 50, color: "white", marginBottom: 20 }}>
           PROMOTION
         </h1>
-
         <h1
           style={{
             fontSize: 22,
@@ -52,7 +61,46 @@ export default class Promotion extends React.Component {
             fontFamily: "XiaoWei",
           }}
         >
-          GET $0.5 DISCOUNT WHEN YOU USE A REFERRAL CODE!
+          GET $1.5-$2 CASHBACK FOR GROUPS OF 3/4
+        </h1>
+        {qnaGroup.map((faq, index) => {
+          return (
+            <div style={{ marginBottom: 20 }}>
+              <h1
+                style={{
+                  fontSize: 40,
+                  color: "#941616",
+                  marginBottom: 20,
+                  textAlign: "center",
+                }}
+              >
+                {faq.q}
+              </h1>
+              {faq.a.map((ans, index) => {
+                return (
+                  <h1
+                    style={{
+                      fontSize: 14,
+                      color: "white",
+                      fontFamily: "XiaoWei",
+                    }}
+                  >
+                    {index + 1 + ". " + ans}
+                  </h1>
+                );
+              })}
+            </div>
+          );
+        })}
+        <h1
+          style={{
+            fontSize: 22,
+            textAlign: "center",
+            color: "white",
+            fontFamily: "XiaoWei",
+          }}
+        >
+          GET $0.5 CASHBACK WHEN YOU USE A REFERRAL CODE!
         </h1>
 
         <h1
@@ -69,7 +117,7 @@ export default class Promotion extends React.Component {
           get a $0.5 discount to their purchases.
         </h1>
 
-        {qna.map((faq, index) => {
+        {qnaRefCode.map((faq, index) => {
           return (
             <div style={{ marginBottom: 20 }}>
               <h1
