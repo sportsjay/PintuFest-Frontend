@@ -39,6 +39,7 @@ export default function ConfirmationModal(props) {
   const setClickLink = props.setClickLink;
   // props
   const price = props.price;
+  const time = props.time;
   const numSlots = props.numSlots;
   const numberOfTickets = props.numberOfTickets;
   // functions
@@ -70,18 +71,19 @@ export default function ConfirmationModal(props) {
       <Paper className={classes.paper}>
         <Typography variant="h4">Summary: </Typography>
         {/* summary of payment and slots */}
+        <Typography>You booked a slot at: {time}</Typography>
         <Typography>Number of slots booked: {numSlots}</Typography>
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Total price: ${price} | Number of Tickets: {numberOfTickets}
         </Typography>
         <Typography>
           Please provide a screenshot of your receipt in the Google Form!
         </Typography>
-        <Typography variant="h5" style={{ color: "red" }}>
-          Reminder: Please pay IMMEDIATELY upon opening the google form! Thank
-          you!
+        <Typography style={{ color: "red" }}>
+          Reminder: Please pay IMMEDIATELY upon opening the google form! Booking
+          will be forfeited if payment is not made by 24 hours, Thank you!
         </Typography>
-        <Typography>
+        <Typography style={{ marginBottom: 10 }}>
           Link:{" "}
           <a
             onClick={onClickLink}

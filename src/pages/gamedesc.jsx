@@ -4,26 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import "../components/styles.css";
-// const images = [
-//   {
-//     url: "../images/game1_5.png",
-//     title: "Escape Room 1",
-//     width: "30%",
-//     link: "/game1",
-//   },
-//   {
-//     url: "../images/game1_6.jpg",
-//     title: "Escape Room 2",
-//     width: "30%",
-//     link: "/game1",
-//   },
-//   {
-//     url: "../images/game1_4.jpg",
-//     title: "Escape Room 3",
-//     width: "30%",
-//     link: "/game1",
-//   },
-// ];
+
 const ColorButton = withStyles((theme) => ({
   root: {
     backgroundColor: "#941616",
@@ -54,11 +35,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
     flexGrow: 1,
     justifyContent: "center",
-    //flexDirection:'column',
     fontFamily: "XiaoWei",
   },
   image: {
-    //  position: 'relative',
     height: 200,
     [theme.breakpoints.down("xs")]: {
       width: "100% !important", // Overrides inline-style
@@ -72,14 +51,23 @@ const useStyles = makeStyles((theme) => ({
       "& $imageMarked": {
         opacity: 0,
       },
-      // '& $imageTitle': {
-      //   border: '4px solid currentColor',
-      // },
+    },
+  },
+  trailer: {
+    marginTop: 20,
+    width: "80vw",
+    height: "50vh",
+    display: "flex",
+    justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      height: "30vh",
+    },
+    [theme.breakpoints.up("md")]: {
+      maxWidth: "800px",
     },
   },
   focusVisible: {},
   imageButton: {
-    // position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -90,16 +78,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   imageSrc: {
-    //  position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
     backgroundSize: "cover",
-    backgroundPosition: "center 40%",
+    backgroundPosition: "center",
   },
   imageBackdrop: {
-    // position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -109,7 +95,6 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("opacity"),
   },
   imageTitle: {
-    //  position: 'relative',
     padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${
       theme.spacing(1) + 6
     }px`,
@@ -136,7 +121,13 @@ export default function GameDesc(props) {
           <div id="container" style={styles.header}>
             <img
               alt="Header"
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+                borderWidth: 0,
+                borderStyle: "none",
+              }}
               src="./images/Thun.gif"
               height="120%"
               width="200%"
@@ -163,12 +154,7 @@ export default function GameDesc(props) {
                   marginBottom: 50,
                 }}
               >
-                <ColorButton
-
-                //onClick={()=>{props.history.push('/register')}}
-                >
-                  BUY TICKET
-                </ColorButton>
+                <ColorButton>BUY TICKET</ColorButton>
               </Link>
             </div>
           </div>
@@ -185,11 +171,18 @@ export default function GameDesc(props) {
               >
                 Can you solve the case?
               </p>
-              <div className="content" style={{ textAlign: "justify" }}>
-                <p style={{ margin: 0 }}>
-                  Hi there! You cannot hide from the Invitation.
-                </p>
-              </div>
+              <img
+                alt="asset 1"
+                style={{
+                  objectFit: "cover",
+                  width: "80vw",
+                  height: "auto",
+                  borderWidth: 0,
+                  borderStyle: "none",
+                  marginTop: 40,
+                }}
+                src="./images/game_1_assets/banner_1.png"
+              />
             </div>
           </div>
           <div style={styles.block}>
@@ -197,8 +190,13 @@ export default function GameDesc(props) {
               <p style={{ margin: 0 }} className="subheading">
                 Trailer
               </p>
-              <div className="content" style={{ textAlign: "justify" }}>
-                video
+              <div className={classes.trailer} style={{ textAlign: "justify" }}>
+                <iframe
+                  style={{ width: "80%", height: "auto" }}
+                  title="trailer"
+                  src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>
@@ -228,6 +226,8 @@ export default function GameDesc(props) {
                 height: "50vh",
                 width: "80vw",
                 marginBottom: 20,
+                borderWidth: 0,
+                borderStyle: "none",
               }}
               src="./images/g1_1.jpeg"
               height="120%"
@@ -256,12 +256,7 @@ export default function GameDesc(props) {
                   marginBottom: 50,
                 }}
               >
-                <ColorButton
-
-                //onClick={()=>{props.history.push('/register')}}
-                >
-                  REGISTER
-                </ColorButton>
+                <ColorButton>REGISTER</ColorButton>
               </Link>
             </div>
           </div>

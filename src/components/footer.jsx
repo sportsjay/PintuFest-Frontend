@@ -3,11 +3,14 @@ import { IconButton, Typography } from "@material-ui/core";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import WebIcon from "@material-ui/icons/Web";
+import Background from "../img/footer.jpg";
 
 export default function Footer() {
   return (
     <div style={styles.root}>
-      <Typography variant="h5">GTD XXIII</Typography>
+      <Typography variant="h4" style={{ fontFamily: "EastSea" }}>
+        GTD XXIII
+      </Typography>
       <Typography>
         <IconButton>
           <a
@@ -18,15 +21,19 @@ export default function Footer() {
             <InstagramIcon style={{ color: "white" }} />
           </a>
         </IconButton>
-        |
+
         <IconButton>
           <a href="http://fb.me/PINTUGTD" target="_blank" rel="noreferrer">
             <FacebookIcon style={{ color: "white" }} />
           </a>
         </IconButton>
-        |
+
         <IconButton>
-          <a href="https://google.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://gtdunsolved.herokuapp.com"
+            target="_blank"
+            rel="noreferrer"
+          >
             <WebIcon style={{ color: "white" }} />
           </a>
         </IconButton>
@@ -37,7 +44,6 @@ export default function Footer() {
 
 const styles = {
   root: {
-    marginTop: 10,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -45,5 +51,9 @@ const styles = {
     backgroundColor: "#000",
     color: "white",
     width: "100vw",
+    fontFamily: "XiaoWei",
+    backgroundImage: "url(" + Background + ")",
+    backgroundSize: "cover",
+    padding: 5,
   },
 };
