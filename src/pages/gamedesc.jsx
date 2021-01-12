@@ -237,7 +237,7 @@ export default function GameDesc(props) {
           <div style={styles.block}>
             <div style={styles.block}>
               <p style={{ margin: 0, marginTop: 20 }} className="subheading">
-                To be the member of Student Detective Club,
+                To be a member of Student Detective Club,
               </p>
               <p style={{ margin: 0, marginTop: 20 }} className="subheading">
                 You have to:
