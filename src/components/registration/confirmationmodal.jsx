@@ -67,7 +67,7 @@ export default function ConfirmationModal(props) {
   const onClickLink = () => {
     setTimeout(() => {
       setClickLink(true);
-    }, 120000);
+    }, 60000);
   };
 
   return (
@@ -114,9 +114,12 @@ export default function ConfirmationModal(props) {
             PAYMENT
           </a>
         </Typography>
-        <Typography style={{ color: "red", fontSize: 10, marginBottom: 10 }}>
+        <Typography style={{ color: "red", fontSize: 12, marginBottom: 10 }}>
           Reminder: Please pay IMMEDIATELY upon opening the Google Form! Booking
           will be forfeited if payment is not made within 24 hours, Thank you!
+        </Typography>
+        <Typography style={{ color: "red", fontSize: 12, marginBottom: 10 }}>
+          Disclaimer: Do not close this window while in transaction!
         </Typography>
         <Button variant="contained" onClick={openModal} disabled={!clickLink}>
           CONFIRM PAYMENT
