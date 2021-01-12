@@ -1,6 +1,6 @@
-import React from 'react';
-import CssBaseline from "@material-ui/core/CssBaseline";
+import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -21,13 +21,13 @@ const images = [
     url: '../images/game1_2.jpg',
     title: 'Escape Room 2',
     width: '30%',
-    link: '/game1',
+    link: '/game2',
   },
   {
     url: '../images/game1_3.jpg',
     title: 'Escape Room 3',
     width: '30%',
-    link: '/game1',
+    link: '/game3',
   },
 ];
 
@@ -111,7 +111,6 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('opacity'),
   },
 }));
-
 
 export default function Game2() {
   const classes = useStyles();
