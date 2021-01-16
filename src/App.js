@@ -24,7 +24,7 @@ import Details from "./pages/gamedesc";
 import ComingSoon from "./pages/comingsoon";
 import FAQ from "./pages/faq";
 import Promotion from "./pages/promotion";
-import RoomStatus from "./pages/roomstatus";
+import AdminPage from "./pages/adminpage";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -79,8 +79,8 @@ function App() {
           <Route path="/promotion">
             <Promotion />
           </Route>
-          <Route path="/room-status">
-            <RoomStatus />
+          <Route path="/admin-page">
+            <AdminPage />
           </Route>
           <Route render={() => <Redirect to="/comingsoon" />} />
         </Switch>

@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#000",
     flex: 1,
     height: "70vh",
-    margin: 30,
   },
   textTop: {
     fontFamily: "EastSea",

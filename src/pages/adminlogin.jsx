@@ -67,6 +67,9 @@ export default function AdminLogin() {
               Logout
             </Button>
           </Link>
+          <Link to="/admin-page">
+            <Button variant="outlined">Page</Button>
+          </Link>
         </form>
       ) : (
         <FormControl>
