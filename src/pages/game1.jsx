@@ -1,37 +1,30 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import "../components/styles.css";
 
-const images = [
-  {
-    url: "../images/game1_5.png",
-    title: "Escape Room 1",
-    width: "30%",
-    link: "/game1",
-  },
-  {
-    url: "../images/game1_6.jpg",
-    title: "Escape Room 2",
-    width: "30%",
-    link: "/game1",
-  },
-  {
-    url: "../images/game1_4.jpg",
-    title: "Escape Room 3",
-    width: "30%",
-    link: "/game1",
-  },
-];
+const ColorButton = withStyles((theme) => ({
+  root: {
+    backgroundColor: "#941616",
+    color: "#000",
+    borderStyle: "solid",
+    borderColor: "#941616",
+    borderWidth: 2,
+    borderRadius: 0,
+    fontFamily: "XiaoWei",
+    fontWeight: "bold",
 
+    "&:hover": {
+      color: "#941616",
+      backgroundColor: "#000",
+    },
+  },
+}))(Button);
 const useStyles = makeStyles((theme) => ({
   paper: {
-    margin: theme.spacing(2),
+    padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
@@ -39,14 +32,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     minWidth: 300,
-
     width: "100vw",
     flexGrow: 1,
     justifyContent: "center",
     fontFamily: "XiaoWei",
   },
   image: {
-    //  position: 'relative',
     height: 200,
     [theme.breakpoints.down("xs")]: {
       width: "100% !important", // Overrides inline-style
@@ -60,14 +51,23 @@ const useStyles = makeStyles((theme) => ({
       "& $imageMarked": {
         opacity: 0,
       },
-      // '& $imageTitle': {
-      //   border: '4px solid currentColor',
-      // },
+    },
+  },
+  trailer: {
+    marginTop: 20,
+    width: "80vw",
+    height: "50vh",
+    display: "flex",
+    justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      height: "30vh",
+    },
+    [theme.breakpoints.up("md")]: {
+      maxWidth: "800px",
     },
   },
   focusVisible: {},
   imageButton: {
-    // position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -78,16 +78,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
   imageSrc: {
-    //  position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
     backgroundSize: "cover",
-    backgroundPosition: "center 40%",
+    backgroundPosition: "center",
   },
   imageBackdrop: {
-    // position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
@@ -97,7 +95,6 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("opacity"),
   },
   imageTitle: {
-    //  position: 'relative',
     padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${
       theme.spacing(1) + 6
     }px`,
@@ -113,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Game1() {
+export default function GameDesc(props) {
   const classes = useStyles();
 
   return (
@@ -121,127 +118,157 @@ export default function Game1() {
       <CssBaseline />
       <div id="box-color">
         <div className={classes.root}>
-          <Grid container spacing={0}>
-            <Grid item md={12} xs={12}>
-              <Paper className={classes.paper} id="grid_color">
-                <div id="container" style={styles.header}>
-                  <img
-                    alt="asset 1"
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                    src="./images/Thun.gif"
-                    height="120%"
-                    width="200%"
-                  />
-                  <div style={styles.title} className="style">
-                    The Invitation
-                  </div>
-                  <div className="description">16 January 2021</div>
-                </div>
-              </Paper>
-            </Grid>
-
-            <div id="column_reverse">
-              <Grid item md={7} xs={12}>
-                <Paper className={classes.paper} id="grid_color1">
-                  <p className="subheading">90 Minutes</p>
-                  <div className="content" style={{ padding: 50 }}>
-                    When Gio found out that his friend, Jeni, has been missing
-                    for days, he decided to involve the highly acclaimed Student
-                    Detective Club in the search for his friend. By tracing her
-                    activities, clues and hints begin to come to light... or do
-                    they? Be prepared to unravel a string of hidden truths once
-                    you dive into the intriguing details of Jeni's
-                    disappearance!
-                  </div>
-                </Paper>
-              </Grid>
-              <Grid item md={5} xs={12}>
-                <Paper className={classes.paper} id="grid_color2">
-                  <img
-                    alt="asset 2"
-                    src="../images/game1_1.jpg"
-                    width="auto"
-                    height="100%"
-                  />
-                </Paper>
-              </Grid>
+          <div id="container" style={styles.header}>
+            <img
+              alt="Header"
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+                borderWidth: 0,
+                borderStyle: "none",
+              }}
+              src="./images/Thun.gif"
+              height="120%"
+              width="200%"
+            />
+            <div style={styles.title} className="style">
+              The Invitation
             </div>
-            <div id="column">
-              <Grid item md={6} xs={12}>
-                <Paper className={classes.paper} id="grid_color2">
-                  <img
-                    src="../images/game1_1.jpg"
-                    alt="game1_2"
-                    width="auto"
-                    height="100%"
-                  />
-                </Paper>
-              </Grid>
-              <Grid item md={6} xs={12}>
-                <Paper className={classes.paper} id="grid_color1">
-                  <p className="subheading">Work with a team of 5-8</p>
-                  <div className="content">LOCATION: NTU</div>
-                </Paper>
-              </Grid>
+            <div className="description">16 January 2021</div>
+          </div>
+          <div>
+            <div style={styles.details}>
+              <p style={{ margin: 0, fontSize: 20 }}>Duration: 120 minutes</p>
+              <p style={{ margin: 0, fontSize: 20 }}>Difficulty: X X X X -</p>
+              <p style={{ margin: 0, fontSize: 20 }}>Capacity: 5-7 person(s)</p>
             </div>
-            <Grid item xs={12} id="grid_size">
-              <Paper className={classes.paper} id="grid_color1">
-                <div id="coloring" className={classes.root}>
-                  {images.map((image) => (
-                    <ButtonBase
-                      focusRipple
-                      key={image.title}
-                      className={classes.image}
-                      focusVisibleClassName={classes.focusVisible}
-                      style={{
-                        width: image.width,
-                        height: "450px",
-                        marginRight: "1%",
-                        marginTop: "5px",
-                        marginLeft: "1%",
-                      }}
-                      href={image.link}
-                    >
-                      <span
-                        className={classes.imageSrc}
-                        style={{
-                          backgroundImage: `url(${image.url})`,
-                        }}
-                      />
-                      <span className={classes.imageBackdrop} />
-                      <span className={classes.imageButton}>
-                        <Typography
-                          component="span"
-                          variant="subtitle1"
-                          color="inherit"
-                          className={classes.imageTitle}
-                        >
-                          {image.title}
-                          <span className={classes.imageMarked} />
-                        </Typography>
-                      </span>
-                    </ButtonBase>
-                  ))}
-                  <Grid item xs={12}>
-                    <Paper className={classes.paper} id="grid_color3">
-                      <Button
-                        id="position"
-                        variant="contained"
-                        color="secondary"
-                        href="/game1"
-                      >
-                        REGISTER NOW
-                      </Button>
-                    </Paper>
-                  </Grid>
-                </div>
-              </Paper>
-            </Grid>
-          </Grid>
+            <div style={styles.center}>
+              <Link
+                key={3}
+                to={"/register"}
+                style={{
+                  textDecoration: "none",
+                  padding: 0,
+                  margin: 0,
+                  marginBottom: 50,
+                }}
+              >
+                <ColorButton>BUY TICKET</ColorButton>
+              </Link>
+            </div>
+          </div>
+          <div style={styles.block}>
+            <div style={styles.block}>
+              <p
+                style={{
+                  margin: 0,
+                  marginTop: 20,
+                  color: "#941616",
+                  fontSize: 28,
+                  textAlign: "center",
+                }}
+              >
+                Can you solve the case?
+              </p>
+              <img
+                alt="asset 1"
+                style={{
+                  objectFit: "cover",
+                  width: "80vw",
+                  height: "auto",
+                  borderWidth: 0,
+                  borderStyle: "none",
+                  marginTop: 40,
+                }}
+                src="./images/game_1_assets/banner_1.png"
+              />
+            </div>
+          </div>
+          <div style={styles.block}>
+            <div style={styles.block}>
+              <p style={{ margin: 0 }} className="subheading">
+                Trailer
+              </p>
+              <div className={classes.trailer} style={{ textAlign: "justify" }}>
+                <iframe
+                  style={{ width: "80%", height: "auto", borderStyle: "none" }}
+                  title="trailer"
+                  src="https://www.youtube.com/embed/dHAdqd7OH5M"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+          <div style={styles.block}>
+            <div style={styles.block}>
+              <p style={{ margin: 0 }} className="subheading">
+                Synopsis
+              </p>
+              <div className="content" style={{ textAlign: "justify" }}>
+                <p style={{ margin: 0 }}>
+                  When Gio found out that his friend, Jeni, has been missing for
+                  days, he decided to involve the highly acclaimed Student
+                  Detective Club in the search for his friend. By tracing her
+                  activities, clues and hints begin to come to light... or do
+                  they?
+                </p>
+                <p>
+                  Be prepared to unravel a string of hidden truths once you dive
+                  into the intriguing details of Jeni's disappearance!
+                </p>
+              </div>
+            </div>
+            <img
+              alt="asset 1"
+              style={{
+                objectFit: "cover",
+                height: "50vh",
+                width: "80vw",
+                marginBottom: 20,
+                borderWidth: 0,
+                borderStyle: "none",
+              }}
+              src="./images/g1_1.jpeg"
+              height="120%"
+              width="200%"
+            />
+          </div>
+          <div style={styles.block}>
+            <div style={styles.block}>
+              <p style={{ margin: 0, marginTop: 20 }} className="subheading">
+                To be a member of Student Detective Club,
+              </p>
+              <p style={{ margin: 0, marginTop: 20 }} className="subheading">
+                You have to:
+              </p>
+              <div className="content" style={{ textAlign: "center" }}>
+                <p style={{ margin: 0 }}>Be courageous</p>
+                <p>Have an eye like Sherlock</p>
+                <p>Solve the puzzles with your creative mind</p>
+                <p>Trace the story like no one else could</p>
+              </div>
+              <Link
+                key={3}
+                to={"/register"}
+                style={{
+                  textDecoration: "none",
+                  padding: 0,
+                  margin: 0,
+                  marginBottom: 50,
+                  marginTop: 20,
+                }}
+              >
+                <ColorButton
+                  onClick={() => {
+                    props.history.push("/register");
+                  }}
+                >
+                  REGISTER NOW
+                </ColorButton>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -255,8 +282,27 @@ const styles = {
     objectFit: "cover",
   },
   title: {
-    fontSize: 70,
+    fontSize: "calc(50px + 3vw)",
     fontFamily: "EastSea",
     color: "white",
+  },
+  block: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    width: "90%",
+    paddingBottom: "50px",
+  },
+  center: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  details: {
+    margin: 50,
+    borderColor: "#941616",
+    borderWidth: 10,
   },
 };

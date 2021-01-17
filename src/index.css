@@ -20,3 +20,11 @@ code {
   font-family: 'XiaoWei';
   src: local('XiaoWei'), url(./fonts/ZCOOLXiaoWei-Regular.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'CoveredByYourGrace';
+  src: local('CoveredByYourGrace'), url(./fonts/CoveredByYourGrace-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'BaronKuffner';
+  src: local('BaronKuffner'), url(./fonts/Baron-Kuffner.otf) format('opentype');
+}

@@ -27,8 +27,8 @@ export const routes = [
   {
     id: 1,
     name: "NOW PLAYING",
-    expand: "The Invitation",
-    path: "/game1",
+    expand: "A Death is Announced",
+    path: "/game2",
   },
   {
     id: 2,

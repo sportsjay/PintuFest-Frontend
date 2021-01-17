@@ -10,7 +10,7 @@
 
 .style {
   position: absolute;
-  bottom: 20%;
+  bottom: 25%;
   color: white;
   font-size: 90px;
   width: 100%;
@@ -19,7 +19,7 @@
 .description {
   position: absolute;
   color: white;
-  bottom: 13%;
+  bottom: 11%;
   font-size: 30px;
   width: 100%;
 }
@@ -44,7 +44,7 @@
 }
 
 .subheading {
-  color: maroon;
+  color: #b02126;
   font-size: 40px;
   font-weight: bold;
   margin: 0px;
@@ -199,4 +199,15 @@
     box-shadow: 0 0 0 0;
     height: 200px;
   }
+}
+
+@media (min-width: 768px) {
+  .readable {
+    flex: 0 0 100%;
+    max-width: 80%;
+  }
+}
+
+.darken {
+  filter: brightness(70%);
 }
