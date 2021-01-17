@@ -90,7 +90,7 @@ export default function Registration() {
   useEffect(() => {
     // get data from DB
     axios
-      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation")) // change by day
+      .get(GAMES_API.GET_GAME_BY_NAME("A Death is Announced")) // change by day
       .then((res) => {
         setTimeSlots(res.data);
       })
@@ -182,11 +182,11 @@ export default function Registration() {
             variant="h2"
             style={{
               textAlign: "center",
-              fontFamily: "EastSea",
-              color: "#941616",
+              fontFamily: "BaronKuffner",
+              color: "white",
             }}
           >
-            The Invitation
+            A <span style={{ color: "#b02126" }}>Death</span> is Announced
           </Typography>
         </div>
         <div
@@ -199,7 +199,7 @@ export default function Registration() {
           }}
         >
           <Typography style={{ fontFamily: "XiaoWei" }}>
-            Date: 16 January 2021
+            Date: 24 January 2021
           </Typography>
           <Typography style={{ fontFamily: "XiaoWei" }}>
             Duration: 2 hours
