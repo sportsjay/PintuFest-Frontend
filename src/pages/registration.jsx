@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     paddingTop: 40,
     fontFamily: "XiaoWei",
   },
