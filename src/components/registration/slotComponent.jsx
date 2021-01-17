@@ -25,8 +25,6 @@ export default function TimeSlot(props) {
         style={{
           width: 105,
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           flexDirection: "row",
           justifyContent: "left",
           paddingLeft: 10,
@@ -76,45 +74,6 @@ export default function TimeSlot(props) {
           orientation="vertical"
           style={{ backgroundColor: "#941616", width: 0.5, height: 45 }}
         />
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <Typography
-            style={{ textAlign: "center", fontSize: 8, fontFamily: "XiaoWei" }}
-          >
-            Group
-          </Typography>
-          <Typography
-            style={{ textAlign: "center", fontSize: 16, fontFamily: "XiaoWei" }}
-          >
-            {room}
-          </Typography>
-        </div>
-        <Divider
-          style={{
-            backgroundColor: "#941616",
-            marginLeft: 5,
-            width: 0.5,
-          }}
-          orientation="vertical"
-        />
-      </div>
-      <div
-        style={{
-          width: 50,
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "#941616",
-        }}
-      >
         <Typography
           variant="h6"
           style={{
