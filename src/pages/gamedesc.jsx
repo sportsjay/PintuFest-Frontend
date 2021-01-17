@@ -127,6 +127,7 @@ export default function GameDesc(props) {
                 height: "100%",
                 borderWidth: 0,
                 borderStyle: "none",
+                opacity: 0.6,
               }}
               src="./images/tenor.gif"
               height="120%"
@@ -136,7 +137,7 @@ export default function GameDesc(props) {
             <div style={styles.title} className="style">
               A <span style={styles.danger}>Death</span> is Announced
             </div>
-            <div className="description">23 January 2021</div>
+            <div className="description">24 January 2021</div>
           </div>
           <div>
             <div style={styles.details}>
@@ -208,42 +209,24 @@ export default function GameDesc(props) {
               </p>
               <div className="content" style={{ textAlign: "justify" }}>
                 <p style={{ margin: 0 }}>
-                As a young college student prepares to surprise his neighbour for his 20th birthday, little does he expect a surprise of his own as he is met with a horrifying sight -  Bryan's body lying cold and lifeless. As word of the death snakes its way across campus, rumours spread like wildfire. The corridors are fraught with whispered speculations and conspiracy theories, and yet the case remains unsolved. 
+                  As a young college student prepares to surprise his neighbour
+                  for his 20th birthday, little does he expect a surprise of his
+                  own as he is met with a horrifying sight -  Bryan's body lying
+                  cold and lifeless. As word of the death snakes its way across
+                  campus, rumours spread like wildfire. The corridors are
+                  fraught with whispered speculations and conspiracy theories,
+                  and yet the case remains unsolved.
                 </p>
-                <p>  
-                No one has been capable enough to unravel the mysteries behind Bryan's untimely death. Perhaps you could be the one to solve it. Do you think you have what it takes, Detective?
+                <p>
+                  No one has been capable enough to unravel the mysteries behind
+                  Bryan's untimely death. Perhaps you could be the one to solve
+                  it. Do you think you have what it takes, Detective?
                 </p>
               </div>
             </div>
-            {/* <img
-              alt="asset 1"
-              style={{
-                objectFit: "cover",
-                height: "50vh",
-                width: "80vw",
-                marginBottom: 20,
-                borderWidth: 0,
-                borderStyle: "none",
-              }}
-              src="./images/g1_1.jpeg"
-              height="120%"
-              width="200%"
-            /> */}
           </div>
           <div style={styles.block}>
             <div>
-              {/* <p style={{ margin: 0, marginTop: 20 }} className="subheading">
-                To be a member of Student Detective Club,
-              </p>
-              <p style={{ margin: 0, marginTop: 20 }} className="subheading">
-                You have to:
-              </p>
-              <div className="content" style={{ textAlign: "center" }}>
-                <p style={{ margin: 0 }}>Be courageous</p>
-                <p>Have an eye like Sherlock</p>
-                <p>Solve the puzzles with your creative mind</p>
-                <p>Trace the story like no one else could</p>
-              </div> */}
               <Link
                 key={3}
                 to={"/register"}
@@ -255,13 +238,7 @@ export default function GameDesc(props) {
                   marginTop: 20,
                 }}
               >
-                <ColorButton
-                  onClick={() => {
-                    props.history.push("/register");
-                  }}
-                >
-                  REGISTER NOW
-                </ColorButton>
+                <ColorButton>REGISTER NOW</ColorButton>
               </Link>
             </div>
           </div>

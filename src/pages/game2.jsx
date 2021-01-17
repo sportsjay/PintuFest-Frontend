@@ -1,211 +1,121 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Button from '@material-ui/core/Button';
-import "../components/styles-2.css";
-import { LinearScaleTwoTone } from "@material-ui/icons";
+import { Container, Typography, makeStyles } from "@material-ui/core";
+import { Animate } from "react-simple-animate";
 
-const images = [
-  {
-    url: '../images/game1_1.jpg',
-    title: 'Escape Room 1',
-    width: '30%',
-    link: '/game1',
-  },
-  {
-    url: '../images/game1_2.jpg',
-    title: 'Escape Room 2',
-    width: '30%',
-    link: '/game2',
-  },
-  {
-    url: '../images/game1_3.jpg',
-    title: 'Escape Room 3',
-    width: '30%',
-    link: '/game3',
-  },
-];
+//import components
+import Banner from "../components/home/banner";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    minWidth: 300,
-    width: '100%',
-    flexGrow: 1,
-    justifyContent: 'center',
-
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#000",
+    color: "white",
+    flexDirection: "column",
   },
-  image: {
-    position: 'relative',
-    height: 200,
-    [theme.breakpoints.down('xs')]: {
-      width: '100% !important', // Overrides inline-style
-      height: 100,
+  banners: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#000",
+    color: "white",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
     },
-    '&:hover, &$focusVisible': {
-      zIndex: 1,
-      '& $imageBackdrop': {
-        opacity: 0.15,
-      },
-      '& $imageMarked': {
-        opacity: 0,
-      },
-      // '& $imageTitle': {
-      //   border: '4px solid currentColor',
-      // },
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
     },
   },
-  focusVisible: {},
-  imageButton: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: theme.palette.common.white,
-  },
-  imageSrc: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center 40%',
-  },
-  imageBackdrop: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    backgroundColor: theme.palette.common.black,
-    opacity: 0.4,
-    transition: theme.transitions.create('opacity'),
-  },
-  imageTitle: {
-    position: 'relative',
-    padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
-  },
-  imageMarked: {
-    height: 3,
-    width: 18,
-    backgroundColor: theme.palette.common.white,
-    position: 'absolute',
-    bottom: -2,
-    left: 'calc(50% - 9px)',
-    transition: theme.transitions.create('opacity'),
+  text: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "1.4rem",
+    },
   },
 }));
 
-export default function Game2() {
+export default function Home() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <div id="box-color">
-        <div className={classes.root}>
-          <Grid container spacing={0}>
-            <Grid item md={12} xs={12}>
-              <Paper className={classes.paper} id="grid_color">
-              <div id="container">
-                <img src="../images/image_banner.jpg" alt="game1_1" width="100%" height="auto"/>
-                <div className="style">Escape Room <span class="text-danger">2</span></div>
-                <div className="description">Week 5</div>
-              </div>
-              </Paper>
-            </Grid>
-            <div id="column_reverse">
-            <Grid>
-              <Paper className={classes.paper} id="grid_color1" >
-                <p className="subheading">90 Minutes</p>
-                <div className="content">Follow all the clues to find out the mystery behind all of it</div>
-              </Paper>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper className={classes.paper} id="grid_color2">
-                <img src="../images/about2_1.jpg" alt="" width="auto" height="100%" />
-              </Paper>
-            </Grid>
-            </div>
-            <div id="column">
-            <Grid item md={6} xs={12}>
-              <Paper className={classes.paper} id="grid_color2">
-                <img src="../images/about2_2.jpg" alt="image_banner" width="auto" height="100%" />
-              </Paper>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Paper className={classes.paper} id="grid_color1" >
-                <p className="subheading">Work with a team of 5-8</p>
-                <div className="content">LOCATION: NTU</div>
-              </Paper>
-            </Grid>
-            </div>
-            <Grid item xs={12} id="grid_size">
-              <Paper className={classes.paper} id="grid_color1" >
-              <div id="coloring" className={classes.root}>
-                {images.map((image) => (
-                  <ButtonBase
-                    focusRipple
-                    key={image.title}
-                    className={classes.image}
-                    focusVisibleClassName={classes.focusVisible}
-                    style={{
-                      width: image.width,
-                      height: "450px",
-                      marginRight: "1%", 
-                      marginTop: "5px",
-                      marginLeft: "1%"
-                    }}
-                    href={image.link}
-                  >
-                    <span
-                      className={classes.imageSrc}
-                      style={{
-                        backgroundImage: `url(${image.url})`,
-                      }}
-                    />
-                    <span className={classes.imageBackdrop} />
-                    <span className={classes.imageButton}>
-                      <Typography
-                        component="span"
-                        variant="subtitle1"
-                        color="inherit"
-                        className={classes.imageTitle}
-                      >
-                        {image.title}
-                        <span className={classes.imageMarked} />
-                      </Typography>
-                    </span>
-                  </ButtonBase>
-                ))}
-            <Grid item xs={12}>
-              <Paper className={classes.paper} id="grid_color3" >
-                <Button id="position" variant="contained" color="secondary" href="/game1" >REGISTER NOW</Button>       
-              </Paper>
-            </Grid>
-              </div>
-              </Paper>
-            </Grid>
-          </Grid>
+    <Container className={classes.root}>
+      <div style={styles.block}>
+        <div style={styles.block}>
+          <Animate
+            play={true}
+            duration="5"
+            end={{ opacity: 1, filter: "blur(0)" }}
+            start={{ opacity: 0, filter: "blur(10px)" }}
+          >
+            <Typography style={styles.title}>
+              Are you ready to solve the Unsolved?
+            </Typography>
+          </Animate>
         </div>
       </div>
-      
-    </React.Fragment>
+      <div className={classes.banners}>
+        <Banner
+          gameNumber="1"
+          title="The Invitation"
+          status="16 January 2021"
+          image="./images/game_1_assets/game1_1x1.png"
+        />
+        <Banner
+          gameNumber="2"
+          title="A Death is Announced"
+          status="24 January 2021"
+          image="./images/game_2_assets/game2_1x1.png"
+        />
+        <Banner
+          gameNumber="3"
+          title="Second Chance"
+          image="./images/comingsoon_1x1.png"
+        />
+      </div>
+      <div style={styles.block}>
+        <div style={styles.block}>
+          <p style={styles.title}>GTD Unsolved</p>
+          <div
+            className="content"
+            style={{
+              textAlign: "justify",
+              fontFamily: "XiaoWei",
+              fontSize: 12,
+            }}
+          >
+            <p className={classes.text} style={{ margin: 0 }}>
+              GTD Unsolved is a series of escape room-esque games where you are
+              tasked to solve cases and figure out their underlying enigmatic
+              stories along the way. Expect brain-teasing puzzles and
+              tantalizing mysteries for you and your inquisitive friends and
+              colleagues to discover!
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
   );
 }
+
+const styles = {
+  title: {
+    margin: 0,
+    marginTop: 20,
+    color: "white",
+    fontSize: 50,
+    textAlign: "center",
+    fontFamily: "EastSea",
+  },
+  block: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    width: "90%",
+    paddingTop: 50,
+    paddingBottom: 50,
+  },
+};

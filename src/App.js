@@ -26,7 +26,7 @@ import ComingSoon from "./pages/comingsoon";
 import FAQ from "./pages/faq";
 import Promotion from "./pages/promotion";
 import AdminPage from "./pages/adminpage";
-import Game2 from "./pages/game2";
+// import Game2 from "./pages/game2";
 
 const useStyles = makeStyles((theme) => ({
   content: {

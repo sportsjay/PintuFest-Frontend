@@ -259,13 +259,7 @@ export default function GameDesc(props) {
                   marginTop: 20,
                 }}
               >
-                <ColorButton
-                  onClick={() => {
-                    props.history.push("/register");
-                  }}
-                >
-                  REGISTER NOW
-                </ColorButton>
+                <ColorButton>REGISTER NOW</ColorButton>
               </Link>
             </div>
           </div>
