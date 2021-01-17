@@ -90,7 +90,7 @@ export default function Registration() {
   useEffect(() => {
     // get data from DB
     axios
-      .get(GAMES_API.GET_GAME_BY_NAME("The Invitation")) // change by day
+      .get(GAMES_API.GET_GAME_BY_NAME("A Death is Announced")) // change by day
       .then((res) => {
         setTimeSlots(res.data);
       })
