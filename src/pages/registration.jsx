@@ -182,11 +182,11 @@ export default function Registration() {
             variant="h2"
             style={{
               textAlign: "center",
-              fontFamily: "EastSea",
-              color: "#941616",
+              fontFamily: "BaronKuffner",
+              color: "white",
             }}
           >
-            The Invitation
+            A <span style={{ color: "#b02126" }}>Death</span> is Announced
           </Typography>
         </div>
         <div
@@ -199,7 +199,7 @@ export default function Registration() {
           }}
         >
           <Typography style={{ fontFamily: "XiaoWei" }}>
-            Date: 16 January 2021
+            Date: 24 January 2021
           </Typography>
           <Typography style={{ fontFamily: "XiaoWei" }}>
             Duration: 2 hours

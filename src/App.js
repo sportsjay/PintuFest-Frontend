@@ -19,12 +19,14 @@ import Footer from "./components/footer";
 import Home from "./pages/home";
 import Registration from "./pages/registration";
 import AdminLogin from "./pages/adminlogin";
-// import Game1 from "./pages/game1";
+import Game1 from "./pages/game1";
+// import Game2 from "./pages/game2";
 import Details from "./pages/gamedesc";
 import ComingSoon from "./pages/comingsoon";
 import FAQ from "./pages/faq";
 import Promotion from "./pages/promotion";
 import AdminPage from "./pages/adminpage";
+// import Game2 from "./pages/game2";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -74,6 +76,9 @@ function App() {
             <Registration />
           </Route>
           <Route path="/game1">
+            <Game1 />
+          </Route>
+          <Route path="/game2">
             <Details />
           </Route>
           <Route path="/promotion">

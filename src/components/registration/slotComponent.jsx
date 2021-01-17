@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Radio, Divider } from "@material-ui/core";
 
 export default function TimeSlot(props) {
-  const room = props.room || 0; //room number
+  const room = props.room || 0; //game room
   const timeslot = props.timeslot || "00:00 - 00:00"; //game timeslot
   const numSlot = props.numSlot || 1; //game room number of slots left
   const numParticipants = props.numParticipants || 0; //current game slots participants
@@ -10,7 +10,7 @@ export default function TimeSlot(props) {
   return (
     <div
       style={{
-        width: 140,
+        width: 150,
         height: 45,
         backgroundColor: numSlot <= numParticipants ? "grey" : "white",
         display: "flex",
@@ -23,26 +23,58 @@ export default function TimeSlot(props) {
     >
       <div
         style={{
-          width: 55,
+          width: 105,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "row",
-          backgroundColor: "white",
+          justifyContent: "left",
+          paddingLeft: 10,
+          alignItems: "center",
           color: "#941616",
-          height: "100%",
-          borderBottomLeftRadius: 5,
-          borderTopLeftRadius: 5,
-          paddingLeft: 5,
-          paddingRight: 5,
         }}
       >
         <Radio
           {...props}
           color="default"
-          style={{ padding: 0, width: 15, marginRight: 5, marginLeft: 5 }}
+          style={{ padding: 0, width: 15 }}
           size="small"
           disabled={numSlot <= numParticipants}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "left",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            style={{
+              textAlign: "center",
+              fontSize: 8,
+              marginRight: 5,
+              marginLeft: 5,
+              fontFamily: "XiaoWei",
+            }}
+          >
+            Group
+          </Typography>
+          <Typography
+            style={{
+              textAlign: "center",
+              fontSize: 16,
+              marginRight: 5,
+              marginLeft: 5,
+              fontFamily: "XiaoWei",
+            }}
+          >
+            {room}
+          </Typography>
+        </div>
+        <Divider
+          orientation="vertical"
+          style={{ backgroundColor: "#941616", width: 0.5, height: 45 }}
         />
 
         <div
@@ -88,12 +120,15 @@ export default function TimeSlot(props) {
           style={{
             textAlign: "center",
             fontSize: 16,
+            marginRight: 5,
+            marginLeft: 5,
             fontFamily: "XiaoWei",
           }}
         >
           {timeslot.substring(0, 5)}
         </Typography>
       </div>
+
       <div
         style={{
           width: 45,

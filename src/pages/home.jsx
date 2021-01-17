@@ -66,7 +66,8 @@ export default function Home() {
         <Banner
           gameNumber="2"
           title="A Death is Announced"
-          image="./images/comingsoon_1x1.png"
+          status="24 January 2021"
+          image="./images/game_2_assets/game2_1x1.png"
         />
         <Banner
           gameNumber="3"
